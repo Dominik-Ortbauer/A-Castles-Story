@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=ShopItems
+comment1.params=value
+comment1.target=void\ setPrice(int)
+comment2.params=
+comment2.target=void\ addUI()
+comment3.params=
+comment3.target=void\ removeUI()
+numComments=4

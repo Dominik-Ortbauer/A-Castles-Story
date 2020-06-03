@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Door
+comment1.params=destination_
+comment1.target=Door(greenfoot.World)
+comment2.params=world
+comment2.target=void\ setDestination(greenfoot.World)
+comment3.params=
+comment3.target=void\ openDoor()
+comment4.params=
+comment4.target=void\ closeDoor()
+comment5.params=
+comment5.target=void\ act()
+numComments=6

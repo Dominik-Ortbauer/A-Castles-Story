@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Enemy
+comment1.params=
+comment1.target=boolean\ update()
+comment2.params=
+comment2.target=void\ checkHealth()
+comment3.params=value
+comment3.target=void\ setScore(int)
+comment4.params=amount
+comment4.target=void\ setHealth(int)
+comment5.params=value
+comment5.target=void\ setSpeed(int)
+comment6.params=value
+comment6.target=void\ setGoldAmount(int)
+comment7.params=value
+comment7.target=void\ takeDamage(int)
+comment8.params=time
+comment8.target=void\ stun(int)
+comment9.params=
+comment9.target=Enemy\ copy()
+numComments=10

@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Heart
+comment1.params=
+comment1.target=Heart()
+comment2.params=
+comment2.target=void\ changeToFullHeart()
+comment3.params=
+comment3.target=void\ changeToEmptyHeart()
+comment4.params=pos
+comment4.target=void\ setHeartLocation(Vector)
+numComments=5
