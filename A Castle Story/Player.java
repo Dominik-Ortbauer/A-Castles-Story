@@ -7,6 +7,10 @@ public class Player extends Actor
 
     private boolean mouseDown;
 
+    public boolean isDashing;
+    private int dashTimer;
+    private int timeBtwDash;
+
     public int hammerChargeTime = 120;
     public int startHammerChargeTime = 120;
     public int bowChargeTime = 120;
@@ -50,6 +54,27 @@ public class Player extends Actor
             startWalking();
             isWalking = true;
         }
+        
+        if(Greenfoot.isKeyDown("space") && timeBtwDash > 30)
+        {
+            isDashing = true;
+            timeBtwDash = 0;
+        }
+        if(isDashing && dashTimer <= 6)
+        {
+            dashTimer++;
+            
+            turnTowards((int)movement.x, (int)movement.y);
+            movement.setMag(15);
+            setLocation(getX() + (int)movement.x, getY() + (int)movement.y);
+        }
+        else
+        {
+            dashTimer = 0;
+            isDashing = false;
+        }
+        timeBtwDash++;
+        
         if(!(getWorld() instanceof Shop))
         {
             if(mouse != null && mouseDown)
