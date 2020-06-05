@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Trap
+comment1.params=destination_
+comment1.target=Trap(Vector)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ disappear()
+numComments=4

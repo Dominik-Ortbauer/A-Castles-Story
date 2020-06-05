@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Wave
+comment1.params=enemiesToSpawn
+comment1.target=Wave(Enemy[][])
+comment2.params=
+comment2.target=Enemy\ getNextEnemy()
+comment3.params=
+comment3.target=void\ reset()
+comment4.params=
+comment4.target=boolean\ enemyAvailable()
+comment5.params=
+comment5.target=int\ wholeLength()
+numComments=6

@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Effect_Particles
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Effect_Particles\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=void\ act()
+comment2.params=Value\ variability
+comment2.target=void\ setSpeed(double,\ double)
+comment3.params=Value\ variability
+comment3.target=void\ setIncrease(double,\ double)
+comment4.params=value
+comment4.target=void\ setTimer(int)
+numComments=5

@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Attack_Bow
+comment1.params=dir_\ amountOfArrows_
+comment1.target=Attack_Bow(Vector,\ int)
+comment2.params=
+comment2.target=void\ act()
+numComments=3

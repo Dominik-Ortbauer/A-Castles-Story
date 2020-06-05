@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=StoneProjectile
+comment1.params=
+comment1.target=StoneProjectile()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ move()
+numComments=4

@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Player
+comment1.params=
+comment1.target=void\ act()
+comment10.params=
+comment10.target=void\ movement()
+comment11.params=
+comment11.target=void\ changeImagesToLeft()
+comment12.params=
+comment12.target=void\ changeImagesToRight()
+comment2.params=
+comment2.target=void\ stopWalking()
+comment3.params=
+comment3.target=void\ startWalking()
+comment4.params=
+comment4.target=void\ attack()
+comment5.params=
+comment5.target=void\ getInput()
+comment6.params=value
+comment6.target=void\ increaseDamage(int)
+comment7.params=x\ y
+comment7.target=void\ updatePosition(int,\ int)
+comment8.params=
+comment8.target=void\ updateImages()
+comment9.params=
+comment9.target=void\ forceUpdateImages()
+numComments=13

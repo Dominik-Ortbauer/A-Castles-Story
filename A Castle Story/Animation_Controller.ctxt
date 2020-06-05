@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Animation_Controller
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Animation_Controller\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=timeBtwFrames_\ images_\ actor_
+comment1.target=Animation_Controller(double,\ java.lang.String[],\ greenfoot.Actor)
+comment2.params=
+comment2.target=void\ stop()
+comment3.params=
+comment3.target=void\ start()
+comment4.params=
+comment4.target=void\ update()
+comment5.params=
+comment5.target=void\ resetImages()
+comment6.params=
+comment6.target=void\ resetAnimation()
+numComments=7

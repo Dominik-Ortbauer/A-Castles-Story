@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Tower
+comment1.params=
+comment1.target=boolean\ update()
+comment2.params=
+comment2.target=Enemy\ getClosestEnemy()
+comment3.params=
+comment3.target=void\ setEnemies()
+numComments=4
