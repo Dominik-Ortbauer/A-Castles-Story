@@ -118,4 +118,10 @@ public class Vector
     {
         return new Vector(x, y);
     }
+    
+    public void normalize()
+    {
+        x /= mag();
+        y /= mag();
+    }
 }

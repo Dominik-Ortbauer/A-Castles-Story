@@ -14,6 +14,9 @@ public class Animation_Controller
     private int frameCount = 0;
     private Actor actor;
     private boolean animate = true;
+    
+    private boolean animatingOnce = false;    
+    
     public Animation_Controller(double timeBtwFrames_, String[] images_, Actor actor_)
     {
         startTimeBtwFrames = timeBtwFrames_;
@@ -34,16 +37,42 @@ public class Animation_Controller
     {
         animate = true;
     }
+    
+    public void animateOnce()
+    {
+        animatingOnce = true;
+        frameCount = 0;
+        timeBtwFrames = startTimeBtwFrames;
+    }
 
     public void update()
     {
-        if(animate)
+        if(animate && !animatingOnce)
         {
             if(timeBtwFrames <= 0)
             {
                 if(frameCount >= images.length)
                 {
                     frameCount = 0;
+                }
+
+                actor.setImage(images[frameCount++]);
+                timeBtwFrames = startTimeBtwFrames;
+            }
+            else
+            {
+                timeBtwFrames -= 0.017;
+            }
+        }
+        
+        if(animatingOnce)
+        {
+            if(timeBtwFrames <= 0)
+            {
+                if(frameCount >= images.length)
+                {
+                    frameCount = 0;
+                    animatingOnce = false;
                 }
 
                 actor.setImage(images[frameCount++]);
