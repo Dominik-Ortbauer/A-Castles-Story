@@ -22,6 +22,7 @@ public class Animation_Controller
         startTimeBtwFrames = timeBtwFrames_;
         actor = actor_;
 
+        images = new GreenfootImage[images_.length];
         for(int i = 0; i < images_.length; i++)
         {
             images[i] = new GreenfootImage(images_[i]);
@@ -41,19 +42,26 @@ public class Animation_Controller
     public void animateOnce()
     {
         animatingOnce = true;
+        animate = true;
         frameCount = 0;
         timeBtwFrames = startTimeBtwFrames;
     }
 
     public void update()
     {
-        if(animate && !animatingOnce)
+        if(animate)
         {
             if(timeBtwFrames <= 0)
             {
                 if(frameCount >= images.length)
                 {
                     frameCount = 0;
+                    
+                    if(animatingOnce)
+                    {
+                        animatingOnce = false;
+                        animate = false;
+                    }
                 }
 
                 actor.setImage(images[frameCount++]);
@@ -63,26 +71,7 @@ public class Animation_Controller
             {
                 timeBtwFrames -= 0.017;
             }
-        }
-        
-        if(animatingOnce)
-        {
-            if(timeBtwFrames <= 0)
-            {
-                if(frameCount >= images.length)
-                {
-                    frameCount = 0;
-                    animatingOnce = false;
-                }
-
-                actor.setImage(images[frameCount++]);
-                timeBtwFrames = startTimeBtwFrames;
-            }
-            else
-            {
-                timeBtwFrames -= 0.017;
-            }
-        }
+        }                
     }
     
     public void resetImages()

@@ -17,6 +17,7 @@ public class Player extends Actor
     public int startBowChargeTime = 120;
 
     Vector movement = new Vector();
+    Vector dashDir;
     public Vector pos = new Vector();
 
     MouseInfo mouse = Greenfoot.getMouseInfo();
@@ -42,11 +43,15 @@ public class Player extends Actor
         }
 
         mouse = Greenfoot.getMouseInfo();
-        movement();
 
-        if(movement.mag() == 0)
+        if(!isDashing)
         {
-            stopWalking();            
+            movement();
+        }
+
+        if(movement.mag() == 0 ||isDashing)
+        {
+            stopWalking();
             isWalking = false;
         }
         else
@@ -54,31 +59,36 @@ public class Player extends Actor
             startWalking();
             isWalking = true;
         }
-        
+
         if(Greenfoot.isKeyDown("space") && timeBtwDash > 30)
         {
             isDashing = true;
+            playerBody.images.stop();
             timeBtwDash = 0;
+
+            movement.setMag(15);
+            dashDir = movement.copy();
         }
         if(isDashing && dashTimer <= 6)
         {
             dashTimer++;
-            
-            movement.setMag(15);
-            setLocation(getX() + (int)movement.x, getY() + (int)movement.y);
+
+            setLocation(getX() + (int)dashDir.x, getY() + (int)dashDir.y);
+            updatePosition(getX(), getY());
         }
-        else
+        else if(isDashing)
         {
             dashTimer = 0;
             isDashing = false;
+            playerBody.images.start();
         }
         timeBtwDash++;
-        
+
         if(!(getWorld() instanceof Shop))
         {
             if(mouse != null && mouseDown)
             {
-                attack();            
+                attack();
             }
             else if(mouse != null && currentWeapon instanceof Player_Hammer)
             {
@@ -87,22 +97,22 @@ public class Player extends Actor
 
                 if(hammerChargeTime <= startHammerChargeTime * -1)
                 {
-                    getWorld().addObject(new Attack_Hammer(target, 5), (int)pos.x, (int)pos.y);  
-                    timeBtwAttack = 0; 
+                    getWorld().addObject(new Attack_Hammer(target, 5), (int)pos.x, (int)pos.y);
+                    timeBtwAttack = 0;
                 }
                 else if(hammerChargeTime <= 0)
                 {
-                    getWorld().addObject(new Attack_Hammer(target, 3), (int)pos.x, (int)pos.y);  
-                    timeBtwAttack = 0; 
+                    getWorld().addObject(new Attack_Hammer(target, 3), (int)pos.x, (int)pos.y);
+                    timeBtwAttack = 0;
                 }
                 else if(hammerChargeTime <= startHammerChargeTime / 2)
                 {
-                    getWorld().addObject(new Attack_Hammer(target, 2), (int)pos.x, (int)pos.y);   
+                    getWorld().addObject(new Attack_Hammer(target, 2), (int)pos.x, (int)pos.y);
                     timeBtwAttack = 0;
                 }
                 else if(hammerChargeTime <= startHammerChargeTime - 1)
                 {
-                    getWorld().addObject(new Attack_Hammer(target, 1), (int)pos.x, (int)pos.y);   
+                    getWorld().addObject(new Attack_Hammer(target, 1), (int)pos.x, (int)pos.y);
                     timeBtwAttack = 0;
                 }
                 hammerChargeTime = startHammerChargeTime;
@@ -114,17 +124,17 @@ public class Player extends Actor
 
                 if(bowChargeTime <= 0)
                 {
-                    getWorld().addObject(new Attack_Bow(target, 3), (int)pos.x, (int)pos.y);  
-                    timeBtwAttack = 0; 
+                    getWorld().addObject(new Attack_Bow(target, 3), (int)pos.x, (int)pos.y);
+                    timeBtwAttack = 0;
                 }
                 else if(bowChargeTime <= startBowChargeTime / 2)
                 {
-                    getWorld().addObject(new Attack_Bow(target, 2), (int)pos.x, (int)pos.y);   
+                    getWorld().addObject(new Attack_Bow(target, 2), (int)pos.x, (int)pos.y);
                     timeBtwAttack = 0;
                 }
                 else if(bowChargeTime <= startBowChargeTime - 1)
                 {
-                    getWorld().addObject(new Attack_Bow(target, 1), (int)pos.x, (int)pos.y);   
+                    getWorld().addObject(new Attack_Bow(target, 1), (int)pos.x, (int)pos.y);
                     timeBtwAttack = 0;
                 }
                 bowChargeTime = startBowChargeTime;
@@ -134,13 +144,13 @@ public class Player extends Actor
         {
             bowChargeTime = startBowChargeTime;
             hammerChargeTime = startHammerChargeTime;
-            timeBtwAttack = 0; 
+            timeBtwAttack = 0;
         }
 
         pos.x = getX();
         pos.y = getY();
         timeBtwAttack++;
-    } 
+    }
 
     private void stopWalking()
     {
@@ -153,7 +163,7 @@ public class Player extends Actor
     private void startWalking()
     {
         playerBody.images.start();
-        currentWeapon.images.start();        
+        currentWeapon.images.start();
     }
 
     private void attack()
@@ -166,7 +176,7 @@ public class Player extends Actor
             getWorld().addObject(new MeeleAttack(target, 1), (int)pos.x, (int)pos.y);
         }
         if(currentWeapon instanceof Player_Hammer && timeBtwAttack >= currentWeapon.timeBtwAttacks)
-        {      
+        {
             if(hammerChargeTime <= startHammerChargeTime * -1)
             {
                 getWorld().addObject(new HammerCharge_Particle(this, 100, Effects.Colour.PURPLE, new Vector(20, 7)), getX(), getY());
@@ -199,7 +209,7 @@ public class Player extends Actor
             hammerChargeTime--;
         }
         if(currentWeapon instanceof Player_Bow && timeBtwAttack >= currentWeapon.timeBtwAttacks)
-        {            
+        {
             if(bowChargeTime <= 0)
             {
                 getWorld().addObject(new HammerCharge_Particle(this, 100, Effects.Colour.YELLOW, new Vector(20, 7)), getX(), getY());
@@ -222,7 +232,7 @@ public class Player extends Actor
                 getWorld().addObject(new Effect(Effects.Colour.YELLOW, new Vector(30, 10), 20, 7.0), getX(), getY());
             }
 
-            bowChargeTime--;                        
+            bowChargeTime--;
         }
     }
 
@@ -232,11 +242,11 @@ public class Player extends Actor
 
         if(Greenfoot.isKeyDown("a"))
         {
-            movement.x -= speed;            
+            movement.x -= speed;
         }
         if(Greenfoot.isKeyDown("d"))
         {
-            movement.x += speed;            
+            movement.x += speed;
         }
         if(Greenfoot.isKeyDown("w"))
         {
@@ -298,7 +308,7 @@ public class Player extends Actor
 
     private void movement()
     {
-        getInput();        
+        getInput();
         updatePosition(getX() + (int)movement.x, getY() + (int)movement.y);
         updateImages();
 
@@ -315,7 +325,7 @@ public class Player extends Actor
                     updatePosition((int)pos.x, (int)pos.y);
                 }
             }
-        }                
+        }
     }
 
     private void changeImagesToLeft()
