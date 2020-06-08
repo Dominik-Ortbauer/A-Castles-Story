@@ -21,6 +21,11 @@ public class Attack_Bow_Piece extends Attacks
         turnTowards((int)dir.x + getX(), (int)dir.y + getY());
         move(10);
         
+        if(getOneIntersectingObject(Club.class) != null)
+        {
+            ((Club)getOneIntersectingObject(Club.class)).hitByPlayer();
+        }
+        
         Object hit = getOneIntersectingObject(Enemy.class);
         if(hit != null)
         {

@@ -13,6 +13,11 @@ public class Attack_Hammer_Piece extends Attacks
     
     public void doDamage(Vector dir, int dist) 
     {
+        if(getOneIntersectingObject(Club.class) != null)
+        {
+            ((Club)getOneIntersectingObject(Club.class)).hitByPlayer();
+        }
+        
         Object[] hits = getIntersectingObjects(Enemy.class).toArray();
 
         for(int i = 0; i < hits.length; i++)

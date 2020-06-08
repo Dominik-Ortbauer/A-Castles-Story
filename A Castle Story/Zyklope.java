@@ -11,4 +11,9 @@ public class Zyklope extends Enemy
     {
         getWorld().addObject(new ShockWave(), getX(), getY());
     }
+    
+    private void throwClub()
+    {
+        getWorld().addObject(new Club(), getX(), getY());
+    }
 }

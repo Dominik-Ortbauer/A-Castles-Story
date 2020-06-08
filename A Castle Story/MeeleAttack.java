@@ -44,7 +44,7 @@ public class MeeleAttack extends Attacks
 
         Player player = (Player)getWorld().getObjects(Player.class).get(0);
         setLocation((int)player.pos.x + (int)dir.x, (int)player.pos.y + (int)dir.y);
-       
+
         if(waitTime <= 0)
         {
             if(frameCount < frames.length)
@@ -62,16 +62,21 @@ public class MeeleAttack extends Attacks
         {
             waitTime --;
         } 
-        
+
         if(frameCount == 4 && waitTime == (startWaitTime/2))
         {
+            if(getOneIntersectingObject(Club.class) != null)
+            {
+                ((Club)getOneIntersectingObject(Club.class)).hitByPlayer();
+            }
+
             Object[] hits = getIntersectingObjects(Enemy.class).toArray();
-            
+
             if(hits.length != 0)
             {
                 getWorld().addObject(new Effect(Effects.Colour.GREEN, new Vector(15, 5), 20), getX(), getY());
             }
-            
+
             for(int i = 0; i < hits.length; i++)
             {
                 ((Enemy)hits[i]).takeDamage(damage);
