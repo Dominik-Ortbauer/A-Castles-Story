@@ -1,7 +1,7 @@
 #BlueJ class context
-comment0.target=Attack_Dash
+comment0.target=Zyklope
 comment1.params=
 comment1.target=void\ act()
 comment2.params=
-comment2.target=void\ dash()
+comment2.target=void\ stompAttack()
 numComments=3

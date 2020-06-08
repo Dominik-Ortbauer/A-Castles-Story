@@ -64,7 +64,6 @@ public class Player extends Actor
         {
             dashTimer++;
             
-            turnTowards((int)movement.x, (int)movement.y);
             movement.setMag(15);
             setLocation(getX() + (int)movement.x, getY() + (int)movement.y);
         }
