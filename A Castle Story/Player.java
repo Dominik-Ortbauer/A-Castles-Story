@@ -7,9 +7,12 @@ public class Player extends Actor
 
     private boolean mouseDown;
 
-    public boolean isDashing;
+    public static boolean isDashing;
     private int dashTimer;
     private int timeBtwDash;
+
+    public static boolean isStunned;
+    public int stunTimer;
 
     public int hammerChargeTime = 120;
     public int startHammerChargeTime = 120;
@@ -83,6 +86,15 @@ public class Player extends Actor
             playerBody.images.start();
         }
         timeBtwDash++;
+
+        if(isStunned)
+        {
+            stunTimer++;
+            if(stunTimer >= 30)
+            {
+                isStunned = false;
+            }
+        }
 
         if(!(getWorld() instanceof Shop))
         {

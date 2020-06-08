@@ -5,6 +5,9 @@ public class ShockWave extends Actor
     
     public void act() 
     {
-        // Add your action code here.
+        turnTowards(1200, 400);
+        move(10);
+
+        Player.isStunned = getOneIntersectingObject(Player.class) != null && !Player.isDashing;
     }    
 }
