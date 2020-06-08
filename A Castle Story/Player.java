@@ -17,6 +17,7 @@ public class Player extends Actor
     public int startBowChargeTime = 120;
 
     Vector movement = new Vector();
+    Vector dashDir;
     public Vector pos = new Vector();
 
     MouseInfo mouse = Greenfoot.getMouseInfo();
@@ -42,9 +43,13 @@ public class Player extends Actor
         }
 
         mouse = Greenfoot.getMouseInfo();
-        movement();
 
-        if(movement.mag() == 0)
+        if(!isDashing)
+        {
+            movement();
+        }
+        
+        if(movement.mag() == 0 ||isDashing)
         {
             stopWalking();            
             isWalking = false;
@@ -54,27 +59,31 @@ public class Player extends Actor
             startWalking();
             isWalking = true;
         }
-        
+
         if(Greenfoot.isKeyDown("space") && timeBtwDash > 30)
         {
             isDashing = true;
+            playerBody.images.stop();
             timeBtwDash = 0;
+
+            movement.setMag(15);
+            dashDir = movement.copy();
         }
         if(isDashing && dashTimer <= 6)
         {
             dashTimer++;
-            
-            turnTowards((int)movement.x, (int)movement.y);
-            movement.setMag(15);
-            setLocation(getX() + (int)movement.x, getY() + (int)movement.y);
+
+            setLocation(getX() + (int)dashDir.x, getY() + (int)dashDir.y);
+            updatePosition(getX(), getY());
         }
-        else
+        else if(isDashing)
         {
             dashTimer = 0;
             isDashing = false;
+            playerBody.images.start();
         }
         timeBtwDash++;
-        
+
         if(!(getWorld() instanceof Shop))
         {
             if(mouse != null && mouseDown)
