@@ -64,7 +64,7 @@ public class Player extends Actor
             isWalking = true;
         }
 
-        if(Greenfoot.isKeyDown("space") && timeBtwDash > 30)
+        if(Greenfoot.isKeyDown("space") && timeBtwDash > 30 && !isStunned)
         {
             isDashing = true;
             playerBody.images.stop();
@@ -98,7 +98,7 @@ public class Player extends Actor
             }
         }
 
-        if(!(getWorld() instanceof Shop))
+        if(!(getWorld() instanceof Shop) && !isStunned)
         {
             if(mouse != null && mouseDown)
             {
@@ -290,8 +290,10 @@ public class Player extends Actor
         isDashing = false;
         isStunned = true;
         stunTime = stunTime_;
+        isDashing = false;
         stopWalking();
         isWalking = false;
+        movement.set(0, 0);
     }
 
     private boolean isKnockedBack = false;

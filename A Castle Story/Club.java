@@ -4,7 +4,7 @@ import java.util.Random;
 public class Club extends BossAttacks
 {
     boolean firstFrame = true;
-    Vector target;
+    Vector target = new Vector();
     private int speed = 5;
     boolean hitByPlayer = false;
     
@@ -39,7 +39,7 @@ public class Club extends BossAttacks
     
     public void hitByPlayer()
     {
-        target.set(200, 400);
+        target.set(150, 400);
         hitByPlayer = true;
     }
 }

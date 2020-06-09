@@ -16,7 +16,8 @@ public class ShockWave extends BossAttacks
 
         if(getOneIntersectingObject(Player.class) != null && !Game.player.isDashing && !alreadyStunned)
         {
-            Game.player.stun(180);
+            Game.player.stun(240);
+            ((Zyklope)getWorld().getObjects(Zyklope.class).get(0)).stun();
             ((Zyklope)getWorld().getObjects(Zyklope.class).get(0)).throwClub();
             alreadyStunned = true;
         }
