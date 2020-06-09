@@ -9,8 +9,12 @@ public class ShockWave extends Actor
         if(getX() >= 1000)
         {
             getWorld().removeObject(this);
+            return;
         }
 
-        Game.player.stun(60);
+        if(getOneIntersectingObject(Player.class) != null)
+        {
+            Game.player.stun(60);
+        }
     }    
 }
