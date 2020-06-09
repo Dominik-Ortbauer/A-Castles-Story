@@ -47,7 +47,7 @@ public class Player extends Actor
 
         mouse = Greenfoot.getMouseInfo();
 
-        if(!isDashing)
+        if(!isDashing && !isStunned)
         {
             movement();
         }
@@ -89,11 +89,7 @@ public class Player extends Actor
 
         if(isStunned)
         {
-            stunTimer++;
-            if(stunTimer >= 30)
-            {
-                isStunned = false;
-            }
+
         }
 
         if(!(getWorld() instanceof Shop))
@@ -281,6 +277,17 @@ public class Player extends Actor
         setLocation(x, y);
         playerBody.setLocation(x, y);
         currentWeapon.setLocation(x, y);
+    }
+
+    public void stun(int stunTime)
+    {
+        stunTimer++;
+        isDashing = false;
+        
+        if(stunTimer >= stunTime)
+        {
+            isStunned = false;
+        }
     }
 
     private boolean facingRight = true;
