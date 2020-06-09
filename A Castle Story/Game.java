@@ -1,6 +1,6 @@
 import greenfoot.*;
 
-public class Game  
+public class Game
 {
     public static final int maxHealth = 10;
     public static int health = 10;
@@ -10,7 +10,7 @@ public class Game
     public static Shop shop = new Shop();
     public static int levelCount = 1;
     public static GreenfootSound backgroundMusic = new GreenfootSound("Ausseerland7.mp3");
-    
+
     public static void reset()
     {
         health = maxHealth;

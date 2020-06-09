@@ -2,7 +2,7 @@ import greenfoot.*;
 
 public class Zyklope extends Actor
 {
-    private int health = 100;
+    private int health = 30;
     boolean isDamageable = false;
 
     private int chooseAttack;

@@ -21,13 +21,18 @@ public class Castle extends Environment
         cleared = false;
     }
 
+    private boolean bossSpawned = false;
     public void act() 
     {
         checkHealth();
 
         if(Game.levelCount == 10)
         {
-            
+            if(!bossSpawned)
+            {
+                bossSpawned = true;
+                getWorld().addObject(new Zyklope(), 150, 400);
+            }
         }
         else
         {
