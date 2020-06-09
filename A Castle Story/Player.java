@@ -283,11 +283,20 @@ public class Player extends Actor
     {
         stunTimer++;
         isDashing = false;
-        
+
         if(stunTimer >= stunTime)
         {
             isStunned = false;
         }
+    }
+
+    private boolean isKnockingBack = false;
+    public void knockBack(Vector dir, double speed, int time)
+    {
+        stun(time);
+        dir.setMag(speed);
+        movement = dir.copy();
+        isKnockingBack = true;
     }
 
     private boolean facingRight = true;
@@ -327,7 +336,11 @@ public class Player extends Actor
 
     private void movement()
     {
-        getInput();
+        if(!isStunned || !isKnockingBack)
+        {
+            getInput();
+        }
+
         updatePosition(getX() + (int)movement.x, getY() + (int)movement.y);
         updateImages();
 

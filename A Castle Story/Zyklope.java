@@ -24,6 +24,6 @@ public class Zyklope extends Enemy
     {
         Vector knockBackDir = new Vector(player.getX(), player.getY());
         knockBackDir.sub(new Vector(getX(), getY()));
-        // Player.knockBack(knockBackDir, 120);
+        Player.knockBack(knockBackDir, 120);
     }
 }
