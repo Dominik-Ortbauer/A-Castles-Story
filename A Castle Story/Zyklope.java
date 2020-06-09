@@ -86,6 +86,8 @@ public class Zyklope extends Actor
         getWorld().removeObject(stunnedEffect);
         GoldCounter.gold += goldToDrop;
         ScoreCounter.score += scoreToDrop;
+        
+        Game.levelCount++;
 
         getWorld().removeObject(this);
     }
