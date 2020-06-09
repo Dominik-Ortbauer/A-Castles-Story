@@ -5,20 +5,34 @@ public class Zyklope extends Actor
     private int health = 100;
     boolean isDamageable = false;
 
-    private int chooseAttack = Greenfoot.getRandomNumber(100);
-    private int chooseTimeBtwAttack = Greenfoot.getRandomNumber(2);
-    private int timeBtwAttack;
+    private int chooseAttack;
+    private int chooseTimeBtwAttack = 0;
+    private int timeBtwAttack = 60;
     private int attackTimer;
+
+    private int stunTimer = 0;
 
     public void act()
     {
-        if(getOneIntersectingObject(Player.class) != null)
+        if(stunTimer <= 0)
         {
-            swingClub((Player)getOneIntersectingObject(Player.class));
+            isDamageable = false;
         }
         else
         {
-            attackRandomly();
+            stunTimer--;
+        }
+
+        if(!isDamageable)
+        {
+            if(getOneIntersectingObject(Player.class) != null)
+            {
+                swingClub((Player)getOneIntersectingObject(Player.class));
+            }
+            else
+            {
+                attackRandomly();
+            }
         }
     }
 
@@ -58,37 +72,34 @@ public class Zyklope extends Actor
         Game.player.knockBack(knockBackDir, 15.0, 12);
     }
 
+    public void stun()
+    {
+        isDamageable = true;
+        stunTimer = 240;
+    }
+
     private void attackRandomly()
     {
 
         attackTimer++;
 
-        if(chooseTimeBtwAttack == 0)
-        {
-            timeBtwAttack = 60;
-        }
-        else if(chooseTimeBtwAttack == 1)
-        {
-            timeBtwAttack = 120;
-        }
-        else if(chooseTimeBtwAttack == 2)
-        {
-            timeBtwAttack = 360;
-        }
-
         if(chooseAttack <= 25 && attackTimer >= timeBtwAttack)
         {
             throwClub();
             attackTimer = 0;
+
             chooseAttack = Greenfoot.getRandomNumber(100);
-            chooseTimeBtwAttack = Greenfoot.getRandomNumber(2);
+            chooseTimeBtwAttack = Greenfoot.getRandomNumber(2) + 1;
+            timeBtwAttack = chooseTimeBtwAttack * 120;
         }
         else if(chooseAttack > 25 && attackTimer >= timeBtwAttack)
         {
             stompAttack();
             attackTimer = 0;
+
             chooseAttack = Greenfoot.getRandomNumber(100);
-            chooseTimeBtwAttack = Greenfoot.getRandomNumber(2);
+            chooseTimeBtwAttack = Greenfoot.getRandomNumber(2) + 1;
+            timeBtwAttack = chooseTimeBtwAttack * 120;
         }
     }
 }

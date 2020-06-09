@@ -2,7 +2,9 @@ import greenfoot.*;
 
 public class ShockWave extends BossAttacks
 {
-    public void act() 
+    boolean alreadyStunned = false;
+
+    public void act()
     {
         turnTowards(1200, 400);
         move(10);
@@ -12,10 +14,11 @@ public class ShockWave extends BossAttacks
             return;
         }
 
-        if(getOneIntersectingObject(Player.class) != null && !Game.player.isDashing)
+        if(getOneIntersectingObject(Player.class) != null && !Game.player.isDashing && !alreadyStunned)
         {
             Game.player.stun(60);
-            Game.zyklope.throwClub();
+            ((Zyklope)getWorld().getObjects(Zyklope.class).get(0)).throwClub();
+            alreadyStunned = true;
         }
-    }    
+    }
 }
