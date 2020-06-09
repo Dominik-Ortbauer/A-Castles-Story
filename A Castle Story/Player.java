@@ -13,6 +13,7 @@ public class Player extends Actor
 
     public static boolean isStunned;
     public int stunTimer;
+    public int stunTime;
 
     public int hammerChargeTime = 120;
     public int startHammerChargeTime = 120;
@@ -52,12 +53,12 @@ public class Player extends Actor
             movement();
         }
 
-        if((movement.mag() == 0 || isDashing) && isWalking)
+        if(movement.mag() == 0 ||isDashing)
         {
             stopWalking();
             isWalking = false;
         }
-        else if(!isWalking)
+        else
         {
             startWalking();
             isWalking = true;
@@ -90,6 +91,10 @@ public class Player extends Actor
         if(isStunned)
         {
             stunTimer++;
+            if(stunTimer >= stunTime)
+            {
+                isStunned = false;
+            }
         }
 
         if(!(getWorld() instanceof Shop))
@@ -279,24 +284,11 @@ public class Player extends Actor
         currentWeapon.setLocation(x, y);
     }
 
-    public void stun(int stunTime)
+    public void stun(int stunTime_)
     {
         isDashing = false;
         isStunned = true;
-
-        if(stunTimer >= stunTime)
-        {
-            isStunned = false;
-        }
-    }
-
-    private boolean isKnockingBack = false;
-    public void knockBack(Vector dir, double speed, int time)
-    {
-        stun(time);
-        dir.setMag(speed);
-        movement = dir.copy();
-        isKnockingBack = true;
+        stunTime = stunTime_;
     }
 
     private boolean facingRight = true;
@@ -336,11 +328,7 @@ public class Player extends Actor
 
     private void movement()
     {
-        if(!isStunned || !isKnockingBack)
-        {
-            getInput();
-        }
-
+        getInput();
         updatePosition(getX() + (int)movement.x, getY() + (int)movement.y);
         updateImages();
 
