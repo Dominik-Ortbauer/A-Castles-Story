@@ -48,7 +48,7 @@ public class Player extends Actor
 
         mouse = Greenfoot.getMouseInfo();
 
-        if(!isDashing && !isStunned)
+        if(!isDashing && (!isStunned || isKnockedBack))
         {
             movement();
         }
@@ -94,6 +94,7 @@ public class Player extends Actor
             if(stunTimer >= stunTime)
             {
                 isStunned = false;
+                stunTimer = 0;
             }
         }
 
@@ -289,6 +290,17 @@ public class Player extends Actor
         isDashing = false;
         isStunned = true;
         stunTime = stunTime_;
+        stopWalking();
+    }
+
+    private boolean isKnockedBack = false;
+
+    public void knockBack(Vector dir, double speed, int time)
+    {
+        stun(time);
+        dir.setMag(speed);
+        movement = dir;
+        isKnockedBack = true;
     }
 
     private boolean facingRight = true;
@@ -328,7 +340,11 @@ public class Player extends Actor
 
     private void movement()
     {
-        getInput();
+        if(!isStunned || !isKnockedBack)
+        {
+            getInput();
+        }
+
         updatePosition(getX() + (int)movement.x, getY() + (int)movement.y);
         updateImages();
 
