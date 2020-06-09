@@ -52,12 +52,12 @@ public class Player extends Actor
             movement();
         }
 
-        if(movement.mag() == 0 ||isDashing)
+        if((movement.mag() == 0 || isDashing) && isWalking)
         {
             stopWalking();
             isWalking = false;
         }
-        else
+        else if(!isWalking)
         {
             startWalking();
             isWalking = true;

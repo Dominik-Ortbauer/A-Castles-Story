@@ -4,7 +4,10 @@ public class Zyklope extends Enemy
 {
     public void act() 
     {
-        
+        if(getOneIntersectingObject(Player.class) != null)
+        {
+            swingClub((Player)getOneIntersectingObject(Player.class));
+        }
     }
     
     private void stompAttack()
@@ -15,5 +18,12 @@ public class Zyklope extends Enemy
     private void throwClub()
     {
         getWorld().addObject(new Club(), getX(), getY());
+    }
+    
+    private void swingClub(Player player)
+    {
+        Vector knockBackDir = new Vector(player.getX(), player.getY());
+        knockBackDir.sub(new Vector(getX(), getY()));
+        // Player.knockBack(knockBackDir, 120);
     }
 }

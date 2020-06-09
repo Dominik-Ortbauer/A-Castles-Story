@@ -6,4 +6,6 @@ comment2.params=
 comment2.target=void\ stompAttack()
 comment3.params=
 comment3.target=void\ throwClub()
-numComments=4
+comment4.params=player
+comment4.target=void\ swingClub(Player)
+numComments=5

@@ -7,7 +7,7 @@ import java.util.Random;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Club extends Actor
+public class Club extends BossAttacks
 {
     boolean firstFrame = true;
     Vector target;
