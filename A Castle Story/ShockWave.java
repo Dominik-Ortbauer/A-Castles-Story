@@ -2,7 +2,6 @@ import greenfoot.*;
 
 public class ShockWave extends BossAttacks
 {
-    
     public void act() 
     {
         turnTowards(1200, 400);
