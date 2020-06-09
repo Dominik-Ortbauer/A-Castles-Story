@@ -54,7 +54,7 @@ public class Zyklope extends Actor
 
     private void addUI()
     {
-        getWorld().addObject(new Label("HP: " + health, 24), getX(), getY()-20);
+        getWorld().addObject(new Label("HP: " + health, 48), getX(), getY()-50);
     }
     
     private void removeUI()
