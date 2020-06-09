@@ -12,7 +12,7 @@ public class Club extends BossAttacks
     {
         if(getOneIntersectingObject(Zyklope.class) != null && hitByPlayer)
         {
-            ((Zyklope)getOneIntersectingObject(Zyklope.class)).stun();
+            ((Zyklope)getOneIntersectingObject(Zyklope.class)).stun(true);
             getWorld().removeObject(this);
             return;
         }

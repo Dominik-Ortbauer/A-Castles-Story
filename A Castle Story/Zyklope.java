@@ -86,9 +86,8 @@ public class Zyklope extends Actor
         getWorld().removeObject(stunnedEffect);
         GoldCounter.gold += goldToDrop;
         ScoreCounter.score += scoreToDrop;
-        
+        ((Door)getWorld().getObjects(Door.class).get(0)).openDoor();
         Game.levelCount++;
-
         getWorld().removeObject(this);
     }
 
@@ -110,12 +109,15 @@ public class Zyklope extends Actor
     }
 
     StunnedEffect stunnedEffect = new StunnedEffect();
-    public void stun()
+    public void stun(boolean damageable)
     {
-        isDamageable = true;
         stunTimer = 240;
         attackTimer = 0;
-        getWorld().addObject(stunnedEffect, getX(), getY() - 50);
+        if(damageable)
+        {
+            isDamageable = true;
+            getWorld().addObject(stunnedEffect, getX(), getY() - 50);
+        }
     }
 
     private void attackRandomly()
