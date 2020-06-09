@@ -1,6 +1,6 @@
 import greenfoot.*;
 
-public class ShockWave extends Actor
+public class ShockWave extends BossAttacks
 {
     public void act() 
     {
