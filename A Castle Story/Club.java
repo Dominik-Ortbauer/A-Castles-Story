@@ -6,9 +6,24 @@ public class Club extends BossAttacks
     boolean firstFrame = true;
     Vector target;
     private int speed = 5;
+    boolean hitByPlayer = false;
     
     public void act() 
     {
+        if(getOneIntersectingObject(Zyklope.class) != null && hitByPlayer)
+        {
+            ((Zyklope)getOneIntersectingObject(Zyklope.class)).stun();
+            getWorld().removeObject(this);
+            return;
+        }
+        
+        if(getOneIntersectingObject(Castle.class) != null)
+        {
+            ((Castle)getOneIntersectingObject(Castle.class)).takeDamage(2);
+            getWorld().removeObject(this);
+            return;
+        }
+        
         if(firstFrame)
         {
             Random dice = new Random();
@@ -25,5 +40,6 @@ public class Club extends BossAttacks
     public void hitByPlayer()
     {
         target.set(200, 400);
+        hitByPlayer = true;
     }
 }

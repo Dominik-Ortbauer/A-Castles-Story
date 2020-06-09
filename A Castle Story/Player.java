@@ -70,7 +70,7 @@ public class Player extends Actor
             playerBody.images.stop();
             timeBtwDash = 0;
 
-            movement.setMag(15);
+            movement.setMag(20);
             dashDir = movement.copy();
         }
         if(isDashing && dashTimer <= 6)

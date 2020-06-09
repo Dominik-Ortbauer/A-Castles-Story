@@ -6,23 +6,33 @@ public class Zyklope extends Actor
     boolean isDamageable = false;
 
     private int chooseAttack;
-    private int chooseTimeBtwAttack;
-    private int timeBtwAttack;
+    private int chooseTimeBtwAttack = 0;
+    private int timeBtwAttack = 60;
     private int attackTimer;
 
+    private int stunTimer = 0;
+
     public void act()
-    {
-        if(getOneIntersectingObject(Player.class) != null)
+    {        
+        if(stunTimer <= 0)
         {
-            swingClub((Player)getOneIntersectingObject(Player.class));
-        }
-        else if(Game.player.isStunned)
-        {
-            throwClub();
+            isDamageable = false;
         }
         else
         {
-            attackRandomly();
+            stunTimer--;
+        }
+        
+        if(!isDamageable)
+        {
+            if(getOneIntersectingObject(Player.class) != null)
+            {
+                swingClub((Player)getOneIntersectingObject(Player.class));
+            }            
+            else
+            {
+                attackRandomly();
+            }
         }
     }
 
@@ -50,7 +60,7 @@ public class Zyklope extends Actor
         getWorld().addObject(new ShockWave(), getX(), getY());
     }
 
-    private void throwClub()
+    public void throwClub()
     {
         getWorld().addObject(new Club(), getX(), getY());
     }
@@ -62,34 +72,34 @@ public class Zyklope extends Actor
         Game.player.knockBack(knockBackDir, 15.0, 12);
     }
 
+    public void stun()
+    {
+        isDamageable = true;
+        stunTimer = 240;
+    }
+
     private void attackRandomly()
     {
-        chooseAttack = Greenfoot.getRandomNumber(100);
-        chooseTimeBtwAttack = Greenfoot.getRandomNumber(2);
-        attackTimer++;
-
-        if(chooseTimeBtwAttack == 0)
-        {
-            timeBtwAttack = 20;
-        }
-        else if(chooseTimeBtwAttack == 1)
-        {
-            timeBtwAttack = 60;
-        }
-        else if(chooseTimeBtwAttack == 2)
-        {
-            timeBtwAttack = 120;
-        }
+        
+        attackTimer++;      
 
         if(chooseAttack <= 25 && attackTimer >= timeBtwAttack)
         {
             throwClub();
             attackTimer = 0;
+            
+            chooseAttack = Greenfoot.getRandomNumber(100);
+            chooseTimeBtwAttack = Greenfoot.getRandomNumber(2) + 1;
+            timeBtwAttack = chooseTimeBtwAttack * 120;
         }
         else if(chooseAttack > 25 && attackTimer >= timeBtwAttack)
         {
             stompAttack();
             attackTimer = 0;
+            
+            chooseAttack = Greenfoot.getRandomNumber(100);
+            chooseTimeBtwAttack = Greenfoot.getRandomNumber(2) + 1;
+            timeBtwAttack = chooseTimeBtwAttack * 120;
         }
     }
 }
