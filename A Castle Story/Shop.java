@@ -23,6 +23,11 @@ public class Shop extends World
     public Door door;
     private void prepare()
     {
+        if(Game.levelCount == 10)
+        {
+            addObject(new BossSpeechBubble(), 600, 400);
+        }
+        
         CastleSprite castle = new CastleSprite();
         addObject(castle, 100, 400);
         castle.getImage().mirrorHorizontally();

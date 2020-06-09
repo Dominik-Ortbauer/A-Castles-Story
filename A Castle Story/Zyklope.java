@@ -5,9 +5,9 @@ public class Zyklope extends Actor
     private int health = 30;
     boolean isDamageable = false;
 
-    private int chooseAttack;
+    private int chooseAttack = 100;
     private int chooseTimeBtwAttack = 0;
-    private int timeBtwAttack = 60;
+    private int timeBtwAttack = 0;
     private int attackTimer;
 
     private int stunTimer = 0;
@@ -80,7 +80,6 @@ public class Zyklope extends Actor
 
     private void attackRandomly()
     {
-
         attackTimer++;
 
         if(chooseAttack <= 25 && attackTimer >= timeBtwAttack)

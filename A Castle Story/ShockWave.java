@@ -13,6 +13,11 @@ public class ShockWave extends BossAttacks
             getWorld().removeObject(this);
             return;
         }
+        
+        if(getIntersectingObjects(Tower.class) != null)
+        {
+            getWorld().removeObjects(getIntersectingObjects(Tower.class));
+        }
 
         if(getOneIntersectingObject(Player.class) != null && !Game.player.isDashing && !alreadyStunned)
         {

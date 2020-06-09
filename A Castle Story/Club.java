@@ -40,6 +40,7 @@ public class Club extends BossAttacks
     public void hitByPlayer()
     {
         target.set(150, 400);
+        speed = 10;
         hitByPlayer = true;
     }
 }
