@@ -1,12 +1,6 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 import java.util.Random;
 
-/**
- * Write a description of class Club here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Club extends BossAttacks
 {
     boolean firstFrame = true;
