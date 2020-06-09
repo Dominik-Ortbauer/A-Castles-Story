@@ -53,7 +53,7 @@ public class Player extends Actor
             movement();
         }
 
-        if(movement.mag() == 0 ||isDashing)
+        if(movement.mag() == 0 || isDashing || isStunned)
         {
             stopWalking();
             isWalking = false;
@@ -291,10 +291,10 @@ public class Player extends Actor
         isStunned = true;
         stunTime = stunTime_;
         stopWalking();
+        isWalking = false;
     }
 
     private boolean isKnockedBack = false;
-
     public void knockBack(Vector dir, double speed, int time)
     {
         stun(time);
