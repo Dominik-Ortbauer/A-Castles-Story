@@ -25,36 +25,42 @@ public class Castle extends Environment
     {
         checkHealth();
 
-        if(!wave.enemyAvailable() && getWorld().getObjects(Enemy.class).size() == 0 && !cleared)
+        if(Game.levelCount == 10)
         {
-            ((Door)getOneIntersectingObject(Door.class)).openDoor();
-            Game.levelCount++;
-            if(startSpawnTime >= 0.5)
-            {
-                startSpawnTime *= 0.90;
-            }
-            Object[] traps = (getWorld().getObjects(Projectiles.class).toArray());
-
-            for(Object trap : traps)
-            {
-                getWorld().removeObject((Actor)trap);
-            }
-            cleared = true;
+            
         }
-
-        if(wave.enemyAvailable())
+        else
         {
-            if(spawnTime <= 0)
+            if(!wave.enemyAvailable() && getWorld().getObjects(Enemy.class).size() == 0 && !cleared)
             {
-                getWorld().addObject(wave.getNextEnemy(), 0, Greenfoot.getRandomNumber(getWorld().getHeight() - 100)+50);
-                spawnTime = startSpawnTime;
+                ((Door)getOneIntersectingObject(Door.class)).openDoor();
+                Game.levelCount++;
+                if(startSpawnTime >= 0.5)
+                {
+                    startSpawnTime *= 0.90;
+                }
+                Object[] traps = (getWorld().getObjects(Projectiles.class).toArray());
+
+                for(Object trap : traps)
+                {
+                    getWorld().removeObject((Actor)trap);
+                }
+                cleared = true;
             }
-            else
+
+            if(wave.enemyAvailable())
             {
-                spawnTime -= 0.017;
+                if(spawnTime <= 0)
+                {
+                    getWorld().addObject(wave.getNextEnemy(), 0, Greenfoot.getRandomNumber(getWorld().getHeight() - 100)+50);
+                    spawnTime = startSpawnTime;
+                }
+                else
+                {
+                    spawnTime -= 0.017;
+                }
             }
         }
-
     } 
 
     private void checkHealth()
