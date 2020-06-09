@@ -28,7 +28,7 @@ public class Castle extends Environment
     {
         if(firstFrame)
         {
-            bossWave = Game.levelCount == 10;
+            bossWave = Game.levelCount % 10 == 0;
         }
         
         checkHealth();

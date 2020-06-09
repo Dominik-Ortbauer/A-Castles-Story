@@ -2,8 +2,8 @@
 comment0.target=Zyklope
 comment1.params=
 comment1.target=Zyklope()
-comment10.params=
-comment10.target=void\ stun()
+comment10.params=damageable
+comment10.target=void\ stun(boolean)
 comment11.params=
 comment11.target=void\ attackRandomly()
 comment2.params=

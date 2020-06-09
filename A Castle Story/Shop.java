@@ -23,7 +23,7 @@ public class Shop extends World
     public Door door;
     private void prepare()
     {
-        if(Game.levelCount == 10)
+        if(Game.levelCount % 10 == 0)
         {
             addObject(new BossSpeechBubble(), 600, 400);
         }
