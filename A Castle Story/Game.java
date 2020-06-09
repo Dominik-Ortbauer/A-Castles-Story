@@ -5,7 +5,6 @@ public class Game
     public static final int maxHealth = 10;
     public static int health = 10;
     public static Player player = new Player();
-    public static Zyklope zyklope = new Zyklope();
     public static Battlefield battlefield = new Battlefield();
     public static Shop shop = new Shop();
     public static int levelCount = 1;

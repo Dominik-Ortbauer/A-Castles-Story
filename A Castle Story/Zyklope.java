@@ -2,8 +2,13 @@ import greenfoot.*;
 
 public class Zyklope extends Actor
 {
+    private boolean firstFrame;
+    
     private int health = 30;
     boolean isDamageable = false;
+    
+    private int goldToDrop = 50;
+    private int scoreToDrop = 10000;
 
     private int chooseAttack;
     private int chooseTimeBtwAttack = 0;
@@ -11,9 +16,20 @@ public class Zyklope extends Actor
     private int attackTimer;
 
     private int stunTimer = 0;
-
+    
+    public Zyklope()
+    {
+        firstFrame = true;
+    }
+    
     public void act()
     {
+        if(firstFrame)
+        {
+            addUI();
+            firstFrame = false;
+        }
+        
         if(stunTimer <= 0)
         {
             isDamageable = false;
@@ -36,11 +52,24 @@ public class Zyklope extends Actor
         }
     }
 
+    private void addUI()
+    {
+        getWorld().addObject(new Label("HP: " + health, 24), getX(), getY()-20);
+    }
+    
+    private void removeUI()
+    {
+        getWorld().removeObjects(getWorld().getObjects(Label.class));
+    }
+    
     public void takeDamage(int amount)
     {
         if(isDamageable)
         {
             health -= amount;
+            
+            removeUI();
+            addUI();
 
             if(health <= 0)
             {
@@ -52,6 +81,11 @@ public class Zyklope extends Actor
     private void defeated()
     {
         getWorld().addObject(new Effect(Effects.Colour.PURPLE, new Vector(50, 25), 60, 15), getX(), getY());
+        removeUI();
+        
+        GoldCounter.gold += goldToDrop;
+        ScoreCounter.score += scoreToDrop;
+        
         getWorld().removeObject(this);
     }
 
