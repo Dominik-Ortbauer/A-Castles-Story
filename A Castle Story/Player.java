@@ -13,6 +13,7 @@ public class Player extends Actor
 
     public static boolean isStunned;
     public int stunTimer;
+    public int stunTime;
 
     public int hammerChargeTime = 120;
     public int startHammerChargeTime = 120;
@@ -86,10 +87,14 @@ public class Player extends Actor
             playerBody.images.start();
         }
         timeBtwDash++;
-        
+
         if(isStunned)
         {
             stunTimer++;
+            if(stunTimer >= stunTime)
+            {
+                isStunned = false;
+            }
         }
 
         if(!(getWorld() instanceof Shop))
@@ -279,16 +284,11 @@ public class Player extends Actor
         currentWeapon.setLocation(x, y);
     }
 
-    public void stun(int stunTime)
+    public void stun(int stunTime_)
     {
-        
         isDashing = false;
         isStunned = true;
-        
-        if(stunTimer >= stunTime)
-        {
-            isStunned = false;
-        }
+        stunTime = stunTime_;
     }
 
     private boolean facingRight = true;

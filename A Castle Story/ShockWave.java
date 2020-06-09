@@ -11,6 +11,6 @@ public class ShockWave extends Actor
             getWorld().removeObject(this);
         }
 
-        Player.isStunned = getOneIntersectingObject(Player.class) != null && !Player.isDashing;
+        Game.player.stun(60);
     }    
 }
