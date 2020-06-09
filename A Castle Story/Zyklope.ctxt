@@ -12,4 +12,6 @@ comment5.params=
 comment5.target=void\ throwClub()
 comment6.params=player
 comment6.target=void\ swingClub(Player)
-numComments=7
+comment7.params=
+comment7.target=void\ attackRandomly()
+numComments=8
