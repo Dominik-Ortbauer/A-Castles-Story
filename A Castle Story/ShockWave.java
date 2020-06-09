@@ -12,9 +12,10 @@ public class ShockWave extends BossAttacks
             return;
         }
 
-        if(getOneIntersectingObject(Player.class) != null)
+        if(getOneIntersectingObject(Player.class) != null && !Game.player.isDashing)
         {
             Game.player.stun(60);
+            Game.zyklope.throwClub();
         }
     }    
 }
