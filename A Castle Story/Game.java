@@ -17,8 +17,8 @@ public class Game
         player = new Player();
         battlefield = new Battlefield();
         shop = new Shop();
-        levelCount = 1;
-        GoldCounter.gold = 0;
+        levelCount = 10;
+        GoldCounter.gold = 100;
         ScoreCounter.score = 0;
         Battlefield.towerSpots = new int[7];
     }

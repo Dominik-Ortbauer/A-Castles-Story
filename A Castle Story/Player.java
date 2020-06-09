@@ -64,7 +64,7 @@ public class Player extends Actor
             isWalking = true;
         }
 
-        if(Greenfoot.isKeyDown("space") && timeBtwDash > 30)
+        if(Greenfoot.isKeyDown("space") && timeBtwDash > 30 && !isStunned)
         {
             isDashing = true;
             playerBody.images.stop();
