@@ -33,6 +33,7 @@ public class Zyklope extends Actor
         if(stunTimer <= 0)
         {
             isDamageable = false;
+            getWorld().removeObject(stunnedEffect);
         }
         else
         {
@@ -54,7 +55,7 @@ public class Zyklope extends Actor
 
     private void addUI()
     {
-        getWorld().addObject(new Label("HP: " + health, 24), getX(), getY()-20);
+        getWorld().addObject(new Label("HP: " + health, 48), getX(), getY()-80);
     }
     
     private void removeUI()
@@ -82,7 +83,7 @@ public class Zyklope extends Actor
     {
         getWorld().addObject(new Effect(Effects.Colour.PURPLE, new Vector(50, 25), 60, 15), getX(), getY());
         removeUI();
-        
+        getWorld().removeObject(stunnedEffect);
         GoldCounter.gold += goldToDrop;
         ScoreCounter.score += scoreToDrop;
         
@@ -106,10 +107,13 @@ public class Zyklope extends Actor
         Game.player.knockBack(knockBackDir, 15.0, 12);
     }
 
+    StunnedEffect stunnedEffect = new StunnedEffect();
     public void stun()
     {
         isDamageable = true;
         stunTimer = 240;
+        attackTimer = 0;
+        getWorld().addObject(stunnedEffect, getX(), getY() - 50);
     }
 
     private void attackRandomly()
