@@ -281,7 +281,6 @@ public class Player extends Actor
 
     public void stun(int stunTime)
     {
-
         isDashing = false;
         isStunned = true;
 
