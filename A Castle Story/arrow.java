@@ -3,7 +3,7 @@ import greenfoot.*;
 public class arrow extends Projectiles
 {
     private Enemy enemy;
-    int speed = 10;
+    int speed = 5;
 
     public arrow(Enemy enemy_)
     {
@@ -16,14 +16,13 @@ public class arrow extends Projectiles
         if(firstFrame)
         {
             try
-            {
-                vel = new Vector(enemy.getX() - getX(), enemy.getY() - getY());
-                vel.setMag(speed);
+            {                
                 turnTowards(enemy.getX(), enemy.getY());  
             }
             catch(Exception ex)
             {
-
+                getWorld().removeObject(this);
+                return;
             }
             firstFrame = false;
         }
@@ -32,14 +31,8 @@ public class arrow extends Projectiles
         {
             return;
         }        
-        setLocation(getX() + (int)vel.x, getY() + (int)vel.y);
-
-        if(vel.mag() == 0)
-        {
-            getWorld().removeObject(this);
-            return;
-        }   
-
+        move(speed);
+        
         Enemy hit = (Enemy)getOneIntersectingObject(Enemy.class);
         if(hit != null)
         {

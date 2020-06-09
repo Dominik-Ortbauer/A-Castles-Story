@@ -70,6 +70,12 @@ public class MeeleAttack extends Attacks
                 ((Club)getOneIntersectingObject(Club.class)).hitByPlayer();
             }
 
+            Object hitBoss = getOneIntersectingObject(Zyklope.class);
+            if(hitBoss != null)
+            {
+                ((Zyklope)hitBoss).takeDamage(damage);
+            }
+
             Object[] hits = getIntersectingObjects(Enemy.class).toArray();
 
             if(hits.length != 0)

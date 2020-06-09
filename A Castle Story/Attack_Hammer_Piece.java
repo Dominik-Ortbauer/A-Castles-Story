@@ -18,6 +18,12 @@ public class Attack_Hammer_Piece extends Attacks
             ((Club)getOneIntersectingObject(Club.class)).hitByPlayer();
         }
         
+        Object hitBoss = getOneIntersectingObject(Zyklope.class);
+        if(hitBoss != null)
+        {
+            ((Zyklope)hitBoss).takeDamage(damage);
+        }
+        
         Object[] hits = getIntersectingObjects(Enemy.class).toArray();
 
         for(int i = 0; i < hits.length; i++)
