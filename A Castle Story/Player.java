@@ -95,6 +95,7 @@ public class Player extends Actor
             {
                 isStunned = false;
                 stunTimer = 0;
+                getWorld().removeObject(stunnedEffect);
             }
         }
 
@@ -284,12 +285,14 @@ public class Player extends Actor
         playerBody.setLocation(x, y);
         currentWeapon.setLocation(x, y);
     }
-
+    
+    StunnedEffect stunnedEffect = new StunnedEffect();
     public void stun(int stunTime_)
     {
         isDashing = false;
         isStunned = true;
         stunTime = stunTime_;
+        getWorld().addObject(stunnedEffect, getX(), getY() - 50);
         isDashing = false;
         stopWalking();
         isWalking = false;

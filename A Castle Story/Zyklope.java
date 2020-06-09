@@ -3,10 +3,10 @@ import greenfoot.*;
 public class Zyklope extends Actor
 {
     private boolean firstFrame;
-    
+
     private int health = 30;
     boolean isDamageable = false;
-    
+
     private int goldToDrop = 50;
     private int scoreToDrop = 10000;
 
@@ -16,12 +16,12 @@ public class Zyklope extends Actor
     private int attackTimer;
 
     private int stunTimer = 0;
-    
+
     public Zyklope()
     {
         firstFrame = true;
     }
-    
+
     public void act()
     {
         if(firstFrame)
@@ -29,10 +29,11 @@ public class Zyklope extends Actor
             addUI();
             firstFrame = false;
         }
-        
+
         if(stunTimer <= 0)
         {
             isDamageable = false;
+            getWorld().removeObject(stunnedEffect);
         }
         else
         {
@@ -54,20 +55,20 @@ public class Zyklope extends Actor
 
     private void addUI()
     {
-        getWorld().addObject(new Label("HP: " + health, 48), getX(), getY()-50);
+        getWorld().addObject(new Label("HP: " + health, 48), getX(), getY()-80);
     }
-    
+
     private void removeUI()
     {
         getWorld().removeObjects(getWorld().getObjects(Label.class));
     }
-    
+
     public void takeDamage(int amount)
     {
         if(isDamageable)
         {
             health -= amount;
-            
+
             removeUI();
             addUI();
 
@@ -82,10 +83,10 @@ public class Zyklope extends Actor
     {
         getWorld().addObject(new Effect(Effects.Colour.PURPLE, new Vector(50, 25), 60, 15), getX(), getY());
         removeUI();
-        
+        getWorld().removeObject(stunnedEffect);
         GoldCounter.gold += goldToDrop;
         ScoreCounter.score += scoreToDrop;
-        
+
         getWorld().removeObject(this);
     }
 
@@ -106,10 +107,13 @@ public class Zyklope extends Actor
         Game.player.knockBack(knockBackDir, 15.0, 12);
     }
 
+    StunnedEffect stunnedEffect = new StunnedEffect();
     public void stun()
     {
         isDamageable = true;
         stunTimer = 240;
+        attackTimer = 0;
+        getWorld().addObject(stunnedEffect, getX(), getY() - 50);
     }
 
     private void attackRandomly()
