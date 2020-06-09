@@ -86,10 +86,10 @@ public class Player extends Actor
             playerBody.images.start();
         }
         timeBtwDash++;
-
+        
         if(isStunned)
         {
-
+            stunTimer++;
         }
 
         if(!(getWorld() instanceof Shop))
@@ -281,8 +281,9 @@ public class Player extends Actor
 
     public void stun(int stunTime)
     {
-        stunTimer++;
+        
         isDashing = false;
+        isStunned = true;
         
         if(stunTimer >= stunTime)
         {
