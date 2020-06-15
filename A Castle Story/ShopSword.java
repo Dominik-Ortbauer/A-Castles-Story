@@ -16,16 +16,7 @@ public class ShopSword extends ShopItems
             addUI();
             firstFrame = false;
         }
-        
-        if(Game.player.currentWeapon instanceof Player_Sword)
-        {
-            getImage().setTransparency(0);
-        }
-        else
-        {
-            getImage().setTransparency(255);
-        }
-
+                
         if(Greenfoot.mouseClicked(this) && (GoldCounter.gold >= price || !isBought))
         {
             if(!isBought)
@@ -37,7 +28,8 @@ public class ShopSword extends ShopItems
             getWorld().removeObject(Game.player.currentWeapon);
             Game.player.currentWeapon = new Player_Sword();
             Game.player.playerBody.images.resetAnimation();
-            Game.player.forceUpdateImages();           
+            Game.player.forceUpdateImages();    
+            updateImage();
         }
 
         else if(Greenfoot.mouseClicked(this) && GoldCounter.gold < price)
@@ -45,4 +37,16 @@ public class ShopSword extends ShopItems
             getWorld().addObject(new NotEnoughGold(), 600, 600);
         }
     }    
+    
+    public void updateImage()
+    {
+        if(Game.player.currentWeapon instanceof Player_Bow)
+        {
+            getImage().setTransparency(0);
+        }
+        else
+        {
+            getImage().setTransparency(255);
+        }
+    }
 }

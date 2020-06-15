@@ -21,6 +21,10 @@ public class Shop extends World
 
     private Cat cat = new Cat();
     public Door door;
+    private ShopBow shopBow = new ShopBow();
+    private ShopHammer shopHammer = new ShopHammer();
+    private ShopSword shopSword = new ShopSword();    
+    
     private void prepare()
     {
         if(Game.levelCount % 10 == 0)
@@ -45,10 +49,14 @@ public class Shop extends World
         addObject(new ShopTrapPlacer(), 1000, 350);
         addObject(new ShopTower1(), 1000, 500);
         addObject(new SpeechBubbleDog(), 1100, 120);
-        addObject(new ShopSword(), 300, 600);
-        addObject(new ShopHammer(), 400, 600);
-        addObject(new ShopBow(), 500, 600);
+        addObject(shopSword, 300, 600);
+        addObject(shopHammer, 400, 600);
+        addObject(shopBow, 500, 600);
         addObject(Game.player, 250, 400);
+        
+        shopBow.updateImage();
+        shopSword.updateImage();
+        shopHammer.updateImage();
     }
 
     public void addTowerSpots()
@@ -74,5 +82,8 @@ public class Shop extends World
     {
         addObject(Game.player, 250, 400);
         Game.player.setLocation(250, 400);
+        shopBow.updateImage();
+        shopSword.updateImage();
+        shopHammer.updateImage();
     }
 }

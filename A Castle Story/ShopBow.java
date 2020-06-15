@@ -30,12 +30,13 @@ public class ShopBow extends ShopItems
             {
                 GoldCounter.gold -= price;
                 removeUI();
-                isBought = true;
+                isBought = true;                
             }
             getWorld().removeObject(Game.player.currentWeapon);
             Game.player.currentWeapon = new Player_Bow();
             Game.player.playerBody.images.resetAnimation();
             Game.player.forceUpdateImages();
+            updateImage();
         }
         else if(Greenfoot.mouseClicked(this) && GoldCounter.gold < price)
         {
