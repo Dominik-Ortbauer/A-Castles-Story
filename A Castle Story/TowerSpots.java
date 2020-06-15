@@ -12,7 +12,7 @@ public class TowerSpots extends Buttons
                 ShopTower1.isBought = false;
                 getWorld().addObject(new PurchasedInformation(), 600, 600);
                 GoldCounter.gold -= ((Shop)getWorld()).getObjects(ShopTower1.class).get(0).price;
-                getWorld().addObject(new Tower1Sprite(), getX(), getY());
+                setImage("Tower1_F2.png");
             }
             else if(ShopTrapPlacer.isBought)
             {
@@ -20,9 +20,22 @@ public class TowerSpots extends Buttons
                 ShopTrapPlacer.isBought = false;
                 getWorld().addObject(new PurchasedInformation(), 600, 600);
                 GoldCounter.gold -= ((Shop)getWorld()).getObjects(ShopTrapPlacer.class).get(0).price;;
-                getWorld().addObject(new TrapPlacerSprite(), getX(), getY());
+                setImage("TrapPlacer_F1.png");
             }
-            ((Shop)getWorld()).removeTowerSpots();
+            removeTowerSpots();
+        }
+    }
+
+    private void removeTowerSpots()
+    {
+        for(int i = 0; i < getWorld().getObjects(TowerSpots.class).size(); i++)
+        {
+            Object towerSpot = getWorld().getObjects(TowerSpots.class).get(i);
+            
+            if(i != 4)
+            {
+                ((Actor)towerSpot).getImage().setTransparency(0);
+            }
         }
     }
 }

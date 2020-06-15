@@ -73,11 +73,7 @@ public class Shop extends World
         }
     }
 
-    public void removeTowerSpots()
-    {
-        removeObjects(getObjects(TowerSpots.class));
-    }
-
+    
     public void start()
     {
         addObject(Game.player, 250, 400);
