@@ -12,7 +12,7 @@ public class Zyklope extends Actor
 
     private int chooseAttack = 100;
     private int chooseTimeBtwAttack = 0;
-    private int timeBtwAttack = 0;
+    private int timeBtwAttack = 120;
     private int attackTimer;
 
     private int stunTimer = 0;

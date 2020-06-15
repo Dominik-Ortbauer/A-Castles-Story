@@ -33,7 +33,7 @@ public class MainMenu extends World
         if(firstFrame)
         {
             Game.backgroundMusic.playLoop();
-            Game.backgroundMusic.setVolume(20);
+            Game.backgroundMusic.setVolume(100);
             firstFrame = false;
         }
     }
