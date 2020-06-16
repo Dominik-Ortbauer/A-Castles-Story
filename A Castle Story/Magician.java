@@ -56,10 +56,10 @@ public class Magician extends Enemy
     {
         Enemy enemy = getSecondClosestEnemy();
         
-        if(portalTimer >= timeBtwPortals)
+        if(portalTimer >= timeBtwPortals && enemy != null && enemy.getX() < 850)
         {
             getWorld().addObject(new Portal(), enemy.getX() + 1, enemy.getY());
-            getWorld().addObject(new Portal(), enemy.getX() + 500, enemy.getY());
+            getWorld().addObject(new Portal(), 900, enemy.getY());
             
             portalTimer = 0;
         }
