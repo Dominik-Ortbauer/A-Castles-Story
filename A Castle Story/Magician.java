@@ -2,6 +2,9 @@ import greenfoot.*;
 
 public class Magician extends Enemy
 {
+    private String[] allImages = {"Magician_F1.png", "Magician_F2.png", "Magician_F3.png", "Magician_F4.png", "Magician_F5.png", "Magician_F6.png", "Magician_F7.png"};
+    private Animation_Controller movement = new Animation_Controller(0.1, allImages, this);
+    
     private int timeBtwPortals = 300;
     private int portalTimer;
     
@@ -19,6 +22,8 @@ public class Magician extends Enemy
         {
             return;
         }
+        
+        movement.update();
         
         movement();
         makePortal();
@@ -58,7 +63,7 @@ public class Magician extends Enemy
         
         if(portalTimer >= timeBtwPortals && enemy != null && enemy.getX() < 850)
         {
-            getWorld().addObject(new Portal(), enemy.getX() + 1, enemy.getY());
+            getWorld().addObject(new Portal(), enemy.getX() + 100, enemy.getY());
             getWorld().addObject(new Portal(), 900, enemy.getY());
             
             portalTimer = 0;

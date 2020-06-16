@@ -120,8 +120,16 @@ public class Enemy extends Actor
                     closestEnemy = enemies[i];
                 }
             }
-        }  
-        return closestEnemy;
+        }
+
+        if(closestEnemy instanceof Magician)
+        {
+            return null;
+        }
+        else
+        {
+            return closestEnemy;
+        }
     }
 
     public void setEnemies()
