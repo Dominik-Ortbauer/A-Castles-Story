@@ -17,8 +17,8 @@ public class Player extends Actor
 
     public int hammerChargeTime = 120;
     public int startHammerChargeTime = 120;
-    public int bowChargeTime = 120;
-    public int startBowChargeTime = 120;
+    public int bowChargeTime = 60;
+    public int startBowChargeTime = 60;
 
     Vector movement = new Vector();
     Vector dashDir;

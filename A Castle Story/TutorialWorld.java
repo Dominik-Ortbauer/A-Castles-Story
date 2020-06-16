@@ -38,5 +38,15 @@ public class TutorialWorld extends World
         addObject(shopSword,700,600);
         shopSword.isBought = true;
         addObject(Game.player, 600, 400);
+        SpawnBomber spawnBomber = new SpawnBomber();
+        addObject(spawnBomber,909,81);
+        SpawnGiant spawnGiant = new SpawnGiant();
+        addObject(spawnGiant,825,81);
+        SpawnGoblin spawnGoblin = new SpawnGoblin();
+        addObject(spawnGoblin,748,83);
+        SpawnTrebuchet spawnTrebuchet = new SpawnTrebuchet();
+        addObject(spawnTrebuchet,649,84);
+        spawnTrebuchet.setLocation(673,87);
+        spawnTrebuchet.setLocation(672,79);
     }
 }
