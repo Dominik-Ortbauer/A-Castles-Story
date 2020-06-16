@@ -13,6 +13,11 @@ public class BossSpeechBubble extends Texts
     
     public void act() 
     {
+        if(Game.levelCount % 10 != 0)
+        {
+            getWorld().removeObject(this);
+            return;
+        }
         if(timer <= 0)
         {
             transparency--;
@@ -21,6 +26,7 @@ public class BossSpeechBubble extends Texts
             if(transparency <= 0)
             {
                 getWorld().removeObject(this);
+                return;
             }
         }
         else
