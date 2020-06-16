@@ -22,7 +22,7 @@ public class ShopHammer extends ShopItems
             addUI();
             firstFrame = false;
         }
-        
+
         if(Greenfoot.mouseClicked(this) && (GoldCounter.gold >= price || isBought))
         {
             if(!isBought)
@@ -33,8 +33,8 @@ public class ShopHammer extends ShopItems
             }
             getWorld().removeObject(Game.player.currentWeapon);
             Game.player.currentWeapon = new Player_Hammer();
-            Game.player.forceUpdateImages();
             Game.player.playerBody.images.resetAnimation();
+            Game.player.forceUpdateImages();
             updateImage();
         }
         else if(Greenfoot.mouseClicked(this) && GoldCounter.gold < price)
@@ -42,7 +42,7 @@ public class ShopHammer extends ShopItems
             getWorld().addObject(new NotEnoughGold(), 600, 600);
         }
     }   
-    
+
     public void updateImage()
     {
         if(Game.player.currentWeapon instanceof Player_Bow)
