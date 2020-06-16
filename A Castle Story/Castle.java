@@ -40,6 +40,8 @@ public class Castle extends Environment
             {
                 bossSpawned = true;
                 getWorld().addObject(new Zyklope(), 150, 400);
+                startSpawnTime = 4;
+                spawnTime = 4;
             }
         }
         else

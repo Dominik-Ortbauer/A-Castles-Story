@@ -21,4 +21,16 @@ public class Game
         ScoreCounter.score = 0;
         Battlefield.towerSpots = new int[7];
     }
+    
+    public static int indexOf(int[] array, int value)
+    {
+        for(int i = 0; i < array.length; i++)
+        {
+            if(array[i] == value)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
 }

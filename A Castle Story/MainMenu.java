@@ -2,15 +2,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class MainMenu here.
- * 
- * @author (your name) 
+ *
+ * @author (your name)
  * @version (a version number or a date)
  */
 public class MainMenu extends World
 {
     public MainMenu()
-    {    
-        super(1200, 800, 1); 
+    {
+        super(1200, 800, 1);
         prepare();
     }
 
@@ -32,7 +32,7 @@ public class MainMenu extends World
         if(firstFrame)
         {
             Game.backgroundMusic.playLoop();
-            Game.backgroundMusic.setVolume(50);
+            Game.backgroundMusic.setVolume(20);
             firstFrame = false;
         }
     }

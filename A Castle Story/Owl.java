@@ -15,7 +15,7 @@ public class Owl extends Enemy
 
     public Owl()
     {
-        setHealth(2);
+        setHealth(3);
         setScore(10);
         setGoldAmount(1);
     }
