@@ -5,6 +5,7 @@ import java.util.*;
 public class Battlefield extends World
 {    
     private Wave wave;
+    
     public static int[] towerSpots = new int[7];
 
     public Castle castle;
@@ -39,8 +40,10 @@ public class Battlefield extends World
         door.setDestination(Game.shop);
         door.closeDoor();
         waveIndicator.update();
+        
         wave = createWave();
         castle.setWave(wave);
+        
         addObject(Game.player, 950, getHeight()/2);
         castle.firstFrame = true;
 
@@ -65,7 +68,7 @@ public class Battlefield extends World
 
     Enemy[][] enemiesToSpawn = new Enemy[4][0];
     int[] enemyAmounts = new int[enemiesToSpawn.length];
-    Random dice = new Random();
+    
     public Wave createWave()
     {      
         if(Game.levelCount < 10)
@@ -81,9 +84,39 @@ public class Battlefield extends World
 
         for(int i = 0; i < Game.levelCount % 10; i++)
         {
-            int toIncrease = dice.nextInt(enemyAmounts.length);
-            int amount = dice.nextInt(2) + 1;
-            enemyAmounts[toIncrease] += amount;
+            int spawnProbability = Greenfoot.getRandomNumber(100);
+            int amount = Greenfoot.getRandomNumber(2) + 1;
+            
+            if(Game.levelCount < 10)
+            {
+                if(spawnProbability <= 30)
+                {
+                    enemyAmounts[0] += amount;
+                }
+                else if(spawnProbability <= 60)
+                {
+                    enemyAmounts[1] += amount;
+                }
+                else if(spawnProbability <= 90)
+                {
+                    enemyAmounts[2] += amount;
+                }
+                else if(spawnProbability <= 100)
+                {
+                    enemyAmounts[3] += amount;
+                }
+            }
+            else if(Game.levelCount < 20)
+            {
+                if(spawnProbability <= 50)
+                {
+                    enemyAmounts[0] += amount;
+                }
+                else if(spawnProbability <= 100)
+                {
+                    enemyAmounts[1] += amount;
+                }
+            }
         }
 
         for(int i = 0; i < enemyAmounts.length; i++)
