@@ -23,12 +23,13 @@ public class Castle extends Environment
 
     private boolean bossSpawned = false;
     private boolean bossWave = false;
-    private boolean firstFrame = true;
+    public boolean firstFrame = true;
     public void act() 
     {
         if(firstFrame)
         {
             bossWave = Game.levelCount % 10 == 0;
+            firstFrame = false;
         }
         
         checkHealth();
