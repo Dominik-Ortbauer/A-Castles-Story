@@ -16,6 +16,8 @@ public class ShopSword extends ShopItems
             addUI();
             firstFrame = false;
         }
+        
+        updateImage();
                 
         if(Greenfoot.mouseClicked(this) && (GoldCounter.gold >= price || !isBought))
         {
@@ -29,7 +31,6 @@ public class ShopSword extends ShopItems
             Game.player.currentWeapon = new Player_Sword();
             Game.player.playerBody.images.resetAnimation();
             Game.player.forceUpdateImages();    
-            updateImage();
         }
 
         else if(Greenfoot.mouseClicked(this) && GoldCounter.gold < price)
@@ -40,7 +41,7 @@ public class ShopSword extends ShopItems
     
     public void updateImage()
     {
-        if(Game.player.currentWeapon instanceof Player_Bow)
+        if(Game.player.currentWeapon instanceof Player_Sword)
         {
             getImage().setTransparency(0);
         }

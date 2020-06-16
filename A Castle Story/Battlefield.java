@@ -42,6 +42,7 @@ public class Battlefield extends World
         wave = createWave();
         castle.setWave(wave);
         addObject(Game.player, 950, getHeight()/2);
+        castle.firstFrame = true;
 
         removeObjects(towers);
 
