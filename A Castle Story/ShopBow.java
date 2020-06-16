@@ -22,8 +22,7 @@ public class ShopBow extends ShopItems
             addUI();
             firstFrame = false;
         }
-        
-        
+                
         if(Greenfoot.mouseClicked(this) && (GoldCounter.gold >= price || isBought))
         {
             if(!isBought)
