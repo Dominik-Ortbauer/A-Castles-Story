@@ -36,7 +36,16 @@ public class Enemy extends Actor
     {
         if(health <= 0)
         {
-            getWorld().addObject(new Effect(Effects.Colour.YELLOW, new Vector(30, 10), 20), getX(), getY());
+            if(this instanceof Tree)
+            {
+                getWorld().addObject(new Leaf(), getX(), getY());
+                getWorld().addObject(new Leaf(), getX() - 50, getY() - 50);
+                getWorld().addObject(new Leaf(), getX() - 50, getY() + 50);
+            }
+            else
+            {
+                getWorld().addObject(new Effect(Effects.Colour.YELLOW, new Vector(30, 10), 20), getX(), getY());
+            }
             health = maxHealth;
             GoldCounter.addGold(goldToDrop);
             ScoreCounter.addScore(scoreToDrop);
