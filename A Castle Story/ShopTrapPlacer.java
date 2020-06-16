@@ -21,7 +21,7 @@ public class ShopTrapPlacer extends ShopItems
         {
             
             isBought = true;
-            ((Shop)getWorld()).addTowerSpots();
+            ((Shop)getWorld()).showTowerSpots();
         }
 
         else if(Greenfoot.mouseClicked(this) && GoldCounter.gold < price)
