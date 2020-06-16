@@ -69,6 +69,7 @@ public class Battlefield extends World
     Enemy[][] enemiesToSpawn = new Enemy[4][0];
     int[] enemyAmounts = new int[enemiesToSpawn.length];
     
+    
     public Wave createWave()
     {      
         if(Game.levelCount < 10)
@@ -82,40 +83,45 @@ public class Battlefield extends World
             enemyAmounts = new int[enemiesToSpawn.length];
         }
 
-        for(int i = 0; i < Game.levelCount % 10; i++)
+        int amount = Game.levelCount % 10;
+        for(int i = 0; i < amount; i++)
         {
             int spawnProbability = Greenfoot.getRandomNumber(100);
-            int amount = Greenfoot.getRandomNumber(2) + 1;
-            
+
             if(Game.levelCount < 10)
             {
                 if(spawnProbability <= 30)
                 {
-                    enemyAmounts[0] += amount;
+                    enemyAmounts[0]++;
                 }
                 else if(spawnProbability <= 60)
                 {
-                    enemyAmounts[1] += amount;
+                    enemyAmounts[1]++;
                 }
                 else if(spawnProbability <= 90)
                 {
-                    enemyAmounts[2] += amount;
+                    enemyAmounts[2]++;
                 }
                 else if(spawnProbability <= 100)
                 {
-                    enemyAmounts[3] += amount;
+                    enemyAmounts[3]++;
                 }
             }
             else if(Game.levelCount < 20)
             {
                 if(spawnProbability <= 50)
                 {
-                    enemyAmounts[0] += amount;
+                    enemyAmounts[0]++;
                 }
                 else if(spawnProbability <= 100)
                 {
-                    enemyAmounts[1] += amount;
+                    enemyAmounts[1]++;
                 }
+            }
+            
+            if(i <= Game.levelCount % 10)
+            {
+                amount += Greenfoot.getRandomNumber(3);
             }
         }
 
