@@ -19,7 +19,7 @@ public class ShopTower1 extends ShopItems
 
         if(Greenfoot.mouseClicked(this) && GoldCounter.gold >= price)
         {
-            ((Shop)getWorld()).addTowerSpots();
+            ((Shop)getWorld()).showTowerSpots();
             isBought = true;
         }
 
