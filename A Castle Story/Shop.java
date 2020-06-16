@@ -27,11 +27,6 @@ public class Shop extends World
 
     private void prepare()
     {
-        if(Game.levelCount % 10 == 0)
-        {
-            addObject(new BossSpeechBubble(), 600, 400);
-        }
-
         CastleSprite castle = new CastleSprite();
         addObject(castle, 100, 400);
         castle.getImage().mirrorHorizontally();
@@ -107,5 +102,9 @@ public class Shop extends World
         shopBow.updateImage();
         shopSword.updateImage();
         shopHammer.updateImage();
+        if(Game.levelCount % 10 == 0)
+        {
+            addObject(new BossSpeechBubble(), 600, 400);
+        }
     }
 }
