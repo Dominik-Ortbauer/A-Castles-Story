@@ -21,13 +21,12 @@ public class Shop extends World
 
     private Cat cat = new Cat();
     public Door door;
+    private ShopBow shopBow = new ShopBow();
+    private ShopHammer shopHammer = new ShopHammer();
+    private ShopSword shopSword = new ShopSword();    
+
     private void prepare()
     {
-        if(Game.levelCount % 10 == 0)
-        {
-            addObject(new BossSpeechBubble(), 600, 400);
-        }
-        
         CastleSprite castle = new CastleSprite();
         addObject(castle, 100, 400);
         castle.getImage().mirrorHorizontally();
@@ -36,6 +35,8 @@ public class Shop extends World
         door.openDoor();
         door.getImage().mirrorHorizontally();
         addObject(door, 136, 400);
+
+        addTowerSpots();
         addObject(new GoldCounter(), 400, 740);
         addObject(new ScoreCounter(), 900, 790);
         addObject(cat, 400, 200);
@@ -45,34 +46,65 @@ public class Shop extends World
         addObject(new ShopTrapPlacer(), 1000, 350);
         addObject(new ShopTower1(), 1000, 500);
         addObject(new SpeechBubbleDog(), 1100, 120);
-        addObject(new ShopSword(), 300, 600);
-        addObject(new ShopHammer(), 400, 600);
-        addObject(new ShopBow(), 500, 600);
+        addObject(shopSword, 300, 600);
+        addObject(shopHammer, 400, 600);
+        addObject(shopBow, 500, 600);
         addObject(Game.player, 250, 400);
+
+        shopBow.updateImage();
+        shopSword.updateImage();
+        shopHammer.updateImage();
     }
 
     public void addTowerSpots()
     { 
         for(int i = 1; i <= 7; i++)
         {
-            if(i != 4)
+            if(Battlefield.towerSpots[i - 1] < 1)
             {
-                if(Battlefield.towerSpots[i - 1] < 1)
-                {
-                    addObject(new TowerSpots(), 100, i*100);
-                }
+                TowerSpots towerSpot = new TowerSpots();
+                towerSpot.getImage().setTransparency(0);
+                addObject(towerSpot, 100, i*100);
             }
         }
     }
 
+    public void showTowerSpots()
+    {
+        for(int i = 0; i < getObjects(TowerSpots.class).size(); i++)
+        {
+            Actor towerSpot = (Actor)getObjects(TowerSpots.class).get(i);
+
+            if(towerSpot.getY() != 400 || Battlefield.towerSpots[i] != 0)
+            {
+                towerSpot.getImage().setTransparency(255);
+            }
+        }
+    }
+    
     public void removeTowerSpots()
     {
-        removeObjects(getObjects(TowerSpots.class));
+        for(int i = 0; i < getObjects(TowerSpots.class).size(); i++)
+        {
+            Actor towerSpot = (Actor)getObjects(TowerSpots.class).get(i);
+            
+            if(towerSpot.getY() == 400 || Battlefield.towerSpots[i] == 0)
+            {
+                towerSpot.getImage().setTransparency(0);
+            }
+        }
     }
 
     public void start()
     {
         addObject(Game.player, 250, 400);
         Game.player.setLocation(250, 400);
+        shopBow.updateImage();
+        shopSword.updateImage();
+        shopHammer.updateImage();
+        if(Game.levelCount % 10 == 0)
+        {
+            addObject(new BossSpeechBubble(), 600, 400);
+        }
     }
 }

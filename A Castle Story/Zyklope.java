@@ -130,8 +130,8 @@ public class Zyklope extends Actor
             attackTimer = 0;
 
             chooseAttack = Greenfoot.getRandomNumber(100);
-            chooseTimeBtwAttack = Greenfoot.getRandomNumber(2) + 1;
-            timeBtwAttack = chooseTimeBtwAttack * 120;
+            chooseTimeBtwAttack = Greenfoot.getRandomNumber(1) + 1;
+            timeBtwAttack = chooseTimeBtwAttack * 60 + 120;
         }
         else if(chooseAttack > 25 && attackTimer >= timeBtwAttack)
         {
@@ -139,8 +139,8 @@ public class Zyklope extends Actor
             attackTimer = 0;
 
             chooseAttack = Greenfoot.getRandomNumber(100);
-            chooseTimeBtwAttack = Greenfoot.getRandomNumber(2) + 1;
-            timeBtwAttack = chooseTimeBtwAttack * 120;
+            chooseTimeBtwAttack = Greenfoot.getRandomNumber(1) + 1;
+            timeBtwAttack = chooseTimeBtwAttack * 60 + 120;
         }
     }
 }

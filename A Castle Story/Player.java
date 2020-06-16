@@ -7,7 +7,7 @@ public class Player extends Actor
 
     private boolean mouseDown;
 
-    public static boolean isDashing;
+    public static boolean isDashing = false;
     private int dashTimer;
     private int timeBtwDash;
 
@@ -17,8 +17,8 @@ public class Player extends Actor
 
     public int hammerChargeTime = 120;
     public int startHammerChargeTime = 120;
-    public int bowChargeTime = 120;
-    public int startBowChargeTime = 120;
+    public int bowChargeTime = 60;
+    public int startBowChargeTime = 60;
 
     Vector movement = new Vector();
     Vector dashDir;
@@ -39,6 +39,9 @@ public class Player extends Actor
     {
         if (mouseDown && (Greenfoot.mouseDragEnded(null) || Greenfoot.mouseClicked(null))) mouseDown = false;
         if (!mouseDown && Greenfoot.mousePressed(null)) mouseDown = true;
+        
+        pos.x = getX();
+        pos.y = getY();
 
         if(firstFrame)
         {
@@ -77,8 +80,8 @@ public class Player extends Actor
         {
             dashTimer++;
 
-            setLocation(getX() + (int)dashDir.x, getY() + (int)dashDir.y);
-            updatePosition(getX(), getY());
+            // setLocation(getX() + (int)dashDir.x, getY() + (int)dashDir.y);
+            updatePosition((int)dashDir.x, (int)dashDir.y);
         }
         else if(isDashing)
         {
@@ -161,9 +164,7 @@ public class Player extends Actor
             hammerChargeTime = startHammerChargeTime;
             timeBtwAttack = 0;
         }
-
-        pos.x = getX();
-        pos.y = getY();
+        
         timeBtwAttack++;
     }
 
@@ -281,11 +282,32 @@ public class Player extends Actor
 
     private void updatePosition(int x, int y)
     {
-        setLocation(x, y);
-        playerBody.setLocation(x, y);
-        currentWeapon.setLocation(x, y);
+        setLocation((int)pos.x + x, (int)pos.y + y);
+        playerBody.setLocation((int)pos.x + x, (int)pos.y + y);
+        currentWeapon.setLocation((int)pos.x + x, (int)pos.y + y);
+
+        if(getOneIntersectingObject(Environment.class) != null)
+        {
+            setLocation((int)pos.x + x, (int)pos.y);
+            playerBody.setLocation((int)pos.x + x, (int)pos.y + y);
+            currentWeapon.setLocation((int)pos.x + x, (int)pos.y + y);
+
+            if(getOneIntersectingObject(Environment.class) != null)
+            {
+                setLocation((int)pos.x, (int)pos.y + y);
+                playerBody.setLocation((int)pos.x + x, (int)pos.y + y);
+                currentWeapon.setLocation((int)pos.x + x, (int)pos.y + y);
+
+                if(getOneIntersectingObject(Environment.class) != null)
+                {
+                    setLocation((int)pos.x, (int)pos.y);
+                    playerBody.setLocation((int)pos.x + x, (int)pos.y + y);
+                    currentWeapon.setLocation((int)pos.x + x, (int)pos.y + y);
+                }
+            }
+        }
     }
-    
+
     StunnedEffect stunnedEffect = new StunnedEffect();
     public void stun(int stunTime_)
     {
@@ -350,23 +372,9 @@ public class Player extends Actor
             getInput();
         }
 
-        updatePosition(getX() + (int)movement.x, getY() + (int)movement.y);
+        updatePosition((int)movement.x, (int)movement.y);
+
         updateImages();
-
-        if(getOneIntersectingObject(Environment.class) != null)
-        {
-            updatePosition((int)pos.x + (int)movement.x, (int)pos.y);
-
-            if(getOneIntersectingObject(Environment.class) != null)
-            {
-                updatePosition((int)pos.x, (int)pos.y + (int)movement.y);
-
-                if(getOneIntersectingObject(Environment.class) != null)
-                {
-                    updatePosition((int)pos.x, (int)pos.y);
-                }
-            }
-        }
     }
 
     private void changeImagesToLeft()

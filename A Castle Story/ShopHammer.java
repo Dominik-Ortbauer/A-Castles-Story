@@ -22,7 +22,30 @@ public class ShopHammer extends ShopItems
             addUI();
             firstFrame = false;
         }
+        
+        updateImage();
+                
+        if(Greenfoot.mouseClicked(this) && (GoldCounter.gold >= price || isBought))
+        {
+            if(!isBought)
+            {
+                GoldCounter.gold -= price;
+                removeUI();
+                isBought = true;                
+            }
+            getWorld().removeObject(Game.player.currentWeapon);
+            Game.player.currentWeapon = new Player_Hammer();
+            Game.player.playerBody.images.resetAnimation();
+            Game.player.forceUpdateImages();                  
+        }
+        else if(Greenfoot.mouseClicked(this) && GoldCounter.gold < price)
+        {
+            getWorld().addObject(new NotEnoughGold(), 600, 600);
+        }
+    }   
 
+    public void updateImage()
+    {
         if(Game.player.currentWeapon instanceof Player_Hammer)
         {
             getImage().setTransparency(0);
@@ -31,24 +54,5 @@ public class ShopHammer extends ShopItems
         {
             getImage().setTransparency(255);
         }
-
-        if(Greenfoot.mouseClicked(this) && (GoldCounter.gold >= price || isBought))
-        {
-            if(!isBought)
-            {
-                GoldCounter.gold -= price;
-                removeUI();
-                isBought = true;
-            }
-            getWorld().removeObject(Game.player.currentWeapon);
-            Game.player.currentWeapon = new Player_Hammer();
-            Game.player.forceUpdateImages();
-            Game.player.playerBody.images.resetAnimation();
-        }
-
-        else if(Greenfoot.mouseClicked(this) && GoldCounter.gold < price)
-        {
-            getWorld().addObject(new NotEnoughGold(), 600, 600);
-        }
-    }    
+    }
 }

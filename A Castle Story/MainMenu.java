@@ -17,7 +17,6 @@ public class MainMenu extends World
     private void prepare()
     {
         Game.reset();
-        GoldCounter.gold = 0;
         addObject(new Road(), 600, 400);
         addObject(new CastleSprite(), 1100, 400);
         addObject(new Door(Game.shop), 1064, 400);
@@ -33,7 +32,7 @@ public class MainMenu extends World
         if(firstFrame)
         {
             Game.backgroundMusic.playLoop();
-            Game.backgroundMusic.setVolume(20);
+            Game.backgroundMusic.setVolume(100);
             firstFrame = false;
         }
     }
