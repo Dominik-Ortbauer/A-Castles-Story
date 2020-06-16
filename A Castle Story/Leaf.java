@@ -14,7 +14,7 @@ public class Leaf extends Enemy
     
     public Leaf()
     {
-        setHealth(1);
+        setHealth(2);
         setScore(50);
         setGoldAmount(0);
     }

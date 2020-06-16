@@ -12,7 +12,7 @@ public class Tree extends Enemy
 
     public Tree()
     {
-        setHealth(10);
+        setHealth(15);
         setScore(500);
         setGoldAmount(10);
     }
