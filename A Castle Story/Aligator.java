@@ -10,6 +10,10 @@ public class Aligator extends Enemy
 {    
     private String[] images = {"Goblin_F1.png", "Goblin_F2.png", "Goblin_F3.png", "Goblin_F4.png", "Goblin_F5.png", "Goblin_F6.png", "Goblin_F7.png", "Goblin_F8.png"}; 
     private Animation_Controller movement = new Animation_Controller(0.1, images, this);
+
+    private String[] attackImages = {"Goblin_Attack_F1.png", "Goblin_Attack_F2.png", "Goblin_Attack_F3.png", "Goblin_Attack_F4.png"}; 
+    private Animation_Controller attack = new Animation_Controller(0.2, attackImages, this);
+
     public Aligator()
     {
         setGoldAmount(1);
@@ -20,7 +24,6 @@ public class Aligator extends Enemy
 
     public void act() 
     {     
-        movement.update();
         if(update())
         {
             return;
@@ -31,27 +34,19 @@ public class Aligator extends Enemy
 
     public void movement()
     {
-        Environment environment = (Environment)getOneIntersectingObject(Environment.class);
+        Castle castle = (Castle)getOneIntersectingObject(Environment.class);
 
-        if(environment != null)
+        if(castle != null)
         {
-            if(environment instanceof Castle && timeBtwAttacks <= 0)
+            if(attack.update(2))
             {
-                ((Castle)environment).takeDamage(1);
-                timeBtwAttacks = startTimeBtwAttacks;
-            }
-
-            if(environment instanceof Barrier && timeBtwAttacks <= 0)
-            {
-                ((Barrier)environment).takeDamge(1);
-                timeBtwAttacks = startTimeBtwAttacks;
+                Game.battlefield.castle.takeDamage(1);
             }
         }
         else
         {
             setLocation((int)pos.x + speed, (int)pos.y);
+            movement.update();
         }
-
-        timeBtwAttacks -= 0.017;
     }    
 }
