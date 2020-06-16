@@ -17,7 +17,6 @@ public class MainMenu extends World
     private void prepare()
     {
         Game.reset();
-        GoldCounter.gold = 100;
         addObject(new Road(), 600, 400);
         addObject(new CastleSprite(), 1100, 400);
         addObject(new Door(Game.shop), 1064, 400);
