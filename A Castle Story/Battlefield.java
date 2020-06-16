@@ -68,10 +68,18 @@ public class Battlefield extends World
     Random dice = new Random();
     public Wave createWave()
     {      
-        enemiesToSpawn = new Enemy[4][0];
-        enemyAmounts = new int[enemiesToSpawn.length];
+        if(Game.levelCount < 10)
+        {
+            enemiesToSpawn = new Enemy[4][0];
+            enemyAmounts = new int[enemiesToSpawn.length];
+        }
+        else if(Game.levelCount < 20)
+        {
+            enemiesToSpawn = new Enemy[2][0];
+            enemyAmounts = new int[enemiesToSpawn.length];
+        }
 
-        for(int i = 0; i < Game.levelCount; i++)
+        for(int i = 0; i < Game.levelCount % 10; i++)
         {
             int toIncrease = dice.nextInt(enemyAmounts.length);
             int amount = dice.nextInt(2) + 1;
@@ -83,24 +91,35 @@ public class Battlefield extends World
             enemiesToSpawn[i] = new Enemy[enemyAmounts[i]];
         }
 
-        for(int i = 0; i < enemiesToSpawn[0].length; i++)
-        {
-            enemiesToSpawn[0][i] = new Aligator();
+        if(Game.levelCount < 10)
+        {            
+            for(int i = 0; i < enemiesToSpawn[0].length; i++)
+            {
+                enemiesToSpawn[0][i] = new Aligator();
+            }
+            for(int i = 0; i < enemiesToSpawn[1].length; i++)
+            {
+                enemiesToSpawn[1][i] = new Bomber();
+            }
+            for(int i = 0; i < enemiesToSpawn[2].length; i++)
+            {
+                enemiesToSpawn[2][i] = new Trebuchet();
+            }
+            for(int i = 0; i < enemiesToSpawn[3].length; i++)
+            {
+                enemiesToSpawn[3][i] = new Giant();
+            }
         }
-
-        for(int i = 0; i < enemiesToSpawn[1].length; i++)
+        else if(Game.levelCount < 20)
         {
-            enemiesToSpawn[1][i] = new Bomber();
-        }
-
-        for(int i = 0; i < enemiesToSpawn[2].length; i++)
-        {
-            enemiesToSpawn[2][i] = new Trebuchet();
-        }
-
-        for(int i = 0; i < enemiesToSpawn[3].length; i++)
-        {
-            enemiesToSpawn[3][i] = new Giant();
+            for(int i = 0; i < enemiesToSpawn[0].length; i++)
+            {
+                enemiesToSpawn[0][i] = new Tree();
+            }
+            for(int i = 0; i < enemiesToSpawn[1].length; i++)
+            {
+                enemiesToSpawn[1][i] = new Magician();
+            }
         }
 
         return new Wave(enemiesToSpawn);

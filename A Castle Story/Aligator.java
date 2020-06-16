@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Aligator extends Enemy
 {    
+    private String[] images = {"Goblin_F1.png", "Goblin_F2.png", "Goblin_F3.png", "Goblin_F4.png", "Goblin_F5.png", "Goblin_F6.png", "Goblin_F7.png", "Goblin_F8.png"}; 
+    private Animation_Controller movement = new Animation_Controller(0.1, images, this);
     public Aligator()
     {
         setGoldAmount(1);
@@ -17,7 +19,8 @@ public class Aligator extends Enemy
     }
 
     public void act() 
-    {       
+    {     
+        movement.update();
         if(update())
         {
             return;
