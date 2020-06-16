@@ -5,31 +5,33 @@ public class Enemy extends Actor
     private int damage = 1;
     final double startTimeBtwAttacks = 1;
     double timeBtwAttacks = 1;
-    
+
+    public Enemy[] enemies;
+
     public Vector pos = new Vector();
     public int speed;
 
     public int health;
     public int maxHealth;
-    
+
     public int goldToDrop;
     public int scoreToDrop;
-    
+
     int dazedTime = 0;
 
     public boolean update()
     {
         pos.set(getX(), getY());
-                
+
         if(dazedTime > 0)
         {
             dazedTime--;
             return true;
         }        
-        
+
         return false;
     }
-    
+
     public void checkHealth()
     {
         if(health <= 0)
@@ -68,7 +70,7 @@ public class Enemy extends Actor
         health -= value;
         checkHealth();
     }    
-    
+
     public void stun(int time)
     {
         dazedTime = time;
@@ -92,5 +94,29 @@ public class Enemy extends Actor
         {
             return null;
         }
+    }
+
+    public Enemy getSecondClosestEnemy()
+    {
+        setEnemies();
+
+        Enemy closestEnemy = null;
+        if(enemies != null && enemies.length != 0)
+        {
+            closestEnemy = enemies[0];
+            for(int i = 1; i < enemies.length; i++)
+            {
+                if(pos.dist(closestEnemy.pos) > pos.dist(enemies[i].pos) && !(enemies[i] instanceof Magician))
+                {
+                    closestEnemy = enemies[i];
+                }
+            }
+        }  
+        return closestEnemy;
+    }
+
+    public void setEnemies()
+    {
+        enemies = ((Castle)getWorld().getObjects(Castle.class).get(0)).getEnemies();
     }
 }

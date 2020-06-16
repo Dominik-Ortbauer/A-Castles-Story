@@ -2,6 +2,10 @@
 comment0.target=Enemy
 comment1.params=
 comment1.target=boolean\ update()
+comment10.params=
+comment10.target=Enemy\ getSecondClosestEnemy()
+comment11.params=
+comment11.target=void\ setEnemies()
 comment2.params=
 comment2.target=void\ checkHealth()
 comment3.params=value
@@ -18,4 +22,4 @@ comment8.params=time
 comment8.target=void\ stun(int)
 comment9.params=
 comment9.target=Enemy\ copy()
-numComments=10
+numComments=12
