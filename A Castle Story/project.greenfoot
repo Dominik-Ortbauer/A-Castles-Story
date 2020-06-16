@@ -47,6 +47,7 @@ class.Trap.image=Trap.png
 class.TrapPlacer.image=TrapPlacer_F1.png
 class.TrapPlacerSprite.image=TrapPlacer_F1.png
 class.Trebuchet.image=trebuchet_F1.png
+class.Tree.image=Tree.png
 class.Zyklope.image=Giant.png
 class.arrow.image=arrow.png
 dependency1.from=MainMenu
