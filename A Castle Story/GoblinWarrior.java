@@ -67,6 +67,7 @@ public class GoblinWarrior extends Enemy
                 setLocation(getX() + 40, getY() - 27);
                 firstAttacking = false;
                 jumpAnimation.animateOnce();
+                jumpAnimation.resetImages();
             } 
 
             if(!attacking && timer == 30)
