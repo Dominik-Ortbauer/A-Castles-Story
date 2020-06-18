@@ -125,6 +125,7 @@ public class Animation_Controller
                     {
                         animatingOnce = false;
                         animate = false;
+                        return true;
                     }
                 }                
                 else if(frameCount == returnValue)

@@ -2,7 +2,7 @@ import greenfoot.*;
 
 public class Magician extends Enemy
 {
-    private String[] allImages = {"Magician_F1.png", "Magician_F2.png", "Magician_F3.png", "Magician_F4.png", "Magician_F5.png", "Magician_F6.png", "Magician_F7.png"};
+    private String[] allImages = {"Magician/Run/Magician_F1.png", "Magician/Run/Magician_F2.png", "Magician/Run/Magician_F3.png", "Magician/Run/Magician_F4.png", "Magician/Run/Magician_F5.png", "Magician/Run/Magician_F6.png", "Magician/Run/Magician_F7.png", "Magician/Run/Magician_F8.png"};
     private Animation_Controller movement = new Animation_Controller(0.1, allImages, this);
     
     private int timeBtwPortals = 240;

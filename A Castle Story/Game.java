@@ -16,10 +16,10 @@ public class Game
         player = new Player();
         battlefield = new Battlefield();
         shop = new Shop();
-        levelCount = 10;
+        levelCount = 1;
         GoldCounter.gold = 0;
         ScoreCounter.score = 0;
-        Battlefield.towerSpots = new int[7];
+        Battlefield.towerSpots = new int[2];
     }
     
     public static int indexOf(int[] array, int value)

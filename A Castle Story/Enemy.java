@@ -134,6 +134,19 @@ public class Enemy extends Actor
 
     public void setEnemies()
     {
-        enemies = ((Castle)getWorld().getObjects(Castle.class).get(0)).getEnemies();
+        enemies = getEnemies();
     }
+    
+    public Enemy[] getEnemies()
+    {
+        Object[] objects = getWorld().getObjects(Enemy.class).toArray();
+        Enemy[] enemies = new Enemy[objects.length];
+
+        for(int i = 0; i < objects.length; i ++)
+        {
+            enemies[i] = (Enemy)objects[i];
+        }
+
+        return enemies;
+    }    
 }

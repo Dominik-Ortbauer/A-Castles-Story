@@ -4,7 +4,7 @@ public class Player_Bow extends Player_Weapons
 {
     public Player_Bow()
     {
-        timeBtwAttacks = 60;
+        timeBtwAttacks = 30;
         String[] allImages = {"Knight_Bow"};
         setImages(allImages);
     }   

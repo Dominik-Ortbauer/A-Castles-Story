@@ -8,19 +8,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Leaf extends Enemy
 {
-    private String[] movementImages = {"Leaf_F1.png", "Leaf_F2.png", "Leaf_F3.png", "Leaf_F4.png", "Leaf_F5.png"};
+    private String[] movementImages = {"Leaf/Run/Leaf_F1.png", "Leaf/Run/Leaf_F2.png", "Leaf/Run/Leaf_F3.png", "Leaf/Run/Leaf_F4.png", "Leaf/Run/Leaf_F5.png"};
     private Animation_Controller movement = new Animation_Controller(0.1, movementImages, this);
     private int timeBtwAttack = 60;
     
     public Leaf()
     {
-        setHealth(2);
+        setHealth(1);
         setScore(50);
         setGoldAmount(0);
     }
     
     public void act() 
     {
+        if(update())
+        {
+            return;
+        }
+        
         movement.update();
         
         if(getOneIntersectingObject(Castle.class) == null)

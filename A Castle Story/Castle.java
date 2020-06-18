@@ -39,7 +39,7 @@ public class Castle extends Environment
             if(!bossSpawned)
             {
                 bossSpawned = true;
-                getWorld().addObject(new Zyklope(), 150, 400);
+                getWorld().addObject(new Zyklope(), 0, 400);
                 startSpawnTime = 4;
                 spawnTime = 4;
             }
@@ -50,9 +50,9 @@ public class Castle extends Environment
             {
                 ((Door)getOneIntersectingObject(Door.class)).openDoor();
                 Game.levelCount++;
-                if(startSpawnTime >= 0.5)
+                if(startSpawnTime >= 2)
                 {
-                    startSpawnTime *= 0.90;
+                    startSpawnTime *= 0.95;
                 }
                 Object[] traps = (getWorld().getObjects(Projectiles.class).toArray());
 
