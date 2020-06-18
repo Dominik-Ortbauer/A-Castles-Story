@@ -6,6 +6,7 @@ public class Player extends Actor
     public int damage = 1;
 
     private boolean mouseDown;
+    private boolean rightMouseDown;
 
     public static boolean isDashing = false;
     private int dashTimer;
@@ -39,6 +40,8 @@ public class Player extends Actor
     {
         if (mouseDown && (Greenfoot.mouseDragEnded(null) || Greenfoot.mouseClicked(null))) mouseDown = false;
         if (!mouseDown && Greenfoot.mousePressed(null)) mouseDown = true;
+        
+        rightMouseDown = mouse.getButton() == 3;
         
         pos.x = getX();
         pos.y = getY();
@@ -249,6 +252,17 @@ public class Player extends Actor
             }
 
             bowChargeTime--;
+        }
+        if(currentWeapon instanceof Player_Shield)
+        {
+            if(mouse.getButton() == 3)
+            {
+                
+            }
+            if(timeBtwAttack >= currentWeapon.timeBtwAttacks)
+            {
+                
+            }
         }
     }
 
