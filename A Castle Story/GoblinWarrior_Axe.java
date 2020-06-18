@@ -8,14 +8,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GoblinWarrior_Axe extends Enemy
 {
-    private String[] images = {"GoblinWarrior/Axe/Idle/GoblinAxe_F1.png", "GoblinWarrior/Axe/Idle/GoblinAxe_F2.png"};
-    private Animation_Controller idle = new Animation_Controller(0.2, images, this);
+    private String[] images_ = {"GoblinWarrior/Axe/Idle/GoblinAxe_F1.png", "GoblinWarrior/Axe/Idle/GoblinAxe_F2.png"};
+    private Animation_Controller idle;
     
     public GoblinWarrior_Axe()
     {
         setHealth(1);
         setScore(0);
         setGoldAmount(0);
+        idle = new Animation_Controller(0.2, images_, this);
+    }
+    
+    public GoblinWarrior_Axe(GreenfootImage[] images)
+    {
+        setHealth(1);
+        setScore(0);
+        setGoldAmount(0);
+        idle = new Animation_Controller(0.2, images, this);
     }
     
     public void act() 
@@ -30,7 +39,7 @@ public class GoblinWarrior_Axe extends Enemy
         
         if(getOneIntersectingObject(Castle.class) != null)
         {
-            Game.battlefield.castle.takeDamage(1);
+            ((Castle)getOneIntersectingObject(Castle.class)).takeDamage(1);
             getWorld().removeObject(this);
         }
     }    

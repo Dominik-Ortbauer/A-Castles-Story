@@ -6,14 +6,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class TutorialWorld extends World
+public class Sandbox extends World
 {
 
     /**
      * Constructor for objects of class Tutorial.
      * 
      */
-    public TutorialWorld()
+    public Sandbox()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 800, 1); 
@@ -27,26 +27,31 @@ public class TutorialWorld extends World
     private void prepare()
     {
         addObject(new Road(), 600, 400);
-        addObject(new CastleSprite(), 1100, 400);
+        Castle castle = new Castle();
+        addObject(castle, 1100, 400);
+        castle.addUI();
         ShopBow shopBow = new ShopBow();
-        addObject(shopBow,900,600);
+        addObject(shopBow,900,750);
         shopBow.isBought = true;
         ShopHammer shopHammer = new ShopHammer();
-        addObject(shopHammer,800,600);
+        addObject(shopHammer,800,750);
         shopHammer.isBought = true;
         ShopSword shopSword = new ShopSword();
-        addObject(shopSword,700,600);
+        addObject(shopSword,700,750);
         shopSword.isBought = true;
         addObject(Game.player, 600, 400);
-        SpawnBomber spawnBomber = new SpawnBomber();
-        addObject(spawnBomber,909,81);
-        SpawnGiant spawnGiant = new SpawnGiant();
-        addObject(spawnGiant,825,81);
-        SpawnGoblin spawnGoblin = new SpawnGoblin();
-        addObject(spawnGoblin,748,83);
-        SpawnTrebuchet spawnTrebuchet = new SpawnTrebuchet();
-        addObject(spawnTrebuchet,649,84);
-        spawnTrebuchet.setLocation(673,87);
-        spawnTrebuchet.setLocation(672,79);
+        SpawnButton[] spawnButtons = new SpawnButton[7];
+        spawnButtons[0] = new SpawnButton(Aligator.class);
+        spawnButtons[1] = new SpawnButton(Bomber.class);
+        spawnButtons[2] = new SpawnButton(Giant.class);
+        spawnButtons[3] = new SpawnButton(Trebuchet.class);
+        spawnButtons[4] = new SpawnButton(GoblinWarrior.class);
+        spawnButtons[5] = new SpawnButton(Magician.class);
+        spawnButtons[6] = new SpawnButton(Tree.class);
+        
+        for(int i = 0; i < spawnButtons.length; i++)
+        {
+            addObject(spawnButtons[i], 600 + i*60, 50);
+        }
     }
 }

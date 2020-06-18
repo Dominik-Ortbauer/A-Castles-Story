@@ -29,6 +29,13 @@ public class Animation_Controller
         }
     }
 
+    public Animation_Controller(double timeBtwFrames_, GreenfootImage[] images_, Actor actor_)
+    {
+        startTimeBtwFrames = timeBtwFrames_;
+        actor = actor_;
+        images = images_;
+    }
+
     public void stop()
     {
         animate = false;
@@ -107,7 +114,7 @@ public class Animation_Controller
         }   
         return false;
     }
-    
+
     public boolean update(int returnValue)
     {
         if(animate)
@@ -140,7 +147,7 @@ public class Animation_Controller
         }   
         return false;
     }
-       
+
     public void resetImages()
     {
         actor.setImage(images[0]);

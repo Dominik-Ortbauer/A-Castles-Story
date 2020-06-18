@@ -14,6 +14,12 @@ public class ShopBow extends ShopItems
     {
         setPrice(20);
     }
+    
+    public ShopBow(boolean isBought_)
+    {
+        setPrice(20);
+        isBought = isBought_;
+    }
 
     public void act() 
     {

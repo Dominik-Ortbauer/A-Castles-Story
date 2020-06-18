@@ -40,7 +40,7 @@ public class Aligator extends Enemy
         {
             if(attack.update(2))
             {
-                Game.battlefield.castle.takeDamage(1);
+                castle.takeDamage(1);
             }
         }
         else

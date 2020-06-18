@@ -38,7 +38,7 @@ public class Bomber extends Enemy
         {
             if(environment instanceof Castle && firstTime)
             {
-                getWorld().addObject(new Bomb(), getX(), getY());
+                getWorld().addObject(new Bomb((Castle)environment), getX(), getY());
                 setSpeed(-5);
                 for(int i = 0; i < animation.images.length; i++)
                 {
