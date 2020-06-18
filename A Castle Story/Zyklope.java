@@ -1,7 +1,20 @@
+
 import greenfoot.*;
 
 public class Zyklope extends Actor
 {
+    private String[] throwImages = {"Ogre/ThrowAnimation/Ogre_Throw_F1.png", "Ogre/ThrowAnimation/Ogre_Throw_F2.png", "Ogre/ThrowAnimation/Ogre_Throw_F3.png", "Ogre/ThrowAnimation/Ogre_Throw_F4.png", "Ogre/ThrowAnimation/Ogre_Throw_F5.png", "Ogre/ThrowAnimation/Ogre_Throw_F6.png"};
+    private Animation_Controller throwAnim = new Animation_Controller(0.1, throwImages, this);
+
+    private String[] moveImages = {"Ogre/Run/Ogre_F1.png", "Ogre/Run/Ogre_F2.png", "Ogre/Run/Ogre_F3.png", "Ogre/Run/Ogre_F4.png", "Ogre/Run/Ogre_F5.png", "Ogre/Run/Ogre_F6.png", "Ogre/Run/Ogre_F7.png", "Ogre/Run/Ogre_F8.png"};
+    private Animation_Controller moveAnim = new Animation_Controller(0.1, moveImages, this);
+
+    private String[] idleImages = {"Ogre/Idle/Ogre_Idle_F1.png", "Ogre/Idle/Ogre_Idle_F2.png", "Ogre/Idle/Ogre_Idle_F3.png", "Ogre/Idle/Ogre_Idle_F4.png"};
+    private Animation_Controller idleAnim = new Animation_Controller(0.1, idleImages, this);
+
+    private String[] shockWaveImages = {"Ogre/ShockWave/Ogre_ShockWave_F1.png", "Ogre/ShockWave/Ogre_ShockWave_F2.png", "Ogre/ShockWave/Ogre_ShockWave_F3.png", "Ogre/ShockWave/Ogre_ShockWave_F4.png", "Ogre/ShockWave/Ogre_ShockWave_F5.png", "Ogre/ShockWave/Ogre_ShockWave_F6.png", "Ogre/ShockWave/Ogre_ShockWave_F7.png", "Ogre/ShockWave/Ogre_ShockWave_F8.png", "Ogre/ShockWave/Ogre_ShockWave_F9.png", "Ogre/ShockWave/Ogre_ShockWave_F10.png"};
+    private Animation_Controller shockWaveAnim = new Animation_Controller(0.1, shockWaveImages, this);
+
     private boolean firstFrame;
 
     private int health = 30;
@@ -15,7 +28,15 @@ public class Zyklope extends Actor
     private int timeBtwAttack = 120;
     private int attackTimer;
 
+    private boolean isThrowing = false;
+    private boolean throwed = false;
+
+    private boolean isShootingWave = false;
+    private boolean shot = false;
+
     private int stunTimer = 0;
+    
+    private Label UI = new Label("HP: " + health, 48);
 
     public Zyklope()
     {
@@ -26,8 +47,57 @@ public class Zyklope extends Actor
     {
         if(firstFrame)
         {
-            addUI();
+            getWorld().addObject(UI, getX(), getY() - 80);
             firstFrame = false;
+        }
+
+        if(isThrowing)
+        {
+            if(throwAnim.update(3))
+            {
+                if(!throwed)
+                {
+                    getWorld().addObject(new Club(), getX(), getY());
+                    throwed = true;
+                }
+                else
+                {
+                    attackTimer = 0;
+                    isThrowing = false;
+                    chooseAttack = Greenfoot.getRandomNumber(100);
+                    chooseTimeBtwAttack = Greenfoot.getRandomNumber(1) + 1;
+                    timeBtwAttack = chooseTimeBtwAttack * 60 + 120;
+                    throwed = false;
+                    setImage("Giant.png");
+                    setLocation(getX() - 20, getY());
+                }
+            }
+        }
+        else if(isShootingWave)
+        {
+            if(shockWaveAnim.update(7))
+            {
+                if(!shot)
+                {
+                    getWorld().addObject(new ShockWave(), 200, 400);
+                    shot = true;
+                }
+                else
+                {
+                    attackTimer = 0;
+                    isShootingWave = false;
+                    chooseAttack = Greenfoot.getRandomNumber(100);
+                    chooseTimeBtwAttack = Greenfoot.getRandomNumber(1) + 1;
+                    timeBtwAttack = chooseTimeBtwAttack * 60 + 120;
+                    shot = false;
+                    setImage("Giant.png");
+                    setLocation(getX(), getY() + 25);
+                }
+            }
+        }
+        else
+        {
+            idleAnim.update();
         }
 
         if(stunTimer <= 0)
@@ -42,35 +112,33 @@ public class Zyklope extends Actor
 
         if(!isDamageable)
         {
-            if(getOneIntersectingObject(Player.class) != null)
+            if(getX() < 150)
             {
-                swingClub((Player)getOneIntersectingObject(Player.class));
+                move(1);
+                moveAnim.update();
+                UI.setLocation(getX(), getY()-80);
             }
             else
-            {
-                attackRandomly();
+            {                
+                if(getOneIntersectingObject(Player.class) != null)
+                {
+                    swingClub((Player)getOneIntersectingObject(Player.class));
+                }
+                else
+                {
+                    attackRandomly();
+                }
             }
         }
     }
-
-    private void addUI()
-    {
-        getWorld().addObject(new Label("HP: " + health, 48), getX(), getY()-80);
-    }
-
-    private void removeUI()
-    {
-        getWorld().removeObjects(getWorld().getObjects(Label.class));
-    }
-
+    
     public void takeDamage(int amount)
     {
         if(isDamageable)
         {
             health -= amount;
 
-            removeUI();
-            addUI();
+            UI.update("HP: " + health, 48);
 
             if(health <= 0)
             {
@@ -82,7 +150,7 @@ public class Zyklope extends Actor
     private void defeated()
     {
         getWorld().addObject(new Effect(Effects.Colour.PURPLE, new Vector(50, 25), 60, 15), getX(), getY());
-        removeUI();
+        getWorld().removeObject(UI);
         getWorld().removeObject(stunnedEffect);
         GoldCounter.gold += goldToDrop;
         ScoreCounter.score += scoreToDrop;
@@ -91,14 +159,26 @@ public class Zyklope extends Actor
         getWorld().removeObject(this);
     }
 
-    public void stompAttack()
+    public void shockwave()
     {
-        getWorld().addObject(new ShockWave(), getX(), getY());
+        if(!isShootingWave)
+        {
+            setLocation(getX(), getY() - 25);
+            shockWaveAnim.resetImages();
+            isShootingWave = true;
+            shockWaveAnim.animateOnce();
+        }
     }
 
     public void throwClub()
     {
-        getWorld().addObject(new Club(), getX(), getY());
+        if(!isThrowing)
+        {
+            setLocation(getX() + 20, getY());
+            throwAnim.resetImages();
+            isThrowing = true;
+            throwAnim.animateOnce();
+        }
     }
 
     public void swingClub(Player player)
@@ -121,26 +201,19 @@ public class Zyklope extends Actor
     }
 
     private void attackRandomly()
-    {
-        attackTimer++;
-
+    {        
         if(chooseAttack <= 25 && attackTimer >= timeBtwAttack)
         {
             throwClub();
-            attackTimer = 0;
-
-            chooseAttack = Greenfoot.getRandomNumber(100);
-            chooseTimeBtwAttack = Greenfoot.getRandomNumber(1) + 1;
-            timeBtwAttack = chooseTimeBtwAttack * 60 + 120;
         }
         else if(chooseAttack > 25 && attackTimer >= timeBtwAttack)
         {
-            stompAttack();
-            attackTimer = 0;
+            shockwave();
 
-            chooseAttack = Greenfoot.getRandomNumber(100);
-            chooseTimeBtwAttack = Greenfoot.getRandomNumber(1) + 1;
-            timeBtwAttack = chooseTimeBtwAttack * 60 + 120;
+        }
+        else
+        {
+            attackTimer++;
         }
     }
 }

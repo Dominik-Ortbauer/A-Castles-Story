@@ -19,7 +19,7 @@ public class Game
         levelCount = 1;
         GoldCounter.gold = 0;
         ScoreCounter.score = 0;
-        Battlefield.towerSpots = new int[7];
+        Battlefield.towerSpots = new int[2];
     }
     
     public static int indexOf(int[] array, int value)

@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Bomber extends Enemy
 {    
-    private String[] images = {"Rider_F1.png", "Rider_F2.png", "Rider_F3.png", "Rider_F4.png", "Rider_F5.png", "Rider_F6.png", "Rider_F7.png", "Rider_F8.png"};
+    private String[] images = {"Rider/Run/Rider_F1.png", "Rider/Run/Rider_F2.png", "Rider/Run/Rider_F3.png", "Rider/Run/Rider_F4.png", "Rider/Run/Rider_F5.png", "Rider/Run/Rider_F6.png", "Rider/Run/Rider_F7.png", "Rider/Run/Rider_F8.png"};
     private Animation_Controller animation = new Animation_Controller(0.1, images, this);
     public Bomber()
     {

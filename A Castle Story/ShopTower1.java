@@ -6,7 +6,7 @@ public class ShopTower1 extends ShopItems
     
     public ShopTower1()
     {
-        setPrice(10);
+        setPrice(50);
     }
     
     public void act() 

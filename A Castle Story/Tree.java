@@ -29,7 +29,7 @@ public class Tree extends Enemy
         if(timeBtwAttacks <= 0)
         {
             attack();
-            timeBtwAttacks = 120;
+            timeBtwAttacks = 240;
         }
         else
         {

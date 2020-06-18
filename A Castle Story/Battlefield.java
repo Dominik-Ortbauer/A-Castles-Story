@@ -5,8 +5,8 @@ import java.util.*;
 public class Battlefield extends World
 {    
     private Wave wave;
-    
-    public static int[] towerSpots = new int[7];
+
+    public static int[] towerSpots = new int[2];
 
     public Castle castle;
     private Door door = new Door(Game.shop);
@@ -40,41 +40,50 @@ public class Battlefield extends World
         door.setDestination(Game.shop);
         door.closeDoor();
         waveIndicator.update();
-        
+
         wave = createWave();
         castle.setWave(wave);
-        
+
         addObject(Game.player, 950, getHeight()/2);
         castle.firstFrame = true;
 
         removeObjects(towers);
 
-        for(int i = 0; i < towerSpots.length; i++)
+        if(towerSpots[0] == 1)
         {
-            if(towerSpots[i] == 1)
-            {
-                Tower tower = new Tower1();
-                towers.add(tower);
-                addObject(tower, 1100, i*100 + 100);
-            }
-            if(towerSpots[i] == 2)
-            {
-                Tower tower = new TrapPlacer();
-                towers.add(tower);
-                addObject(tower, 1100, i*100 + 100);
-            }
+            Tower tower = new Tower1();
+            towers.add(tower);
+            addObject(tower, 1100, 200);
+        }
+        else if(towerSpots[0] == 2)
+        {
+            Tower tower = new TrapPlacer();
+            towers.add(tower);
+            addObject(tower, 1100, 200);
+        }
+
+        if(towerSpots[1] == 1)
+        {
+            Tower tower = new Tower1();
+            towers.add(tower);
+            addObject(tower, 1100, 600);
+        }
+        else if(towerSpots[1] == 2)
+        {
+            Tower tower = new TrapPlacer();
+            towers.add(tower);
+            addObject(tower, 1100, 600);
         }
     }
 
     Enemy[][] enemiesToSpawn = new Enemy[4][0];
     int[] enemyAmounts = new int[enemiesToSpawn.length];
-    
-    
+
     public Wave createWave()
     {      
         if(Game.levelCount < 10)
         {
-            enemiesToSpawn = new Enemy[4][0];
+            enemiesToSpawn = new Enemy[5][0];
             enemyAmounts = new int[enemiesToSpawn.length];
         }
         else if(Game.levelCount < 20)
@@ -90,21 +99,25 @@ public class Battlefield extends World
 
             if(Game.levelCount < 10)
             {
-                if(spawnProbability <= 30)
+                if(spawnProbability <= 23)
                 {
                     enemyAmounts[0]++;
                 }
-                else if(spawnProbability <= 60)
+                else if(spawnProbability <= 46)
                 {
                     enemyAmounts[1]++;
                 }
-                else if(spawnProbability <= 90)
+                else if(spawnProbability <= 69)
                 {
                     enemyAmounts[2]++;
                 }
-                else if(spawnProbability <= 100)
+                else if(spawnProbability <= 77)
                 {
                     enemyAmounts[3]++;
+                }
+                else if(spawnProbability <= 100)
+                {
+                    enemyAmounts[4]++;
                 }
             }
             else if(Game.levelCount < 20)
@@ -118,7 +131,7 @@ public class Battlefield extends World
                     enemyAmounts[1]++;
                 }
             }
-            
+
             if(i <= Game.levelCount % 10)
             {
                 amount += Greenfoot.getRandomNumber(3);
@@ -147,6 +160,10 @@ public class Battlefield extends World
             for(int i = 0; i < enemiesToSpawn[3].length; i++)
             {
                 enemiesToSpawn[3][i] = new Giant();
+            }
+            for(int i = 0; i < enemiesToSpawn[4].length; i++)
+            {
+                enemiesToSpawn[4][i] = new GoblinWarrior();
             }
         }
         else if(Game.levelCount < 20)

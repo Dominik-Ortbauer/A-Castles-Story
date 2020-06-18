@@ -8,20 +8,25 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Owl extends Enemy
 {
-    private String[] idleImages = {"Owl_F1.png", "Owl_F2.png", "Owl_F3.png", "Owl_F4.png", "Owl_F5.png"};
+    private String[] idleImages = {"Owl/Run/Owl_F1.png", "Owl/Run/Owl_F2.png", "Owl/Run/Owl_F3.png", "Owl/Run/Owl_F4.png", "Owl/Run/Owl_F5.png"};
     private Animation_Controller idle = new Animation_Controller(0.1, idleImages, this);
 
     int timeBtwAttack = 60;
 
     public Owl()
     {
-        setHealth(3);
+        setHealth(2);
         setScore(10);
         setGoldAmount(1);
     }
 
     public void act() 
     {
+        if(update())
+        {
+            return;
+        }
+        
         idle.update();
 
         if(getOneIntersectingObject(Castle.class) == null)

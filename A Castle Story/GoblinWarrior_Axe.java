@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GoblinWarrior_Axe extends Enemy
 {
-    private String[] images = {"GoblinAxe_F1.png", "GoblinAxe_F2.png"};
+    private String[] images = {"GoblinWarrior/Axe/Idle/GoblinAxe_F1.png", "GoblinWarrior/Axe/Idle/GoblinAxe_F2.png"};
     private Animation_Controller idle = new Animation_Controller(0.2, images, this);
     
     public GoblinWarrior_Axe()
@@ -20,6 +20,11 @@ public class GoblinWarrior_Axe extends Enemy
     
     public void act() 
     {
+        if(update())
+        {
+            return;
+        }
+        
         idle.update();
         move(6);
         

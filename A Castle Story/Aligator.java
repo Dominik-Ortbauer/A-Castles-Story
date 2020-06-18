@@ -8,10 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Aligator extends Enemy
 {    
-    private String[] images = {"Goblin_F1.png", "Goblin_F2.png", "Goblin_F3.png", "Goblin_F4.png", "Goblin_F5.png", "Goblin_F6.png", "Goblin_F7.png", "Goblin_F8.png"}; 
+    private String[] images = {"Goblin/Run/Goblin_F1.png", "Goblin/Run/Goblin_F2.png", "Goblin/Run/Goblin_F3.png", "Goblin/Run/Goblin_F4.png", "Goblin/Run/Goblin_F5.png", "Goblin/Run/Goblin_F6.png", "Goblin/Run/Goblin_F7.png", "Goblin/Run/Goblin_F8.png"}; 
     private Animation_Controller movement = new Animation_Controller(0.1, images, this);
 
-    private String[] attackImages = {"Goblin_Attack_F1.png", "Goblin_Attack_F2.png", "Goblin_Attack_F3.png", "Goblin_Attack_F4.png"}; 
+    private String[] attackImages = {"Goblin/Attack/Goblin_Attack_F1.png", "Goblin/Attack/Goblin_Attack_F2.png", "Goblin/Attack/Goblin_Attack_F3.png", "Goblin/Attack/Goblin_Attack_F4.png"}; 
     private Animation_Controller attack = new Animation_Controller(0.2, attackImages, this);
 
     public Aligator()
@@ -34,7 +34,7 @@ public class Aligator extends Enemy
 
     public void movement()
     {
-        Castle castle = (Castle)getOneIntersectingObject(Environment.class);
+        Castle castle = (Castle)getOneIntersectingObject(Castle.class);
 
         if(castle != null)
         {
