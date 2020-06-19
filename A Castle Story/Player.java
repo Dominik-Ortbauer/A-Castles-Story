@@ -38,10 +38,14 @@ public class Player extends Actor
 
     public void act()
     {
-        if (mouseDown && (Greenfoot.mouseDragEnded(null) || Greenfoot.mouseClicked(null))) mouseDown = false;
-        if (!mouseDown && Greenfoot.mousePressed(null)) mouseDown = true;
-        
-        rightMouseDown = mouse.getButton() == 3;
+        if (mouseDown && (Greenfoot.mouseDragEnded(null) || Greenfoot.mouseClicked(null)))
+        {
+            mouseDown = false;
+        }
+        if (!mouseDown && Greenfoot.mousePressed(null)) 
+        {
+            mouseDown = true;
+        }
         
         pos.x = getX();
         pos.y = getY();
@@ -255,13 +259,16 @@ public class Player extends Actor
         }
         if(currentWeapon instanceof Player_Shield)
         {
-            if(mouse.getButton() == 3)
+            if(mouseDown)
             {
-                
+                new Attack_ShieldBlock();
             }
-            if(timeBtwAttack >= currentWeapon.timeBtwAttacks)
+            if(timeBtwAttack >= currentWeapon.timeBtwAttacks && Greenfoot.mouseClicked(null))
             {
-                
+                Vector target = new Vector(mouse.getX(), mouse.getY());
+                target.sub(pos);
+                timeBtwAttack = 0;
+                turnTowards((int)target.x, (int)target.y);
             }
         }
     }
