@@ -40,9 +40,12 @@ public class Player extends Actor
     {
         if (mouseDown && (Greenfoot.mouseDragEnded(null) || Greenfoot.mouseClicked(null))) mouseDown = false;
         if (!mouseDown && Greenfoot.mousePressed(null)) mouseDown = true;
-        
-        rightMouseDown = mouse.getButton() == 3;
-        
+
+        if(mouse != null)
+        {
+            rightMouseDown = mouse.getButton() == 3;
+        }
+
         pos.x = getX();
         pos.y = getY();
 
@@ -167,7 +170,7 @@ public class Player extends Actor
             hammerChargeTime = startHammerChargeTime;
             timeBtwAttack = 0;
         }
-        
+
         timeBtwAttack++;
     }
 
@@ -255,7 +258,7 @@ public class Player extends Actor
         }
         if(currentWeapon instanceof Player_Shield)
         {
-            if(mouse.getButton() == 3)
+            if(mouse != null && mouse.getButton() == 3)
             {
                 
             }

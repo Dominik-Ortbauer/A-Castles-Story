@@ -6,11 +6,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Bomber extends Enemy
+public class Rider extends Enemy
 {    
     private String[] images = {"Rider/Run/Rider_F1.png", "Rider/Run/Rider_F2.png", "Rider/Run/Rider_F3.png", "Rider/Run/Rider_F4.png", "Rider/Run/Rider_F5.png", "Rider/Run/Rider_F6.png", "Rider/Run/Rider_F7.png", "Rider/Run/Rider_F8.png"};
     private Animation_Controller animation = new Animation_Controller(0.1, images, this);
-    public Bomber()
+    public Rider()
     {
         setHealth(2);
         setGoldAmount(2);

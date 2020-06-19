@@ -17,6 +17,9 @@ public class Battlefield extends World
     public Battlefield()
     {       
         super(1200, 800, 1);   
+        
+        Class[] classes = {PlayerImages.class};
+        setPaintOrder(classes);
 
         addObject(new Road(), 600, 400);
         castle = new Castle(wave);
@@ -147,11 +150,11 @@ public class Battlefield extends World
         {            
             for(int i = 0; i < enemiesToSpawn[0].length; i++)
             {
-                enemiesToSpawn[0][i] = new Aligator();
+                enemiesToSpawn[0][i] = new Goblin();
             }
             for(int i = 0; i < enemiesToSpawn[1].length; i++)
             {
-                enemiesToSpawn[1][i] = new Bomber();
+                enemiesToSpawn[1][i] = new Rider();
             }
             for(int i = 0; i < enemiesToSpawn[2].length; i++)
             {

@@ -95,27 +95,7 @@ public class Enemy extends Actor
     {
         dazedTime = time;
     }
-
-    public Enemy copy()
-    {
-        if(this instanceof Aligator)
-        {
-            return new Aligator();
-        }
-        else if(this instanceof Bomber)
-        {
-            return new Bomber();
-        }
-        else if(this instanceof Trebuchet)
-        {
-            return new Trebuchet();
-        }
-        else
-        {
-            return null;
-        }
-    }
-
+    
     public Enemy getSecondClosestEnemy()
     {
         setEnemies();

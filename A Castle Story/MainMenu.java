@@ -11,6 +11,10 @@ public class MainMenu extends World
     public MainMenu()
     {
         super(1200, 800, 1);
+        
+        Class[] classes = {PlayerImages.class};
+        setPaintOrder(classes);
+        
         prepare();
     }
 

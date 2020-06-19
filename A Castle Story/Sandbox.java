@@ -17,6 +17,10 @@ public class Sandbox extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 800, 1); 
+        
+        Class[] classes = {PlayerImages.class};
+        setPaintOrder(classes);
+        
         prepare();
     }
 
@@ -41,8 +45,8 @@ public class Sandbox extends World
         shopSword.isBought = true;
         addObject(Game.player, 600, 400);
         SpawnButton[] spawnButtons = new SpawnButton[7];
-        spawnButtons[0] = new SpawnButton(Aligator.class);
-        spawnButtons[1] = new SpawnButton(Bomber.class);
+        spawnButtons[0] = new SpawnButton(Goblin.class);
+        spawnButtons[1] = new SpawnButton(Rider.class);
         spawnButtons[2] = new SpawnButton(Giant.class);
         spawnButtons[3] = new SpawnButton(Trebuchet.class);
         spawnButtons[4] = new SpawnButton(GoblinWarrior.class);
