@@ -35,6 +35,8 @@ public class Player extends Actor
     public Player_Weapons currentWeapon = new Player_Sword();
 
     private boolean isWalking = true;
+    
+    public boolean isShieldDashing = false;
 
     public void act()
     {
@@ -58,7 +60,7 @@ public class Player extends Actor
 
         mouse = Greenfoot.getMouseInfo();
 
-        if(!isDashing && (!isStunned || isKnockedBack))
+        if(!isShieldDashing && !isDashing && (!isStunned || isKnockedBack))
         {
             movement();
         }
@@ -267,6 +269,7 @@ public class Player extends Actor
             {
                 Vector target = new Vector(mouse.getX(), mouse.getY());
                 target.sub(pos);
+                new Attack_ShieldDash(target);
                 timeBtwAttack = 0;
                 turnTowards((int)target.x, (int)target.y);
             }
@@ -408,5 +411,10 @@ public class Player extends Actor
     {
         playerBody.changeToRightImage();
         currentWeapon.changeToRightImage();
+    }
+    
+    public Enemy getIntersectingEnemy()
+    {
+        return (Enemy)getOneIntersectingObject(Enemy.class);
     }
 }
