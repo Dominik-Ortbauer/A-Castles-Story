@@ -1,7 +1,7 @@
 
 import greenfoot.*;
 
-public class Zyklope extends Actor
+public class Zyklope extends Bosses
 {
     private String[] throwImages = {"Ogre/ThrowAnimation/Ogre_Throw_F1.png", "Ogre/ThrowAnimation/Ogre_Throw_F2.png", "Ogre/ThrowAnimation/Ogre_Throw_F3.png", "Ogre/ThrowAnimation/Ogre_Throw_F4.png", "Ogre/ThrowAnimation/Ogre_Throw_F5.png", "Ogre/ThrowAnimation/Ogre_Throw_F6.png"};
     private Animation_Controller throwAnim = new Animation_Controller(0.1, throwImages, this);
