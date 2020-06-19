@@ -34,6 +34,7 @@ public class Sandbox extends World
         Castle castle = new Castle();
         addObject(castle, 1100, 400);
         castle.addUI();
+        addObject(new Door(new MainMenu(), true), 1064, 400);        
         ShopBow shopBow = new ShopBow();
         addObject(shopBow,900,750);
         shopBow.isBought = true;

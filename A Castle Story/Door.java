@@ -10,6 +10,16 @@ public class Door extends Environment
     {
         destination = destination_;
     }
+    
+    public Door(World destination_, boolean open)
+    {
+        destination = destination_;
+        
+        if(open)
+        {
+            openDoor();
+        }
+    }
 
     public Door()
     {

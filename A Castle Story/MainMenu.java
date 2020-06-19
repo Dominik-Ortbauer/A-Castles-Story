@@ -27,6 +27,7 @@ public class MainMenu extends World
         Play play = new Play();
         addObject(play,600,200);
         addObject(new HighscoresButton(), 600, 500);
+        addObject(new TutorialButton(), 600, 700);
     }
 
     private boolean firstFrame = true;
