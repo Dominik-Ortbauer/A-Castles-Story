@@ -9,6 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Bomb extends Actor
 {
     private int timer = 60;
+    private Castle castle;
+    public Bomb(Castle castle_)
+    {
+        castle = castle_;
+    }   
     
     public void act()
     {
@@ -16,7 +21,7 @@ public class Bomb extends Actor
         {
             getWorld().addObject(new Effect(Effects.Colour.YELLOW, new Vector(30, 10), 20), getX(), getY());
             getWorld().removeObject(this);
-            Game.battlefield.castle.takeDamage(3);
+            castle.takeDamage(3);
         }
         timer--;
     }

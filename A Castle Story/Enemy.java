@@ -31,6 +31,18 @@ public class Enemy extends Actor
 
         return false;
     }
+    
+    public GreenfootImage[] makeImages(String firstPart, int length)
+    {
+        GreenfootImage[] images = new GreenfootImage[length];
+        
+        for(int i = 0; i < length; i++)
+        {
+            images[i] = new GreenfootImage(firstPart + (i+1) + ".png");
+        }
+        
+        return images;
+    }
 
     public void checkHealth()
     {
@@ -38,15 +50,14 @@ public class Enemy extends Actor
         {
             if(this instanceof Tree)
             {
-                getWorld().addObject(new Leaf(), getX(), getY());
-                getWorld().addObject(new Leaf(), getX() - 50, getY() - 50);
-                getWorld().addObject(new Leaf(), getX() - 50, getY() + 50);
+                getWorld().addObject(new Leaf(makeImages("Leaf/Run/Leaf_F", 5)), getX(), getY());
+                getWorld().addObject(new Leaf(makeImages("Leaf/Run/Leaf_F", 5)), getX() - 50, getY() - 50);
+                getWorld().addObject(new Leaf(makeImages("Leaf/Run/Leaf_F", 5)), getX() - 50, getY() + 50);
             }
             else
             {
                 getWorld().addObject(new Effect(Effects.Colour.YELLOW, new Vector(30, 10), 20), getX(), getY());
             }
-            health = maxHealth;
             GoldCounter.addGold(goldToDrop);
             ScoreCounter.addScore(scoreToDrop);
             getWorld().removeObject(this);
@@ -84,27 +95,7 @@ public class Enemy extends Actor
     {
         dazedTime = time;
     }
-
-    public Enemy copy()
-    {
-        if(this instanceof Aligator)
-        {
-            return new Aligator();
-        }
-        else if(this instanceof Bomber)
-        {
-            return new Bomber();
-        }
-        else if(this instanceof Trebuchet)
-        {
-            return new Trebuchet();
-        }
-        else
-        {
-            return null;
-        }
-    }
-
+    
     public Enemy getSecondClosestEnemy()
     {
         setEnemies();

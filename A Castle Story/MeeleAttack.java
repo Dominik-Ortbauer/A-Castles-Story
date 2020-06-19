@@ -6,7 +6,7 @@ public class MeeleAttack extends Attacks
     private int waitTime = 4;
     private int frameCount = 1;
 
-    private String[] frames_ = {"Meele_F1.png","Meele_F2.png","Meele_F3.png","Meele_F4.png","Meele_F5.png"};
+    private String[] frames_ = {"Knight/Meele/Meele_F1.png","Knight/Meele/Meele_F2.png","Knight/Meele/Meele_F3.png","Knight/Meele/Meele_F4.png","Knight/Meele/Meele_F5.png"};
     private GreenfootImage[] frames;
     private int size = 75;
 

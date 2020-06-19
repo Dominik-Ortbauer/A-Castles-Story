@@ -10,7 +10,7 @@ public class Player_Body extends PlayerImages
 {        
     public Player_Body() 
     {
-        String[] allImages = {"Knight_Body_F1", "Knight_Body_F2", "Knight_Body_F3", "Knight_Body_F4", "Knight_Body_F5", "Knight_Body_F6", "Knight_Body_F7", "Knight_Body_F8"};
+        String[] allImages = {"Knight/Body/Run/Knight_Body_F1", "Knight/Body/Run/Knight_Body_F2", "Knight/Body/Run/Knight_Body_F3", "Knight/Body/Run/Knight_Body_F4", "Knight/Body/Run/Knight_Body_F5", "Knight/Body/Run/Knight_Body_F6", "Knight/Body/Run/Knight_Body_F7", "Knight/Body/Run/Knight_Body_F8"};
         setImages(allImages);
     }  
 }

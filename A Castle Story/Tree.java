@@ -39,6 +39,6 @@ public class Tree extends Enemy
 
     private void attack()
     {
-        getWorld().addObject(new Owl(), getX(), getY());
+        getWorld().addObject(new Owl(makeImages("Owl/Run/Owl_F", 5)), getX(), getY());
     }
 }

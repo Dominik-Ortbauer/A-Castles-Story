@@ -10,9 +10,15 @@ public class Castle extends Environment
     private boolean cleared = false;
     public Wave wave;
 
+    private boolean justForShow = false;
     public Castle(Wave wave_)
     {        
         wave = wave_;
+    }
+    
+    public Castle()
+    {        
+        justForShow = true;
     }
 
     public void setWave(Wave wave_)
@@ -32,9 +38,11 @@ public class Castle extends Environment
             firstFrame = false;
         }
         
-        checkHealth();
-
-        if(bossWave)
+        if(justForShow)
+        {
+            
+        }
+        else if(bossWave)
         {
             if(!bossSpawned)
             {
@@ -82,6 +90,11 @@ public class Castle extends Environment
     {
         if(Game.health <= 0)
         {
+            if(justForShow)
+            {
+                Game.health = Game.maxHealth;
+                return;
+            }
             boolean highscorePlace = ScoreCounter.score > Highscore.highscore[4];
 
             if(highscorePlace)
@@ -131,7 +144,8 @@ public class Castle extends Environment
     public void takeDamage(int value)
     {
         Game.health -= value;
-        updateUI();
+        checkHealth();
+        updateUI();       
     }
 
     public void heal(int value)

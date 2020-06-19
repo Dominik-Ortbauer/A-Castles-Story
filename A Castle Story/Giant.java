@@ -29,9 +29,7 @@ public class Giant extends Enemy
         {
             return;
         }
-        
-        animation.update();
-
+                
         Castle castle = (Castle)getOneIntersectingObject(Castle.class);
         if(castle == null)
         {
@@ -44,7 +42,7 @@ public class Giant extends Enemy
             {
                 movementTimer--;
             }
-            
+            animation.update();
         }
         else if(timer <= 0)
         {
@@ -54,6 +52,7 @@ public class Giant extends Enemy
         else
         {
             timer --;
+            animation.resetImages();
         }
     }    
 }

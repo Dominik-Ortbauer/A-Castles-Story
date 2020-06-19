@@ -20,7 +20,7 @@ public class StoneProjectile extends Enemy
 
         if(getOneIntersectingObject(Castle.class) != null)
         {
-            ((Castle)getWorld().getObjects(Castle.class).get(0)).takeDamage(1);
+            ((Castle)getOneIntersectingObject(Castle.class)).takeDamage(1);
             getWorld().removeObject(this);
         }
     }

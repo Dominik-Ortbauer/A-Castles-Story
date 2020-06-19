@@ -42,11 +42,11 @@ public class Player extends Actor
         {
             mouseDown = false;
         }
-        if (!mouseDown && Greenfoot.mousePressed(null)) 
+        if (!mouseDown && Greenfoot.mousePressed(null))
         {
             mouseDown = true;
         }
-        
+
         pos.x = getX();
         pos.y = getY();
 
@@ -171,7 +171,7 @@ public class Player extends Actor
             hammerChargeTime = startHammerChargeTime;
             timeBtwAttack = 0;
         }
-        
+
         timeBtwAttack++;
     }
 

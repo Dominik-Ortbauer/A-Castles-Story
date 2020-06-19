@@ -28,21 +28,29 @@ public class GoblinWarrior extends Enemy
     private boolean isThrowing = false;
     private boolean axeThrown = false;
     private int[] animationPoints = {5, 7};
-    
+
+    private boolean firstFrame = true;
+    private Castle castle;
+
     public GoblinWarrior()
     {
         setHealth(4);
         setScore(1000);
         setGoldAmount(5);
     }
-    
+
     public void act() 
     {
+        if(firstFrame)
+        {
+            castle = getWorld().getObjects(Castle.class).get(0);
+        }
+
         if(update())
         {
             return;
         }
-        
+
         if(getX() < 870)
         {
             if(throwTimer == 120)
@@ -60,7 +68,7 @@ public class GoblinWarrior extends Enemy
                 }
                 else
                 {
-                    getWorld().addObject(new GoblinWarrior_Axe(), getX() + 50, getY());
+                    getWorld().addObject(new GoblinWarrior_Axe(makeImages("GoblinWarrior/Axe/Idle/GoblinAxe_F", 2)), getX() + 50, getY());
                     axeThrown = true;   
                 }
             }
@@ -85,7 +93,7 @@ public class GoblinWarrior extends Enemy
 
             if(!attacking && timer == 30)
             {
-                Game.battlefield.castle.takeDamage(1);
+                castle.takeDamage(1);
                 timer = 0;
             }
 
@@ -97,10 +105,9 @@ public class GoblinWarrior extends Enemy
 
             if(attacking)
             {
-                
                 if(attackAnimation.update(5))
                 {
-                    Game.battlefield.castle.takeDamage(1);
+                    castle.takeDamage(1);
                 }
             }
             timer++;

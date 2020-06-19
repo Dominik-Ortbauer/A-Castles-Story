@@ -11,7 +11,7 @@ public class TutorialButton extends Buttons
     {
         if(Greenfoot.mouseClicked(this))
         {
-            Greenfoot.setWorld(new TutorialWorld());
+            Greenfoot.setWorld(new Tutorial());
         }
     }    
 }
