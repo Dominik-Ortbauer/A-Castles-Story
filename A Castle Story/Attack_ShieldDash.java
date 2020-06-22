@@ -3,11 +3,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Attack_ShieldDash extends Attacks
 {
     private Vector direction;
+    private int damage = 2;
 
     private int dashTimer = 0;
-    
+
     private Enemy enemy;
-    private boolean pushEnemy = false;
     private int pushTimer = 0;
 
     public Attack_ShieldDash(Vector direction_)
@@ -19,21 +19,18 @@ public class Attack_ShieldDash extends Attacks
 
     public void act() 
     {
-        if(dashTimer <= 6)
-        {
-            Game.player.move(10);
-        }
-        
+        Game.player.move(10);
+
         enemy = Game.player.getIntersectingEnemy();
         if(enemy != null)
         {
             enemy.stun(60);
-            pushEnemy = true;
-        }
-        if(pushEnemy && pushTimer <= 30)
-        {
-            enemy.pushBack(direction, 2);
-            pushTimer++;
+            enemy.takeDamage(damage);
+            if(pushTimer <= 6)
+            {
+                enemy.pushBack(direction, 10);
+                pushTimer++;
+            }
         }
         
         if(dashTimer == 6)

@@ -1,19 +1,37 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
-/**
- * Write a description of class Attack_ShieldBlock here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Attack_ShieldBlock extends Attacks
 {
-    /**
-     * Act - do whatever the Attack_ShieldBlock wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private MouseInfo mouse = Greenfoot.getMouseInfo();
+    private boolean mouseDown;
+    
+    private Enemy enemy = Game.player.getIntersectingEnemy();
+    
     public void act() 
     {
-        // Add your action code here.
+        if (mouseDown && (Greenfoot.mouseDragEnded(null) || Greenfoot.mouseClicked(null)))
+        {
+            mouseDown = false;
+        }
+        if (!mouseDown && Greenfoot.mousePressed(null))
+        {
+            mouseDown = true;
+        }
+        
+        if(enemy != null)
+        {
+            enemy.stun(1);
+        }
+        
+        if(enemy instanceof StoneProjectile)
+        {
+            getWorld().removeObject(enemy);
+        }
+        
+        if(!mouseDown)
+        {
+            getWorld().removeObject(this);
+            return;
+        }
     }    
 }
