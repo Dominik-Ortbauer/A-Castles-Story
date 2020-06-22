@@ -10,15 +10,176 @@ public class Minotaur extends Bosses
 {
     private String[] spinImages = {"Minotaur/SpinLoop/Minotaur_SpinLoop_F1.png", "Minotaur/SpinLoop/Minotaur_SpinLoop_F2.png", "Minotaur/SpinLoop/Minotaur_SpinLoop_F3.png"};
     private Animation_Controller spinAnim = new Animation_Controller(0.1, spinImages, this);
-    
+
     private String[] meeleImages = {"Minotaur/Meele/Minotaur_Meele_F1.png", "Minotaur/Meele/Minotaur_Meele_F2.png", "Minotaur/Meele/Minotaur_Meele_F3.png", "Minotaur/Meele/Minotaur_Meele_F4.png", "Minotaur/Meele/Minotaur_Meele_F5.png", "Minotaur/Meele/Minotaur_Meele_F6.png", "Minotaur/Meele/Minotaur_Meele_F7.png", "Minotaur/Meele/Minotaur_Meele_F8.png"};
     private Animation_Controller meeleAnim = new Animation_Controller(0.1, meeleImages, this);
-    
+
+    private String[] idleImages = {"Minotaur/Idle/Minotaur_Idle_F1.png", "Minotaur/Idle/Minotaur_Idle_F2.png", "Minotaur/Idle/Minotaur_Idle_F3.png", "Minotaur/Idle/Minotaur_Idle_F4.png"};
+    private Animation_Controller idleAnim = new Animation_Controller(0.1, idleImages, this);
+
+    private String[] runImages = {"Minotaur/Run/Minotaur_Run_F1.png", "Minotaur/Run/Minotaur_Run_F2.png", "Minotaur/Run/Minotaur_Run_F3.png", "Minotaur/Run/Minotaur_Run_F4.png", "Minotaur/Run/Minotaur_Run_F5.png", "Minotaur/Run/Minotaur_Run_F6.png", "Minotaur/Run/Minotaur_Run_F7.png", "Minotaur/Run/Minotaur_Run_F8.png"};
+    private Animation_Controller runAnim = new Animation_Controller(0.1, runImages, this);
+
     private boolean isSpinning = false;
     private boolean isMeeleing = false;
-        
+
+    private int goldToDrop = 50;
+    private int scoreToDrop = 10000;
+
+    private int health = 20;
+
+    private Label UI = new Label("HP: " + health, 48);
+
+    private static enum Phases
+    {
+        INTRO, CHOOSE, SPIN, LEAP, ATTACK_CASTLE, DAZED;
+    }
+
+    private Phases phases = Phases.INTRO;
+
+    private int halfImageHeight = getImage().getHeight()/2;
+    private int halfImageWidth = getImage().getWidth()/2;
+
+    public void addedToWorld(World world)
+    {
+        world.addObject(UI, getX(), getY() - 100);
+    }
+
     public void act() 
     {
+        UI.setLocation(getX(), getY() - 100);
+
+        switch(phases)
+        {
+            case INTRO:
+            intro();
+            break;
+            case CHOOSE:
+            choose();
+            break;
+            case SPIN:
+            spin();
+            break;
+            case LEAP:
+            leap();
+            break;
+            case ATTACK_CASTLE:
+            dazed();
+            break; 
+            case DAZED:
+            dazed();
+            break;            
+        }
+    } 
+
+    public void intro()
+    {
+        move(2);
+        runAnim.update();
+        if(getX() > 200)
+        {
+            phases = Phases.CHOOSE;
+        }
+    }
+
+    int chooseTime = 120;
+    public void choose()
+    {
+        idleAnim.update();
+        if(chooseTime <= 0)
+        {
+            int dice = Greenfoot.getRandomNumber(1);
+
+            if(dice == 0)
+            {
+                phases = Phases.SPIN;
+            }
+            else if(dice == 1)
+            {
+                phases = Phases.LEAP;
+            }
+            chooseTime = 120;
+        }
+        else
+        {
+            chooseTime--;
+        }
+    }
+
+    private Vector dir = new Vector();
+    private boolean startedSpinning = false;
+    private double spinSpeed = 15;
+
+    private int spinDuration = 300;
+    public void spin()
+    {
+        if(!startedSpinning)
+        {
+            dir.set(1, Greenfoot.getRandomNumber(3) - 1);
+            dir.setMag(spinSpeed);
+            startedSpinning = true;
+        }
+
         spinAnim.update();
-    }    
+
+        if(isAtEdge())
+        {
+            dir.set(Game.player.getX(), Game.player.getY());
+            dir.sub(new Vector(getX(), getY()));
+            dir.setMag(spinSpeed);
+        }
+
+        Player player = (Player)getOneIntersectingObject(Player.class);
+        if(player != null)
+        {
+            player.stun(120);
+            spinDuration = 300;
+            startedSpinning = false;
+            phases = Phases.ATTACK_CASTLE;
+            return;
+        }
+
+        if(spinDuration <= 0)
+        {
+            phases = Phases.DAZED;
+            spinDuration = 300;
+            startedSpinning = false;
+            return;
+        }
+        else
+        {
+            spinDuration--;
+        }
+
+        setLocation(getX() + (int)dir.x, getY() + (int)dir.y);
+    }
+
+    public void leap()
+    {
+
+    }
+
+    public void attackCastle()
+    {
+
+    }
+
+    public void dazed()
+    {
+
+    }
+
+    public void takeDamage(int value)
+    {
+        health -= value;
+        UI.update("HP: " + health, 48);
+    }
+
+    public void defeat()
+    {
+        GoldCounter.gold += goldToDrop;
+        ScoreCounter.score += scoreToDrop;
+
+        getWorld().removeObject(this);
+    }
 }

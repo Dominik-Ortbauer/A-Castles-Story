@@ -47,7 +47,7 @@ public class Zyklope extends Bosses
     {
         if(firstFrame)
         {
-            getWorld().addObject(UI, getX(), getY() - 80);
+            getWorld().addObject(UI, getX(), getY() - 100);
             firstFrame = false;
         }
 
@@ -116,7 +116,7 @@ public class Zyklope extends Bosses
             {
                 move(1);
                 moveAnim.update();
-                UI.setLocation(getX(), getY()-80);
+                UI.setLocation(getX(), getY()-100);
             }
             else
             {                
