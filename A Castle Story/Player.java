@@ -32,18 +32,21 @@ public class Player extends Actor
     private boolean firstFrame = true;
 
     public Player_Body playerBody = new Player_Body();
-    public Player_Weapons currentWeapon = new Player_Sword();
+    public Player_Weapons currentWeapon = new Player_Shield();
 
     private boolean isWalking = true;
+    
+    public boolean isShieldDashing = false;
 
     public void act()
     {
-        if (mouseDown && (Greenfoot.mouseDragEnded(null) || Greenfoot.mouseClicked(null))) mouseDown = false;
-        if (!mouseDown && Greenfoot.mousePressed(null)) mouseDown = true;
-
-        if(mouse != null)
+        if (mouseDown && (Greenfoot.mouseDragEnded(null) || Greenfoot.mouseClicked(null)))
         {
-            rightMouseDown = mouse.getButton() == 3;
+            mouseDown = false;
+        }
+        if (!mouseDown && Greenfoot.mousePressed(null))
+        {
+            mouseDown = true;
         }
 
         pos.x = getX();
@@ -57,7 +60,7 @@ public class Player extends Actor
 
         mouse = Greenfoot.getMouseInfo();
 
-        if(!isDashing && (!isStunned || isKnockedBack))
+        if(!isShieldDashing && !isDashing && (!isStunned || isKnockedBack))
         {
             movement();
         }
@@ -258,13 +261,17 @@ public class Player extends Actor
         }
         if(currentWeapon instanceof Player_Shield)
         {
-            if(mouse != null && mouse.getButton() == 3)
+            if(mouseDown)
             {
-                
+                new Attack_ShieldBlock();
             }
-            if(timeBtwAttack >= currentWeapon.timeBtwAttacks)
+            if(timeBtwAttack >= currentWeapon.timeBtwAttacks && Greenfoot.mouseClicked(null))
             {
-                
+                Vector target = new Vector(mouse.getX(), mouse.getY());
+                target.sub(pos);
+                new Attack_ShieldDash(target);
+                timeBtwAttack = 0;
+                turnTowards((int)target.x, (int)target.y);
             }
         }
     }
@@ -404,5 +411,10 @@ public class Player extends Actor
     {
         playerBody.changeToRightImage();
         currentWeapon.changeToRightImage();
+    }
+    
+    public Enemy getIntersectingEnemy()
+    {
+        return (Enemy)getOneIntersectingObject(Enemy.class);
     }
 }

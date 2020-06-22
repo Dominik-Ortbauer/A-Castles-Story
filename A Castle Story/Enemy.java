@@ -96,6 +96,12 @@ public class Enemy extends Actor
         dazedTime = time;
     }
     
+    public void pushBack(Vector direction, int speed)
+    {
+        direction.setMag(speed);
+        setLocation(getX() + (int)direction.x, getY() + (int)direction.y);
+    }
+    
     public Enemy getSecondClosestEnemy()
     {
         setEnemies();
@@ -139,5 +145,5 @@ public class Enemy extends Actor
         }
 
         return enemies;
-    }    
+    }
 }
