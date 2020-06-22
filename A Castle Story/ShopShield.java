@@ -1,19 +1,53 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class ShopShield here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class ShopShield extends ShopItems
 {
-    /**
-     * Act - do whatever the ShopShield wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    public boolean isBought = false;
+    
+    public ShopShield()
+    {
+        setPrice(0);
+    }
+
     public void act() 
     {
-        // Add your action code here.
+        if(firstFrame && !isBought)
+        {
+            addUI();
+            firstFrame = false;
+        }
+
+        updateImage();
+
+        if(Greenfoot.mouseClicked(this) && (GoldCounter.gold >= price || !isBought))
+        {
+            if(!isBought)
+            {
+                GoldCounter.gold -= price;
+                removeUI();
+                isBought = true;
+            }
+            getWorld().removeObject(Game.player.currentWeapon);
+            Game.player.currentWeapon = new Player_Sword();
+            Game.player.playerBody.images.resetAnimation();
+            Game.player.forceUpdateImages();    
+        }
+
+        else if(Greenfoot.mouseClicked(this) && GoldCounter.gold < price)
+        {
+            getWorld().addObject(new NotEnoughGold(), 600, 600);
+        }
     }    
+
+    public void updateImage()
+    {
+        if(Game.player.currentWeapon instanceof Player_Shield)
+        {
+            getImage().setTransparency(0);
+        }
+        else
+        {
+            getImage().setTransparency(255);
+        }
+    }
 }
