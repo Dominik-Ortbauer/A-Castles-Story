@@ -21,6 +21,8 @@ public class Player extends Actor
     public int bowChargeTime = 60;
     public int startBowChargeTime = 60;
 
+    private Vector enemyDirection;
+
     Vector movement = new Vector();
     Vector dashDir;
     public Vector pos = new Vector();
@@ -32,11 +34,12 @@ public class Player extends Actor
     private boolean firstFrame = true;
 
     public Player_Body playerBody = new Player_Body();
-    public Player_Weapons currentWeapon = new Player_Sword();
+    public Player_Weapons currentWeapon = new Player_Shield();
 
     private boolean isWalking = true;
 
     public boolean isShieldDashing = false;
+    private boolean isShieldBlocking = false;
 
     public void act()
     {
@@ -166,15 +169,51 @@ public class Player extends Actor
                 }
                 bowChargeTime = startBowChargeTime;
             }
+            else if(mouse != null && currentWeapon instanceof Player_Shield)
+            {
+                speed = 5;
+                isShieldBlocking = false;
+                enemy = null;
+
+                Vector target = new Vector(mouse.getX(), mouse.getY());
+                target.sub(new Vector(getX(), getY()));
+                if(timeBtwAttack >= currentWeapon.timeBtwAttacks && Greenfoot.mouseClicked(null))
+                {
+                    timeBtwAttack = 0;
+                    turnTowards((int)mouse.getX(), (int)mouse.getY());
+                    shieldDash(target);
+                    isShieldDashing = true;
+                }
+                if(isShieldDashing)
+                {
+                    shieldDash(target);
+                }
+                if(pushTimer <= 6 && enemy != null)
+                {
+                    try
+                    {
+                        enemy.pushBack(target, 10);
+                    }catch(Exception ex){}
+                }
+            }
         }
         else
         {
             bowChargeTime = startBowChargeTime;
             hammerChargeTime = startHammerChargeTime;
+            speed = 5;
             timeBtwAttack = 0;
         }
-
         timeBtwAttack++;
+
+        Enemy enemy = (Enemy)getOneIntersectingObject(Enemy.class);
+        if(enemy != null && !isDashing && !isShieldDashing && !isShieldBlocking)
+        {
+            enemyDirection = pos.copy();
+            enemyDirection.sub(enemy.pos);
+            enemyDirection.setMag(6);
+            setLocation(getX() + (int)enemyDirection.x, getY() + (int)enemyDirection.y);
+        }
     }
 
     private void stopWalking()
@@ -261,20 +300,65 @@ public class Player extends Actor
         }
         if(currentWeapon instanceof Player_Shield)
         {
-            if(mouseDown)
-            {
-                new Attack_ShieldBlock();
-            }
-            if(timeBtwAttack >= currentWeapon.timeBtwAttacks && Greenfoot.mouseClicked(null))
-            {
-                Vector target = new Vector(mouse.getX(), mouse.getY());
-                target.sub(pos);
-                new Attack_ShieldDash(target);
-                timeBtwAttack = 0;
-                turnTowards((int)target.x, (int)target.y);
-            }
+            speed = 2;
+            shieldBlock();
+            isShieldBlocking = true;
         }
     }
+
+    private Enemy enemy;
+
+    public void shieldBlock() 
+    {   
+        enemy = (Enemy)getOneIntersectingObject(Enemy.class);
+
+        if(enemy != null)
+        {
+            enemy.stun(1);
+        }
+
+        if(enemy instanceof StoneProjectile)
+        {
+            getWorld().removeObject(enemy);
+        }
+
+    }
+    private int pushTimer = 0;
+    private int shieldDashTimer = 0;
+    private boolean enemyAlreadyDamaged = false;
+
+    public void shieldDash(Vector direction) 
+    {
+        direction.setMag(20);
+        setLocation(getX() + (int)direction.x, getY() + (int)direction.y);
+
+        if(enemy == null)
+        {
+            enemy = (Enemy)getOneIntersectingObject(Enemy.class);
+        }
+
+        if(enemy != null && !enemyAlreadyDamaged)
+        {
+            enemy.stun(60);
+            enemy.takeDamage(2);
+            enemyAlreadyDamaged = true;
+        }
+
+        if(enemy != null)
+        {
+            pushTimer++;
+        }
+
+        shieldDashTimer++;
+        if(shieldDashTimer == 6)
+        {
+            isShieldDashing = false;
+            enemy = null;
+            pushTimer = 0;
+            enemyAlreadyDamaged = false;
+            shieldDashTimer = 0;
+        }
+    }    
 
     private void getInput()
     {
@@ -411,10 +495,5 @@ public class Player extends Actor
     {
         playerBody.changeToRightImage();
         currentWeapon.changeToRightImage();
-    }
-
-    public Enemy getIntersectingEnemy()
-    {
-        return (Enemy)getOneIntersectingObject(Enemy.class);
     }
 }
