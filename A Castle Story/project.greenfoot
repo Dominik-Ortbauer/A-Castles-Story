@@ -13,6 +13,7 @@ class.Cat.image=cat.png
 class.Club.image=Club.png
 class.Dog.image=Dog.png
 class.Door.image=Door.png
+class.FireBall.image=FireBall.png
 class.Giant.image=Giant.png
 class.HammerCharge_Particle.image=button-blue.png
 class.Heart.image=herz.png
@@ -39,6 +40,7 @@ class.ShopShield.image=Hammer.png
 class.ShopSword.image=Sword_Sprite.png
 class.ShopTower1.image=Tower1_F2.png
 class.ShopTrapPlacer.image=TrapPlacer_F1.png
+class.SpawnButton.image=button-blue.png
 class.SpeechBubbleCat.image=SpeechBubble_cat.png
 class.SpeechBubbleDog.image=SpeechBubble_dog.png
 class.StoneProjectile.image=Rock\ (2).png
@@ -100,6 +102,7 @@ dependency111.type=UsesDependency
 dependency112.from=Tower
 dependency112.to=Castle
 dependency112.type=UsesDependency
+<<<<<<< HEAD
 dependency113.from=BombTower
 dependency113.to=Granade
 dependency113.type=UsesDependency
@@ -120,11 +123,34 @@ dependency118.to=Label
 dependency118.type=UsesDependency
 dependency119.from=Cat
 dependency119.to=NotEnoughGold
+=======
+dependency113.from=TrapPlacer
+dependency113.to=Trap
+dependency113.type=UsesDependency
+dependency114.from=TrapPlacer
+dependency114.to=Vector
+dependency114.type=UsesDependency
+dependency115.from=Tower1
+dependency115.to=arrow
+dependency115.type=UsesDependency
+dependency116.from=Portal
+dependency116.to=Enemy
+dependency116.type=UsesDependency
+dependency117.from=Cat
+dependency117.to=Label
+dependency117.type=UsesDependency
+dependency118.from=Cat
+dependency118.to=NotEnoughGold
+dependency118.type=UsesDependency
+dependency119.from=Cat
+dependency119.to=Game
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 dependency119.type=UsesDependency
 dependency12.from=Tutorial
 dependency12.to=Road
 dependency12.type=UsesDependency
 dependency120.from=Cat
+<<<<<<< HEAD
 dependency120.to=Game
 dependency120.type=UsesDependency
 dependency121.from=Cat
@@ -153,11 +179,42 @@ dependency128.to=Castle
 dependency128.type=UsesDependency
 dependency129.from=Enemy
 dependency129.to=Vector
+=======
+dependency120.to=GoldCounter
+dependency120.type=UsesDependency
+dependency121.from=ShockWave
+dependency121.to=Zyklope
+dependency121.type=UsesDependency
+dependency122.from=ShockWave
+dependency122.to=Tower
+dependency122.type=UsesDependency
+dependency123.from=ShockWave
+dependency123.to=Player
+dependency123.type=UsesDependency
+dependency124.from=ShockWave
+dependency124.to=Game
+dependency124.type=UsesDependency
+dependency125.from=Club
+dependency125.to=Vector
+dependency125.type=UsesDependency
+dependency126.from=Club
+dependency126.to=Zyklope
+dependency126.type=UsesDependency
+dependency127.from=Club
+dependency127.to=Castle
+dependency127.type=UsesDependency
+dependency128.from=Enemy
+dependency128.to=Vector
+dependency128.type=UsesDependency
+dependency129.from=Enemy
+dependency129.to=Tree
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 dependency129.type=UsesDependency
 dependency13.from=Tutorial
 dependency13.to=PlayerImages
 dependency13.type=UsesDependency
 dependency130.from=Enemy
+<<<<<<< HEAD
 dependency130.to=Tree
 dependency130.type=UsesDependency
 dependency131.from=Enemy
@@ -186,6 +243,36 @@ dependency138.to=Castle
 dependency138.type=UsesDependency
 dependency139.from=Magician
 dependency139.to=Portal
+=======
+dependency130.to=Leaf
+dependency130.type=UsesDependency
+dependency131.from=Enemy
+dependency131.to=Effect
+dependency131.type=UsesDependency
+dependency132.from=Enemy
+dependency132.to=Magician
+dependency132.type=UsesDependency
+dependency133.from=Enemy
+dependency133.to=Effects
+dependency133.type=UsesDependency
+dependency134.from=Enemy
+dependency134.to=GoldCounter
+dependency134.type=UsesDependency
+dependency135.from=Enemy
+dependency135.to=ScoreCounter
+dependency135.type=UsesDependency
+dependency136.from=Magician
+dependency136.to=Animation_Controller
+dependency136.type=UsesDependency
+dependency137.from=Magician
+dependency137.to=Castle
+dependency137.type=UsesDependency
+dependency138.from=Magician
+dependency138.to=Portal
+dependency138.type=UsesDependency
+dependency139.from=FireBall
+dependency139.to=Castle
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 dependency139.type=UsesDependency
 dependency14.from=Tutorial
 dependency14.to=Game
@@ -241,6 +328,7 @@ dependency154.type=UsesDependency
 dependency155.from=Giant
 dependency155.to=Castle
 dependency155.type=UsesDependency
+<<<<<<< HEAD
 dependency156.from=Rider
 dependency156.to=Animation_Controller
 dependency156.type=UsesDependency
@@ -252,10 +340,24 @@ dependency158.to=Castle
 dependency158.type=UsesDependency
 dependency159.from=Rider
 dependency159.to=Bomb
+=======
+dependency156.from=DragonHatchling
+dependency156.to=Animation_Controller
+dependency156.type=UsesDependency
+dependency157.from=Rider
+dependency157.to=Animation_Controller
+dependency157.type=UsesDependency
+dependency158.from=Rider
+dependency158.to=Environment
+dependency158.type=UsesDependency
+dependency159.from=Rider
+dependency159.to=Castle
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 dependency159.type=UsesDependency
 dependency16.from=Shop
 dependency16.to=Door
 dependency16.type=UsesDependency
+<<<<<<< HEAD
 dependency160.from=ShopItems
 dependency160.to=Prices
 dependency160.type=UsesDependency
@@ -285,11 +387,43 @@ dependency168.to=Player_Sword
 dependency168.type=UsesDependency
 dependency169.from=ShopShield
 dependency169.to=NotEnoughGold
+=======
+dependency160.from=Rider
+dependency160.to=Bomb
+dependency160.type=UsesDependency
+dependency161.from=ShopItems
+dependency161.to=Prices
+dependency161.type=UsesDependency
+dependency162.from=ShopHammer
+dependency162.to=Player_Hammer
+dependency162.type=UsesDependency
+dependency163.from=ShopHammer
+dependency163.to=NotEnoughGold
+dependency163.type=UsesDependency
+dependency164.from=ShopHammer
+dependency164.to=GoldCounter
+dependency164.type=UsesDependency
+dependency165.from=ShopHammer
+dependency165.to=Game
+dependency165.type=UsesDependency
+dependency166.from=ShopTower1
+dependency166.to=Shop
+dependency166.type=UsesDependency
+dependency167.from=ShopTower1
+dependency167.to=NotEnoughGold
+dependency167.type=UsesDependency
+dependency168.from=ShopTower1
+dependency168.to=GoldCounter
+dependency168.type=UsesDependency
+dependency169.from=ShopShield
+dependency169.to=Player_Sword
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 dependency169.type=UsesDependency
 dependency17.from=Shop
 dependency17.to=ShopBow
 dependency17.type=UsesDependency
 dependency170.from=ShopShield
+<<<<<<< HEAD
 dependency170.to=Player_Shield
 dependency170.type=UsesDependency
 dependency171.from=ShopShield
@@ -318,11 +452,42 @@ dependency178.to=NotEnoughGold
 dependency178.type=UsesDependency
 dependency179.from=ShopSword
 dependency179.to=GoldCounter
+=======
+dependency170.to=NotEnoughGold
+dependency170.type=UsesDependency
+dependency171.from=ShopShield
+dependency171.to=Player_Shield
+dependency171.type=UsesDependency
+dependency172.from=ShopShield
+dependency172.to=GoldCounter
+dependency172.type=UsesDependency
+dependency173.from=ShopShield
+dependency173.to=Game
+dependency173.type=UsesDependency
+dependency174.from=ShopBow
+dependency174.to=Player_Bow
+dependency174.type=UsesDependency
+dependency175.from=ShopBow
+dependency175.to=NotEnoughGold
+dependency175.type=UsesDependency
+dependency176.from=ShopBow
+dependency176.to=GoldCounter
+dependency176.type=UsesDependency
+dependency177.from=ShopBow
+dependency177.to=Game
+dependency177.type=UsesDependency
+dependency178.from=ShopSword
+dependency178.to=Player_Sword
+dependency178.type=UsesDependency
+dependency179.from=ShopSword
+dependency179.to=NotEnoughGold
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 dependency179.type=UsesDependency
 dependency18.from=Shop
 dependency18.to=ShopHammer
 dependency18.type=UsesDependency
 dependency180.from=ShopSword
+<<<<<<< HEAD
 dependency180.to=Game
 dependency180.type=UsesDependency
 dependency181.from=ShopTrapPlacer
@@ -351,11 +516,42 @@ dependency188.to=Player_Shield
 dependency188.type=UsesDependency
 dependency189.from=Player
 dependency189.to=Shop
+=======
+dependency180.to=GoldCounter
+dependency180.type=UsesDependency
+dependency181.from=ShopSword
+dependency181.to=Game
+dependency181.type=UsesDependency
+dependency182.from=ShopTrapPlacer
+dependency182.to=Shop
+dependency182.type=UsesDependency
+dependency183.from=ShopTrapPlacer
+dependency183.to=NotEnoughGold
+dependency183.type=UsesDependency
+dependency184.from=ShopTrapPlacer
+dependency184.to=GoldCounter
+dependency184.type=UsesDependency
+dependency185.from=PlayerImages
+dependency185.to=Animation_Controller
+dependency185.type=UsesDependency
+dependency186.from=Player
+dependency186.to=Vector
+dependency186.type=UsesDependency
+dependency187.from=Player
+dependency187.to=Player_Body
+dependency187.type=UsesDependency
+dependency188.from=Player
+dependency188.to=Player_Weapons
+dependency188.type=UsesDependency
+dependency189.from=Player
+dependency189.to=Player_Shield
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 dependency189.type=UsesDependency
 dependency19.from=Shop
 dependency19.to=ShopSword
 dependency19.type=UsesDependency
 dependency190.from=Player
+<<<<<<< HEAD
 dependency190.to=Player_Hammer
 dependency190.type=UsesDependency
 dependency191.from=Player
@@ -384,6 +580,36 @@ dependency198.to=Effect
 dependency198.type=UsesDependency
 dependency199.from=Player
 dependency199.to=StoneProjectile
+=======
+dependency190.to=Shop
+dependency190.type=UsesDependency
+dependency191.from=Player
+dependency191.to=Player_Hammer
+dependency191.type=UsesDependency
+dependency192.from=Player
+dependency192.to=Attack_Hammer
+dependency192.type=UsesDependency
+dependency193.from=Player
+dependency193.to=Player_Bow
+dependency193.type=UsesDependency
+dependency194.from=Player
+dependency194.to=Attack_Bow
+dependency194.type=UsesDependency
+dependency195.from=Player
+dependency195.to=Enemy
+dependency195.type=UsesDependency
+dependency196.from=Player
+dependency196.to=Player_Sword
+dependency196.type=UsesDependency
+dependency197.from=Player
+dependency197.to=MeeleAttack
+dependency197.type=UsesDependency
+dependency198.from=Player
+dependency198.to=HammerCharge_Particle
+dependency198.type=UsesDependency
+dependency199.from=Player
+dependency199.to=Effect
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 dependency199.type=UsesDependency
 dependency2.from=Tutorial
 dependency2.to=Sandbox
@@ -392,6 +618,7 @@ dependency20.from=Shop
 dependency20.to=CastleSprite
 dependency20.type=UsesDependency
 dependency200.from=Player
+<<<<<<< HEAD
 dependency200.to=StunnedEffect
 dependency200.type=UsesDependency
 dependency201.from=Player
@@ -420,11 +647,42 @@ dependency208.to=Wave
 dependency208.type=UsesDependency
 dependency209.from=Castle
 dependency209.to=Zyklope
+=======
+dependency200.to=StoneProjectile
+dependency200.type=UsesDependency
+dependency201.from=Player
+dependency201.to=StunnedEffect
+dependency201.type=UsesDependency
+dependency202.from=Player
+dependency202.to=Effects
+dependency202.type=UsesDependency
+dependency203.from=Player
+dependency203.to=Environment
+dependency203.type=UsesDependency
+dependency204.from=Door
+dependency204.to=Shop
+dependency204.type=UsesDependency
+dependency205.from=Door
+dependency205.to=Battlefield
+dependency205.type=UsesDependency
+dependency206.from=Door
+dependency206.to=Player
+dependency206.type=UsesDependency
+dependency207.from=Door
+dependency207.to=Game
+dependency207.type=UsesDependency
+dependency208.from=Castle
+dependency208.to=Heart
+dependency208.type=UsesDependency
+dependency209.from=Castle
+dependency209.to=Wave
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 dependency209.type=UsesDependency
 dependency21.from=Shop
 dependency21.to=GoldCounter
 dependency21.type=UsesDependency
 dependency210.from=Castle
+<<<<<<< HEAD
 dependency210.to=Door
 dependency210.type=UsesDependency
 dependency211.from=Castle
@@ -453,11 +711,42 @@ dependency218.to=Effect
 dependency218.type=UsesDependency
 dependency219.from=Bomb
 dependency219.to=Vector
+=======
+dependency210.to=Zyklope
+dependency210.type=UsesDependency
+dependency211.from=Castle
+dependency211.to=Door
+dependency211.type=UsesDependency
+dependency212.from=Castle
+dependency212.to=MainMenu
+dependency212.type=UsesDependency
+dependency213.from=Castle
+dependency213.to=Enemy
+dependency213.type=UsesDependency
+dependency214.from=Castle
+dependency214.to=Game
+dependency214.type=UsesDependency
+dependency215.from=Castle
+dependency215.to=Projectiles
+dependency215.type=UsesDependency
+dependency216.from=Castle
+dependency216.to=ScoreCounter
+dependency216.type=UsesDependency
+dependency217.from=Castle
+dependency217.to=Highscore
+dependency217.type=UsesDependency
+dependency218.from=Bomb
+dependency218.to=Castle
+dependency218.type=UsesDependency
+dependency219.from=Bomb
+dependency219.to=Effect
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 dependency219.type=UsesDependency
 dependency22.from=Shop
 dependency22.to=ScoreCounter
 dependency22.type=UsesDependency
 dependency220.from=Bomb
+<<<<<<< HEAD
 dependency220.to=Effects
 dependency220.type=UsesDependency
 dependency221.from=Projectiles
@@ -486,6 +775,36 @@ dependency228.to=Effects
 dependency228.type=UsesDependency
 dependency229.from=Granade
 dependency229.to=Enemy
+=======
+dependency220.to=Vector
+dependency220.type=UsesDependency
+dependency221.from=Bomb
+dependency221.to=Effects
+dependency221.type=UsesDependency
+dependency222.from=Projectiles
+dependency222.to=Vector
+dependency222.type=UsesDependency
+dependency223.from=Projectiles
+dependency223.to=Barrier
+dependency223.type=UsesDependency
+dependency224.from=Trap
+dependency224.to=Vector
+dependency224.type=UsesDependency
+dependency225.from=Trap
+dependency225.to=Enemy
+dependency225.type=UsesDependency
+dependency226.from=arrow
+dependency226.to=Enemy
+dependency226.type=UsesDependency
+dependency227.from=arrow
+dependency227.to=Effect
+dependency227.type=UsesDependency
+dependency228.from=arrow
+dependency228.to=Vector
+dependency228.type=UsesDependency
+dependency229.from=arrow
+dependency229.to=Effects
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 dependency229.type=UsesDependency
 dependency23.from=Shop
 dependency23.to=SpeechBubbleCat
@@ -991,20 +1310,29 @@ target21.width=80
 target21.x=0
 target21.y=0
 target22.height=50
+<<<<<<< HEAD
 target22.name=BombTower
+=======
+target22.name=Battlefield
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 target22.showInterface=false
 target22.type=ClassTarget
 target22.width=90
 target22.x=0
 target22.y=0
 target23.height=50
+<<<<<<< HEAD
 target23.name=Battlefield
+=======
+target23.name=PurchasedInformation
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 target23.showInterface=false
 target23.type=ClassTarget
 target23.width=80
 target23.x=0
 target23.y=0
 target24.height=50
+<<<<<<< HEAD
 target24.name=PurchasedInformation
 target24.showInterface=false
 target24.type=ClassTarget
@@ -1016,6 +1344,19 @@ target25.name=NotEnoughGold
 target25.showInterface=false
 target25.type=ClassTarget
 target25.width=110
+=======
+target24.name=NotEnoughGold
+target24.showInterface=false
+target24.type=ClassTarget
+target24.width=110
+target24.x=0
+target24.y=0
+target25.height=50
+target25.name=FireBall
+target25.showInterface=false
+target25.type=ClassTarget
+target25.width=80
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 target25.x=0
 target25.y=0
 target26.height=50
@@ -1397,38 +1738,61 @@ target74.width=120
 target74.x=0
 target74.y=0
 target75.height=50
+<<<<<<< HEAD
 target75.name=Granade
+=======
+target75.name=Player_Body
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 target75.showInterface=false
 target75.type=ClassTarget
-target75.width=80
+target75.width=90
 target75.x=0
 target75.y=0
 target76.height=50
+<<<<<<< HEAD
 target76.name=Player_Body
+=======
+target76.name=Barrier
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 target76.showInterface=false
 target76.type=ClassTarget
 target76.width=90
 target76.x=0
 target76.y=0
 target77.height=50
+<<<<<<< HEAD
 target77.name=Barrier
+=======
+target77.name=WaveIndicator
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 target77.showInterface=false
 target77.type=ClassTarget
-target77.width=80
+target77.width=100
 target77.x=0
 target77.y=0
 target78.height=50
+<<<<<<< HEAD
 target78.name=WaveIndicator
+=======
+target78.name=Sandbox
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 target78.showInterface=false
 target78.type=ClassTarget
-target78.width=100
+target78.width=80
 target78.x=0
 target78.y=0
 target79.height=50
+<<<<<<< HEAD
 target79.name=Sandbox
 target79.showInterface=false
 target79.type=ClassTarget
 target79.width=80
+=======
+target79.name=Effect_Particle
+target79.showInterface=false
+target79.type=ClassTarget
+target79.width=100
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 target79.x=0
 target79.y=0
 target8.height=50
@@ -1439,6 +1803,7 @@ target8.width=100
 target8.x=0
 target8.y=0
 target80.height=50
+<<<<<<< HEAD
 target80.name=Effect_Particle
 target80.showInterface=false
 target80.type=ClassTarget
@@ -1447,30 +1812,55 @@ target80.x=0
 target80.y=0
 target81.height=50
 target81.name=MeeleAttack
+=======
+target80.name=MeeleAttack
+target80.showInterface=false
+target80.type=ClassTarget
+target80.width=90
+target80.x=0
+target80.y=0
+target81.height=50
+target81.name=Highscores
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 target81.showInterface=false
 target81.type=ClassTarget
 target81.width=90
 target81.x=0
 target81.y=0
 target82.height=50
+<<<<<<< HEAD
 target82.name=Highscores
+=======
+target82.name=Bomb
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 target82.showInterface=false
 target82.type=ClassTarget
 target82.width=80
 target82.x=0
 target82.y=0
 target83.height=50
+<<<<<<< HEAD
 target83.name=Bomb
+=======
+target83.name=TowerSpots
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 target83.showInterface=false
 target83.type=ClassTarget
-target83.width=80
+target83.width=90
 target83.x=0
 target83.y=0
 target84.height=50
+<<<<<<< HEAD
 target84.name=TowerSpots
 target84.showInterface=false
 target84.type=ClassTarget
 target84.width=90
+=======
+target84.name=DragonHatchling
+target84.showInterface=false
+target84.type=ClassTarget
+target84.width=110
+>>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 target84.x=0
 target84.y=0
 target85.height=50
@@ -1573,6 +1963,6 @@ target97.x=0
 target97.y=0
 version=3.0.0
 width=1936
-world.lastInstantiated=MainMenu
+world.lastInstantiated=Shop
 xPosition=0
 yPosition=0
