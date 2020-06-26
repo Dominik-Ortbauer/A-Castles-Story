@@ -1,5 +1,5 @@
 #BlueJ class context
 comment0.target=Player_Shield
 comment1.params=
-comment1.target=void\ act()
+comment1.target=Player_Shield()
 numComments=2
