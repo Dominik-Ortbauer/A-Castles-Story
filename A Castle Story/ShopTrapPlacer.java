@@ -6,7 +6,7 @@ public class ShopTrapPlacer extends ShopItems
 
     public ShopTrapPlacer()
     {
-        setPrice(15);
+        setPrice(30);
     }
 
     public void act() 

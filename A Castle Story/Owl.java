@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Owl extends Enemy
 {
-    private String[] idleImages = {"Owl_F1.png", "Owl_F2.png", "Owl_F3.png", "Owl_F4.png", "Owl_F5.png"};
-    private Animation_Controller idle = new Animation_Controller(0.1, idleImages, this);
+    private String[] idleImages = {"Owl/Run/Owl_F1.png", "Owl/Run/Owl_F2.png", "Owl/Run/Owl_F3.png", "Owl/Run/Owl_F4.png", "Owl/Run/Owl_F5.png"};
+    private Animation_Controller idle;
 
     int timeBtwAttack = 60;
 
@@ -18,10 +18,24 @@ public class Owl extends Enemy
         setHealth(2);
         setScore(10);
         setGoldAmount(1);
+        idle = new Animation_Controller(0.1, idleImages, this);
+    }
+
+    public Owl(GreenfootImage[] images)
+    {
+        setHealth(2);
+        setScore(10);
+        setGoldAmount(1);
+        idle = new Animation_Controller(0.1, images, this);
     }
 
     public void act() 
     {
+        if(update())
+        {
+            return;
+        }
+
         idle.update();
 
         if(getOneIntersectingObject(Castle.class) == null)
@@ -38,7 +52,7 @@ public class Owl extends Enemy
     {
         if(timeBtwAttack <= 0)
         {
-            Game.battlefield.castle.takeDamage(1);
+            ((Castle)getOneIntersectingObject(Castle.class)).takeDamage(1);
             timeBtwAttack = 60;
         }
         else

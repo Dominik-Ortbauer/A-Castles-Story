@@ -16,9 +16,21 @@ public class Game
         player = new Player();
         battlefield = new Battlefield();
         shop = new Shop();
-        levelCount = 10;
-        GoldCounter.gold = 0;
+        levelCount = 9;
+        GoldCounter.gold = 200;
         ScoreCounter.score = 0;
-        Battlefield.towerSpots = new int[7];
+        Battlefield.towerSpots = new int[2];
+    }
+    
+    public static int indexOf(int[] array, int value)
+    {
+        for(int i = 0; i < array.length; i++)
+        {
+            if(array[i] == value)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }

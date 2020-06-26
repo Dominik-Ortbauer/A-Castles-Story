@@ -2,15 +2,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class MainMenu here.
- * 
- * @author (your name) 
+ *
+ * @author (your name)
  * @version (a version number or a date)
  */
 public class MainMenu extends World
 {
     public MainMenu()
-    {    
-        super(1200, 800, 1); 
+    {
+        super(1200, 800, 1);
+        
+        Class[] classes = {PlayerImages.class};
+        setPaintOrder(classes);
+        
         prepare();
     }
 
@@ -23,6 +27,7 @@ public class MainMenu extends World
         Play play = new Play();
         addObject(play,600,200);
         addObject(new HighscoresButton(), 600, 500);
+        addObject(new TutorialButton(), 600, 700);
     }
 
     private boolean firstFrame = true;
@@ -32,7 +37,7 @@ public class MainMenu extends World
         if(firstFrame)
         {
             Game.backgroundMusic.playLoop();
-            Game.backgroundMusic.setVolume(100);
+            Game.backgroundMusic.setVolume(20);
             firstFrame = false;
         }
     }

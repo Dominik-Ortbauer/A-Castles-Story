@@ -14,6 +14,12 @@ public class ShopHammer extends ShopItems
     {
         setPrice(50);
     }
+    
+    public ShopHammer(boolean isBought_)
+    {
+        setPrice(50);
+        isBought = isBought_;
+    }
 
     public void act() 
     {

@@ -12,7 +12,7 @@ public class Tree extends Enemy
 
     public Tree()
     {
-        setHealth(10);
+        setHealth(15);
         setScore(500);
         setGoldAmount(10);
     }
@@ -29,7 +29,7 @@ public class Tree extends Enemy
         if(timeBtwAttacks <= 0)
         {
             attack();
-            timeBtwAttacks = 120;
+            timeBtwAttacks = 240;
         }
         else
         {
@@ -39,6 +39,6 @@ public class Tree extends Enemy
 
     private void attack()
     {
-        getWorld().addObject(new Owl(), getX(), getY());
+        getWorld().addObject(new Owl(makeImages("Owl/Run/Owl_F", 5)), getX(), getY());
     }
 }

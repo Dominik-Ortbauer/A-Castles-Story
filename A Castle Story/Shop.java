@@ -17,6 +17,9 @@ public class Shop extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 800, 1); 
         prepare();
+
+        Class[] classes = {PlayerImages.class};
+        setPaintOrder(classes);
     }
 
     private Cat cat = new Cat();
@@ -57,15 +60,19 @@ public class Shop extends World
     }
 
     public void addTowerSpots()
-    { 
-        for(int i = 1; i <= 7; i++)
+    {         
+        TowerSpots towerSpot;
+        if(Battlefield.towerSpots[0] == 0)
         {
-            if(Battlefield.towerSpots[i - 1] < 1)
-            {
-                TowerSpots towerSpot = new TowerSpots();
-                towerSpot.getImage().setTransparency(0);
-                addObject(towerSpot, 100, i*100);
-            }
+            towerSpot = new TowerSpots();
+            towerSpot.getImage().setTransparency(0);
+            addObject(towerSpot, 100, 200);
+        }
+        if(Battlefield.towerSpots[1] == 0)
+        {
+            towerSpot = new TowerSpots();
+            towerSpot.getImage().setTransparency(0);
+            addObject(towerSpot, 100, 600);
         }
     }
 
@@ -75,20 +82,20 @@ public class Shop extends World
         {
             Actor towerSpot = (Actor)getObjects(TowerSpots.class).get(i);
 
-            if(towerSpot.getY() != 400 || Battlefield.towerSpots[i] != 0)
+            if(Battlefield.towerSpots[i] == 0)
             {
                 towerSpot.getImage().setTransparency(255);
             }
         }
     }
-    
+
     public void removeTowerSpots()
     {
         for(int i = 0; i < getObjects(TowerSpots.class).size(); i++)
         {
             Actor towerSpot = (Actor)getObjects(TowerSpots.class).get(i);
-            
-            if(towerSpot.getY() == 400 || Battlefield.towerSpots[i] == 0)
+
+            if(Battlefield.towerSpots[i] == 0)
             {
                 towerSpot.getImage().setTransparency(0);
             }
