@@ -6,7 +6,7 @@ public class ShopShield extends ShopItems
     
     public ShopShield()
     {
-        setPrice(0);
+        setPrice(50);
     }
 
     public void act() 
