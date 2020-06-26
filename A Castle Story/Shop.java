@@ -57,6 +57,27 @@ public class Shop extends World
         shopBow.updateImage();
         shopSword.updateImage();
         shopHammer.updateImage();
+
+        Barrel barrel = new Barrel();
+        addObject(barrel,263,70);
+        Barrel barrel2 = new Barrel();
+        addObject(barrel2,337,111);
+        Barrel barrel3 = new Barrel();
+        addObject(barrel3,243,157);
+        Chest chest = new Chest();
+        addObject(chest,1111,70);
+        TreasureChest treasureChest = new TreasureChest();
+        addObject(treasureChest,594,74);
+        Vase vase = new Vase();
+        addObject(vase,1107,764);
+        Vase vase2 = new Vase();
+        addObject(vase2,1166,708);
+        Vase vase3 = new Vase();
+        addObject(vase3,1073,695);
+        Box box = new Box();
+        addObject(box,1138,433);
+        Box box2 = new Box();
+        addObject(box2,681,750);
     }
 
     public void addTowerSpots()

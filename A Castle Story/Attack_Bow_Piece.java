@@ -26,10 +26,18 @@ public class Attack_Bow_Piece extends Attacks
             ((Club)getOneIntersectingObject(Club.class)).hitByPlayer();
         }
         
-        Object hitBoss = getOneIntersectingObject(Zyklope.class);
-        if(hitBoss != null)
+        Object hitBoss1 = getOneIntersectingObject(Zyklope.class);
+        if(hitBoss1 != null)
         {
-            ((Zyklope)hitBoss).takeDamage(damage);
+            ((Zyklope)hitBoss1).takeDamage(damage);
+            getWorld().removeObject(this);
+            return;
+        }
+        
+        Object hitBoss2 = getOneIntersectingObject(Minotaur.class);
+        if(hitBoss2 != null)
+        {
+            ((Minotaur)hitBoss2).takeDamage(damage);
             getWorld().removeObject(this);
             return;
         }

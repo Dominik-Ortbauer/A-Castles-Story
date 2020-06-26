@@ -76,6 +76,12 @@ public class MeeleAttack extends Attacks
                 ((Zyklope)hitBoss).takeDamage(damage);
             }
 
+            Object hitBoss2 = getOneIntersectingObject(Minotaur.class);
+            if(hitBoss2 != null)
+            {
+                ((Minotaur)hitBoss2).takeDamage(damage);                
+            }
+
             Object[] hits = getIntersectingObjects(Enemy.class).toArray();
 
             if(hits.length != 0)
