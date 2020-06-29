@@ -1328,7 +1328,7 @@ target23.name=PurchasedInformation
 >>>>>>> 6ad7d38063d7f357af7d11ce5de2361f1f92dc72
 target23.showInterface=false
 target23.type=ClassTarget
-target23.width=80
+target23.width=140
 target23.x=0
 target23.y=0
 target24.height=50
