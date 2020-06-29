@@ -18,6 +18,8 @@ public class Enemy extends Actor
     public int scoreToDrop;
 
     int dazedTime = 0;
+    
+    public boolean gotAlreadyDamaged = false;
 
     public boolean update()
     {
