@@ -15,7 +15,7 @@ public class Castle extends Environment
     {        
         wave = wave_;
     }
-    
+
     public Castle()
     {        
         justForShow = true;
@@ -37,17 +37,24 @@ public class Castle extends Environment
             bossWave = Game.levelCount % 10 == 0;
             firstFrame = false;
         }
-        
+
         if(justForShow)
         {
-            
+
         }
         else if(bossWave)
         {
             if(!bossSpawned)
             {
                 bossSpawned = true;
-                getWorld().addObject(new Zyklope(), 0, 400);
+                if(Game.levelCount == 10)
+                {
+                    getWorld().addObject(new Zyklope(), 0, 400);
+                }
+                else if(Game.levelCount == 20)
+                {
+                    getWorld().addObject(new Minotaur(), 0, 400);
+                }
                 startSpawnTime = 4;
                 spawnTime = 4;
             }

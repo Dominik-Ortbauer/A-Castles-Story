@@ -12,7 +12,7 @@ public class MainMenu extends World
     {
         super(1200, 800, 1);
         
-        Class[] classes = {PlayerImages.class};
+        Class[] classes = {StunnedEffect.class, PlayerImages.class};
         setPaintOrder(classes);
         
         prepare();

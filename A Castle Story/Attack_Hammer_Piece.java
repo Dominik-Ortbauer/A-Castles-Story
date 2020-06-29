@@ -23,6 +23,12 @@ public class Attack_Hammer_Piece extends Attacks
             ((Zyklope)hitBoss).takeDamage(damage);
         }
 
+        Object hitBoss2 = getOneIntersectingObject(Minotaur.class);
+        if(hitBoss2 != null)
+        {
+            ((Minotaur)hitBoss2).takeDamage(damage);            
+        }
+        
         Object[] hits = getIntersectingObjects(Enemy.class).toArray();
 
         for(int i = 0; i < hits.length; i++)

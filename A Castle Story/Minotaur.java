@@ -43,6 +43,7 @@ public class Minotaur extends Bosses
     public void addedToWorld(World world)
     {
         world.addObject(UI, getX(), getY() - 100);
+        getWorld().addObject(canvas, 600, 400);
     }
 
     public void act() 
@@ -64,7 +65,7 @@ public class Minotaur extends Bosses
             leap();
             break;
             case ATTACK_CASTLE:
-            dazed();
+            attackCastle();
             break; 
             case DAZED:
             dazed();
@@ -88,8 +89,8 @@ public class Minotaur extends Bosses
         idleAnim.update();
         if(chooseTime <= 0)
         {
-            int dice = Greenfoot.getRandomNumber(1);
-
+            int dice = Greenfoot.getRandomNumber(2);
+            
             if(dice == 0)
             {
                 phases = Phases.SPIN;
@@ -97,6 +98,7 @@ public class Minotaur extends Bosses
             else if(dice == 1)
             {
                 phases = Phases.LEAP;
+                setImage("Minotaur_Meele_F1.png");
             }
             chooseTime = 120;
         }
@@ -114,15 +116,15 @@ public class Minotaur extends Bosses
     public void spin()
     {
         if(!startedSpinning)
-        {
-            dir.set(1, Greenfoot.getRandomNumber(3) - 1);
+        {            
+            dir.set((Greenfoot.getRandomNumber(2) * 2)-1, (Greenfoot.getRandomNumber(2) * 2)-1);
             dir.setMag(spinSpeed);
             startedSpinning = true;
         }
 
         spinAnim.update();
 
-        if(isAtEdge())
+        if(isAtEdge() || getX() + halfImageWidth >= 1000)
         {
             dir.set(Game.player.getX(), Game.player.getY());
             dir.sub(new Vector(getX(), getY()));
@@ -154,32 +156,172 @@ public class Minotaur extends Bosses
         setLocation(getX() + (int)dir.x, getY() + (int)dir.y);
     }
 
+    int leapCount = 0;
+    int leapSpeed = 25;
+    boolean isLeaping = false;
+    boolean firstLeapFrame = true;
+    boolean isChargingLeap = true;
+    Vector target;
+    Vector targetPos;
+
+    int chargeTime = 30;
+    
+    GreenfootImage image;
+    
+    Canvas canvas = new Canvas();
     public void leap()
     {
+        if(!isLeaping && !isChargingLeap)
+        {
+            if(meeleAnim.update(7))
+            {                
+                isChargingLeap = true;
+                setImage("Minotaur_Meele_F1.png");
+                if(leapCount >= 3)
+                {
+                    phases = Phases.CHOOSE;
+                    firstLeapFrame = true;
+                    leapCount = 0;
+                    isChargingLeap = true;
+                    return;
+                }
+            }            
+        }
+
+        if(isChargingLeap)
+        {     
+            if(chargeTime <= 0)
+            {
+                isLeaping = true;
+                isChargingLeap = false;
+                image.clear();
+                chargeTime = 30;
+            }
+            else
+            {                                
+                image = canvas.getImage();
+                canvas.getImage().clear();
+                image.setColor(Color.BLACK);
+                image.drawLine(getX(), getY(), Game.player.getX(), Game.player.getY());
+                chargeTime--;
+            }
+        }
+
+        if(isLeaping)
+        {       
+            if(firstLeapFrame)
+            {
+                firstLeapFrame = false;
+                target = new Vector(Game.player.getX(), Game.player.getY());
+                target.sub(new Vector(getX(), getY()));
+                targetPos = target.copy();
+                target.setMag(leapSpeed);
+            }
+
+            setLocation(getX() + (int)target.x, getY() + (int)target.y);
+            if(getX() >= 1000 || isAtEdge())
+            {
+                isLeaping = false;
+                firstLeapFrame = true;
+                setLocation(getX() - (int)target.x, getY() - (int)target.y);
+                leapCount++;
+            }
+        }
+
+        Player player = (Player)getOneIntersectingObject(Player.class);
+        if(player != null)
+        {
+            player.stun(120);
+            leapCount = 0;
+            isLeaping = false;
+            firstLeapFrame = true;
+            phases = Phases.ATTACK_CASTLE;
+            isChargingLeap = true;
+            return;
+        }
 
     }
-
+    boolean isJumpingBack = false;
     public void attackCastle()
     {
-
+        Castle castle = (Castle)getOneIntersectingObject(Castle.class);
+        if(isJumpingBack)
+        {
+            if(getX() >= 200)
+            {
+                move(-10);
+            }
+            else
+            {
+                phases = Phases.CHOOSE;
+                isJumpingBack = false;
+            }
+        }
+        else
+        {
+            if(castle != null)
+            {
+                if(meeleAnim.update(7))
+                {
+                    castle.takeDamage(2);
+                    isJumpingBack = true;
+                    setImage("Minotaur.png");
+                }
+            }
+            else
+            {
+                move(15);
+            }
+        }
     }
 
+    int dazedTime = 240;
+    boolean dazed = false;
+    StunnedEffect stunEffect = new StunnedEffect();
     public void dazed()
     {
+        if(!dazed)
+        {
+            setImage("Minotaur.png");
+            getWorld().addObject(stunEffect, getX(), getY() - 50);
+            dazed = true;
+        }
 
+        if(dazedTime <= 0)
+        {
+            phases = Phases.CHOOSE;
+            getWorld().removeObject(stunEffect);
+            dazedTime = 240;
+            dazed = false;
+        }
+        else
+        {
+            dazedTime--;
+        }   
     }
 
     public void takeDamage(int value)
     {
-        health -= value;
-        UI.update("HP: " + health, 48);
+        if(phases == Phases.DAZED)
+        {
+            health -= value;
+            UI.update("HP: " + health, 48);
+        }
+
+        if(health <= 0)
+        {
+            defeat();
+        }
     }
 
     public void defeat()
     {
         GoldCounter.gold += goldToDrop;
         ScoreCounter.score += scoreToDrop;
-
+        
+        ((Door)getWorld().getObjects(Door.class).get(0)).openDoor();
+        getWorld().removeObject(UI);
+        getWorld().removeObject(stunEffect);
         getWorld().removeObject(this);
     }
 }

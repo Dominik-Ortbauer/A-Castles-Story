@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class StunnedEffect extends Actor
+public class StunnedEffect extends Effects
 {
     String[] allImages = {"StunnedEffect_F1.png", "StunnedEffect_F2.png"};
     private Animation_Controller controller = new Animation_Controller(0.1, allImages, this);
