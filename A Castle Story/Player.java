@@ -34,7 +34,7 @@ public class Player extends Actor
     private boolean firstFrame = true;
 
     public Player_Body playerBody = new Player_Body();
-    public Player_Weapons currentWeapon = new Player_Shield();
+    public Player_Weapons currentWeapon = new Player_Sword();
 
     private boolean isWalking = true;
 
