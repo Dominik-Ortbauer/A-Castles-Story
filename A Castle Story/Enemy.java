@@ -19,6 +19,8 @@ public class Enemy extends Actor
 
     int dazedTime = 0;
 
+    public boolean gotAlreadyDamaged = false;
+
     public boolean update()
     {
         pos.set(getX(), getY());
@@ -31,16 +33,16 @@ public class Enemy extends Actor
 
         return false;
     }
-    
+
     public GreenfootImage[] makeImages(String firstPart, int length)
     {
         GreenfootImage[] images = new GreenfootImage[length];
-        
+
         for(int i = 0; i < length; i++)
         {
             images[i] = new GreenfootImage(firstPart + (i+1) + ".png");
         }
-        
+
         return images;
     }
 
@@ -95,13 +97,13 @@ public class Enemy extends Actor
     {
         dazedTime = time;
     }
-    
+
     public void pushBack(Vector direction, int speed)
     {
         direction.setMag(speed);
         setLocation(getX() + (int)direction.x, getY() + (int)direction.y);
     }
-    
+
     public Enemy getSecondClosestEnemy()
     {
         setEnemies();
@@ -109,17 +111,26 @@ public class Enemy extends Actor
         Enemy closestEnemy = null;
         if(enemies != null && enemies.length != 0)
         {
-            closestEnemy = enemies[0];
-            for(int i = 1; i < enemies.length; i++)
+            int j = 0;
+            do
             {
-                if(pos.dist(closestEnemy.pos) > pos.dist(enemies[i].pos) && !(enemies[i] instanceof Magician))
+                closestEnemy = enemies[j];
+                j++;
+            }while(closestEnemy instanceof Magician && j < enemies.length);
+
+            if(closestEnemy != null)
+            {
+                for(int i = 1; i < enemies.length; i++)
                 {
-                    closestEnemy = enemies[i];
+                    if(pos.dist(closestEnemy.pos) > pos.dist(enemies[i].pos) && !(enemies[i] instanceof Magician))
+                    {
+                        closestEnemy = enemies[i];
+                    }
                 }
             }
         }
 
-        if(closestEnemy instanceof Magician)
+        if(closestEnemy instanceof Magician || closestEnemy instanceof Tree)
         {
             return null;
         }
@@ -133,7 +144,7 @@ public class Enemy extends Actor
     {
         enemies = getEnemies();
     }
-    
+
     public Enemy[] getEnemies()
     {
         Object[] objects = getWorld().getObjects(Enemy.class).toArray();
