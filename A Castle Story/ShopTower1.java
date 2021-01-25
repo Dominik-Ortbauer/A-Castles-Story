@@ -6,7 +6,7 @@ public class ShopTower1 extends ShopItems
     
     public ShopTower1()
     {
-        setPrice(10);
+        setPrice(50);
     }
     
     public void act() 
@@ -19,7 +19,7 @@ public class ShopTower1 extends ShopItems
 
         if(Greenfoot.mouseClicked(this) && GoldCounter.gold >= price)
         {
-            ((Shop)getWorld()).addTowerSpots();
+            ((Shop)getWorld()).showTowerSpots();
             isBought = true;
         }
 

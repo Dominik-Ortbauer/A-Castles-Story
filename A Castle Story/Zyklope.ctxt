@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Zyklope
+comment1.params=
+comment1.target=Zyklope()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=amount
+comment3.target=void\ takeDamage(int)
+comment4.params=
+comment4.target=void\ defeated()
+comment5.params=
+comment5.target=void\ shockwave()
+comment6.params=
+comment6.target=void\ throwClub()
+comment7.params=player
+comment7.target=void\ swingClub(Player)
+comment8.params=damageable
+comment8.target=void\ stun(boolean)
+comment9.params=
+comment9.target=void\ attackRandomly()
+numComments=10

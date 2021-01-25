@@ -15,6 +15,12 @@ public class Effect_Particles extends Actor
             
     public void act() 
     {
+        if(isAtEdge())
+        {
+            getWorld().removeObject(this);
+            return;
+        }
+        
         if(speed >= 0)
         {
             move((int)speed);

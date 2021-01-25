@@ -6,7 +6,7 @@ public class MeeleAttack extends Attacks
     private int waitTime = 4;
     private int frameCount = 1;
 
-    private String[] frames_ = {"Meele_F1.png","Meele_F2.png","Meele_F3.png","Meele_F4.png","Meele_F5.png"};
+    private String[] frames_ = {"Knight/Meele/Meele_F1.png","Knight/Meele/Meele_F2.png","Knight/Meele/Meele_F3.png","Knight/Meele/Meele_F4.png","Knight/Meele/Meele_F5.png"};
     private GreenfootImage[] frames;
     private int size = 75;
 
@@ -44,7 +44,7 @@ public class MeeleAttack extends Attacks
 
         Player player = (Player)getWorld().getObjects(Player.class).get(0);
         setLocation((int)player.pos.x + (int)dir.x, (int)player.pos.y + (int)dir.y);
-       
+
         if(waitTime <= 0)
         {
             if(frameCount < frames.length)
@@ -62,16 +62,33 @@ public class MeeleAttack extends Attacks
         {
             waitTime --;
         } 
-        
+
         if(frameCount == 4 && waitTime == (startWaitTime/2))
         {
+            if(getOneIntersectingObject(Club.class) != null)
+            {
+                ((Club)getOneIntersectingObject(Club.class)).hitByPlayer();
+            }
+
+            Object hitBoss = getOneIntersectingObject(Zyklope.class);
+            if(hitBoss != null)
+            {
+                ((Zyklope)hitBoss).takeDamage(damage);
+            }
+
+            Object hitBoss2 = getOneIntersectingObject(Minotaur.class);
+            if(hitBoss2 != null)
+            {
+                ((Minotaur)hitBoss2).takeDamage(damage);                
+            }
+
             Object[] hits = getIntersectingObjects(Enemy.class).toArray();
-            
+
             if(hits.length != 0)
             {
                 getWorld().addObject(new Effect(Effects.Colour.GREEN, new Vector(15, 5), 20), getX(), getY());
             }
-            
+
             for(int i = 0; i < hits.length; i++)
             {
                 ((Enemy)hits[i]).takeDamage(damage);

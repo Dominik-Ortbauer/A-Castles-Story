@@ -23,6 +23,6 @@ public class TrapPlacer extends Tower
 
     private void shoot()
     {
-        getWorld().addObject(new Trap(new Vector(900, Greenfoot.getRandomNumber(800))), getX(), getY());
+        getWorld().addObject(new Trap(new Vector(850, Greenfoot.getRandomNumber(800))), getX(), getY());
     }  
 }

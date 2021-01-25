@@ -16,7 +16,7 @@ public class Tower1 extends Tower
         if(update())
         {
             turnTowards(getClosestEnemy().getX(), getClosestEnemy().getY());
-            
+            turn(180);
             if(timer == 48)
             {
                 setImage("Tower1.png");

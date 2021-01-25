@@ -21,6 +21,27 @@ public class Attack_Bow_Piece extends Attacks
         turnTowards((int)dir.x + getX(), (int)dir.y + getY());
         move(10);
         
+        if(getOneIntersectingObject(Club.class) != null)
+        {
+            ((Club)getOneIntersectingObject(Club.class)).hitByPlayer();
+        }
+        
+        Object hitBoss1 = getOneIntersectingObject(Zyklope.class);
+        if(hitBoss1 != null)
+        {
+            ((Zyklope)hitBoss1).takeDamage(damage);
+            getWorld().removeObject(this);
+            return;
+        }
+        
+        Object hitBoss2 = getOneIntersectingObject(Minotaur.class);
+        if(hitBoss2 != null)
+        {
+            ((Minotaur)hitBoss2).takeDamage(damage);
+            getWorld().removeObject(this);
+            return;
+        }
+        
         Object hit = getOneIntersectingObject(Enemy.class);
         if(hit != null)
         {

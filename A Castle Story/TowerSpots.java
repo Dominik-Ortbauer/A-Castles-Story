@@ -8,21 +8,38 @@ public class TowerSpots extends Buttons
         {
             if(ShopTower1.isBought)
             {
-                Battlefield.towerSpots[getY()/100 - 1] = 1;
+                if(getY() == 200)
+                {
+                    Battlefield.towerSpots[0] = 1;
+                }
+                else
+                {
+                    Battlefield.towerSpots[1] = 1;
+                }
                 ShopTower1.isBought = false;
                 getWorld().addObject(new PurchasedInformation(), 600, 600);
                 GoldCounter.gold -= ((Shop)getWorld()).getObjects(ShopTower1.class).get(0).price;
-                getWorld().addObject(new Tower1Sprite(), getX(), getY());
+                setImage("Tower1_F2.png");
+                getImage().setTransparency(255);
             }
             else if(ShopTrapPlacer.isBought)
             {
-                Battlefield.towerSpots[getY()/100 - 1] = 2;
+                if(getY() == 200)
+                {
+                    Battlefield.towerSpots[0] = 2;
+                }
+                else
+                {
+                    Battlefield.towerSpots[1] = 2;
+                }
                 ShopTrapPlacer.isBought = false;
                 getWorld().addObject(new PurchasedInformation(), 600, 600);
-                GoldCounter.gold -= ((Shop)getWorld()).getObjects(ShopTrapPlacer.class).get(0).price;;
-                getWorld().addObject(new TrapPlacerSprite(), getX(), getY());
+                GoldCounter.gold -= ((Shop)getWorld()).getObjects(ShopTrapPlacer.class).get(0).price;
+                setImage("TrapPlacer_F1.png");
+                getImage().setTransparency(255);
             }
             ((Shop)getWorld()).removeTowerSpots();
         }
     }
+
 }

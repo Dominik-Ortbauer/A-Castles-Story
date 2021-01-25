@@ -10,9 +10,15 @@ public class Castle extends Environment
     private boolean cleared = false;
     public Wave wave;
 
+    private boolean justForShow = false;
     public Castle(Wave wave_)
     {        
         wave = wave_;
+    }
+
+    public Castle()
+    {        
+        justForShow = true;
     }
 
     public void setWave(Wave wave_)
@@ -21,46 +27,81 @@ public class Castle extends Environment
         cleared = false;
     }
 
+    private boolean bossSpawned = false;
+    private boolean bossWave = false;
+    public boolean firstFrame = true;
     public void act() 
     {
-        checkHealth();
-
-        if(!wave.enemyAvailable() && getWorld().getObjects(Enemy.class).size() == 0 && !cleared)
+        if(firstFrame)
         {
-            ((Door)getOneIntersectingObject(Door.class)).openDoor();
-            Game.levelCount++;
-            if(startSpawnTime >= 0.5)
-            {
-                startSpawnTime *= 0.90;
-            }
-            Object[] traps = (getWorld().getObjects(Projectiles.class).toArray());
-
-            for(Object trap : traps)
-            {
-                getWorld().removeObject((Actor)trap);
-            }
-            cleared = true;
+            bossWave = Game.levelCount % 10 == 0;
+            firstFrame = false;
         }
 
-        if(wave.enemyAvailable())
+        if(justForShow)
         {
-            if(spawnTime <= 0)
+
+        }
+        else if(bossWave)
+        {
+            if(!bossSpawned)
             {
-                getWorld().addObject(wave.getNextEnemy(), 0, Greenfoot.getRandomNumber(getWorld().getHeight() - 100)+50);
-                spawnTime = startSpawnTime;
-            }
-            else
-            {
-                spawnTime -= 0.017;
+                bossSpawned = true;
+                if(Game.levelCount == 10)
+                {
+                    getWorld().addObject(new Zyklope(), 0, 400);
+                }
+                else if(Game.levelCount == 20)
+                {
+                    getWorld().addObject(new Minotaur(), 0, 400);
+                }
+                startSpawnTime = 4;
+                spawnTime = 4;
             }
         }
+        else
+        {
+            if(!wave.enemyAvailable() && getWorld().getObjects(Enemy.class).size() == 0 && !cleared)
+            {
+                ((Door)getOneIntersectingObject(Door.class)).openDoor();
+                Game.levelCount++;
+                if(startSpawnTime >= 2)
+                {
+                    startSpawnTime *= 0.95;
+                }
+                Object[] traps = (getWorld().getObjects(Projectiles.class).toArray());
 
+                for(Object trap : traps)
+                {
+                    getWorld().removeObject((Actor)trap);
+                }
+                cleared = true;
+            }
+
+            if(wave.enemyAvailable())
+            {
+                if(spawnTime <= 0)
+                {
+                    getWorld().addObject(wave.getNextEnemy(), 0, Greenfoot.getRandomNumber(getWorld().getHeight() - 100)+50);
+                    spawnTime = startSpawnTime;
+                }
+                else
+                {
+                    spawnTime -= 0.017;
+                }
+            }
+        }
     } 
 
     private void checkHealth()
     {
         if(Game.health <= 0)
         {
+            if(justForShow)
+            {
+                Game.health = Game.maxHealth;
+                return;
+            }
             boolean highscorePlace = ScoreCounter.score > Highscore.highscore[4];
 
             if(highscorePlace)
@@ -110,7 +151,8 @@ public class Castle extends Environment
     public void takeDamage(int value)
     {
         Game.health -= value;
-        updateUI();
+        checkHealth();
+        updateUI();       
     }
 
     public void heal(int value)
